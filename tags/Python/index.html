@@ -56,6 +56,82 @@
       
   
   <h2 class="archive-article-title" itemprop="name">
+    <a href="/2023/01/23/List-Generator/">List Generator</a>
+  </h2>
+  
+  
+
+      <a href="/2023/01/23/List-Generator/" class="archive-article-date">
+  <time datetime="2023-01-23T19:34:10.000Z" itemprop="datePublished">01/23</time>
+</a>
+    </header>
+    
+      <h2 id="Take-Away"><a href="#Take-Away" class="headerlink" title="Take Away"></a>Take Away</h2><p>运用列表生成式，可以写出非常简洁的代码。例如，列出当前目录下的所有文件和目录名，可以通过一行代码实现：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> os <span class="comment"># 导入os模块，模块的概念后面讲到</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>[d <span class="keyword">for</span> d <span class="keyword">in</span> os.listdir(<span class="string">&#x27;.&#x27;</span>)] <span class="comment"># os.listdir可以列出文件和目录</span></span><br><span class="line">[<span class="string">&#x27;.emacs.d&#x27;</span>, <span class="string">&#x27;.ssh&#x27;</span>, <span class="string">&#x27;.Trash&#x27;</span>, <span class="string">&#x27;Adlm&#x27;</span>, <span class="string">&#x27;Applications&#x27;</span>, <span class="string">&#x27;Desktop&#x27;</span>, <span class="string">&#x27;Documents&#x27;</span>, <span class="string">&#x27;Downloads&#x27;</span>, <span class="string">&#x27;Library&#x27;</span>, <span class="string">&#x27;Movies&#x27;</span>, <span class="string">&#x27;Music&#x27;</span>, <span class="string">&#x27;Pictures&#x27;</span>, <span class="string">&#x27;Public&#x27;</span>, <span class="string">&#x27;VirtualBox VMs&#x27;</span>, <span class="string">&#x27;Workspace&#x27;</span>, <span class="string">&#x27;XCode&#x27;</span>]</span><br></pre></td></tr></table></figure>
+
+<p>使用列表生成式的时候，有些童鞋经常搞不清楚<code>if...else</code>的用法。</p>
+<p>例如，以下代码正常输出偶数：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>[x <span class="keyword">for</span> x <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="number">11</span>) <span class="keyword">if</span> x % <span class="number">2</span> == <span class="number">0</span>]</span><br><span class="line">[<span class="number">2</span>, <span class="number">4</span>, <span class="number">6</span>, <span class="number">8</span>, <span class="number">10</span>]</span><br></pre></td></tr></table></figure>
+
+<p>但是，我们不能在最后的<code>if</code>加上<code>else</code>：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>[x <span class="keyword">for</span> x <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="number">11</span>) <span class="keyword">if</span> x % <span class="number">2</span> == <span class="number">0</span> <span class="keyword">else</span> <span class="number">0</span>]</span><br><span class="line">  File <span class="string">&quot;&lt;stdin&gt;&quot;</span>, line <span class="number">1</span></span><br><span class="line">    [x <span class="keyword">for</span> x <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="number">11</span>) <span class="keyword">if</span> x % <span class="number">2</span> == <span class="number">0</span> <span class="keyword">else</span> <span class="number">0</span>]</span><br><span class="line">                                              ^</span><br><span class="line">SyntaxError: invalid syntax</span><br></pre></td></tr></table></figure>
+
+<p>这是因为跟在<code>for</code>后面的<code>if</code>是一个筛选条件，不能带<code>else</code>，否则如何筛选？</p>
+<p>另一些童鞋发现把<code>if</code>写在<code>for</code>前面必须加<code>else</code>，否则报错：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>[x <span class="keyword">if</span> x % <span class="number">2</span> == <span class="number">0</span> <span class="keyword">for</span> x <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="number">11</span>)]</span><br><span class="line">  File <span class="string">&quot;&lt;stdin&gt;&quot;</span>, line <span class="number">1</span></span><br><span class="line">    [x <span class="keyword">if</span> x % <span class="number">2</span> == <span class="number">0</span> <span class="keyword">for</span> x <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="number">11</span>)]</span><br><span class="line">                       ^</span><br><span class="line">SyntaxError: invalid syntax</span><br></pre></td></tr></table></figure>
+    
+    
+    
+      
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Exercise/" rel="tag">Exercise</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/" rel="tag">Python</a></li></ul>
+
+    
+  </div>
+
+</article>
+      
+  
+  
+      <article class="archive-article archive-type-post">
+  
+  
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      
+  
+  <h2 class="archive-article-title" itemprop="name">
+    <a href="/2023/01/23/Iteration/">Iteration</a>
+  </h2>
+  
+  
+
+      <a href="/2023/01/23/Iteration/" class="archive-article-date">
+  <time datetime="2023-01-23T19:20:00.000Z" itemprop="datePublished">01/23</time>
+</a>
+    </header>
+    
+      
+    
+    
+    
+      
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Exercise/" rel="tag">Exercise</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/" rel="tag">Python</a></li></ul>
+
+    
+  </div>
+
+</article>
+      
+  
+  
+      <article class="archive-article archive-type-post">
+  
+  
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      
+  
+  <h2 class="archive-article-title" itemprop="name">
     <a href="/2023/01/23/Slices/">Slices</a>
   </h2>
   

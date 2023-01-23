@@ -8,7 +8,7 @@
   
   
   <title>
-    Tag: Exercise |
+    List Generator |
     
     Welcome to the world of AWBJCJ!
   </title>
@@ -32,41 +32,43 @@
 <body>
   <main class="content">
     <section class="outer">
-  <article class="articles">
+  <article id="post-List-Generator" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
     
-    <h1 class="page-type-title">#&nbspExercise</h1>
-    
-  
-  
-  
-  
-  
-  
-  <div class="archives-wrap">
-    <div class="archive-year-wrap">
-      <a href="/archives/2023" class="archive-year">2023</a>
-    </div>
-    <div class="archives">
-      
-      <article class="archive-article archive-type-post">
-  
-  
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
+    <header class="article-header">
       
   
-  <h2 class="archive-article-title" itemprop="name">
-    <a href="/2023/01/23/List-Generator/">List Generator</a>
-  </h2>
+  <h1 class="article-title" itemprop="name">
+    List Generator
+  </h1>
   
   
 
-      <a href="/2023/01/23/List-Generator/" class="archive-article-date">
-  <time datetime="2023-01-23T19:34:10.000Z" itemprop="datePublished">01/23</time>
-</a>
     </header>
     
-      <h2 id="Take-Away"><a href="#Take-Away" class="headerlink" title="Take Away"></a>Take Away</h2><p>运用列表生成式，可以写出非常简洁的代码。例如，列出当前目录下的所有文件和目录名，可以通过一行代码实现：</p>
+
+    
+    <div class="article-meta">
+      <a href="/2023/01/23/List-Generator/" class="article-date">
+  <time datetime="2023-01-23T19:34:10.000Z" itemprop="datePublished">2023-01-23</time>
+</a>
+      
+    </div>
+    
+
+    
+    
+<div class="tocbot"></div>
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h2 id="Take-Away"><a href="#Take-Away" class="headerlink" title="Take Away"></a>Take Away</h2><p>运用列表生成式，可以写出非常简洁的代码。例如，列出当前目录下的所有文件和目录名，可以通过一行代码实现：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> os <span class="comment"># 导入os模块，模块的概念后面讲到</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>[d <span class="keyword">for</span> d <span class="keyword">in</span> os.listdir(<span class="string">&#x27;.&#x27;</span>)] <span class="comment"># os.listdir可以列出文件和目录</span></span><br><span class="line">[<span class="string">&#x27;.emacs.d&#x27;</span>, <span class="string">&#x27;.ssh&#x27;</span>, <span class="string">&#x27;.Trash&#x27;</span>, <span class="string">&#x27;Adlm&#x27;</span>, <span class="string">&#x27;Applications&#x27;</span>, <span class="string">&#x27;Desktop&#x27;</span>, <span class="string">&#x27;Documents&#x27;</span>, <span class="string">&#x27;Downloads&#x27;</span>, <span class="string">&#x27;Library&#x27;</span>, <span class="string">&#x27;Movies&#x27;</span>, <span class="string">&#x27;Music&#x27;</span>, <span class="string">&#x27;Pictures&#x27;</span>, <span class="string">&#x27;Public&#x27;</span>, <span class="string">&#x27;VirtualBox VMs&#x27;</span>, <span class="string">&#x27;Workspace&#x27;</span>, <span class="string">&#x27;XCode&#x27;</span>]</span><br></pre></td></tr></table></figure>
 
 <p>使用列表生成式的时候，有些童鞋经常搞不清楚<code>if...else</code>的用法。</p>
@@ -79,152 +81,57 @@
 <p>这是因为跟在<code>for</code>后面的<code>if</code>是一个筛选条件，不能带<code>else</code>，否则如何筛选？</p>
 <p>另一些童鞋发现把<code>if</code>写在<code>for</code>前面必须加<code>else</code>，否则报错：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>[x <span class="keyword">if</span> x % <span class="number">2</span> == <span class="number">0</span> <span class="keyword">for</span> x <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="number">11</span>)]</span><br><span class="line">  File <span class="string">&quot;&lt;stdin&gt;&quot;</span>, line <span class="number">1</span></span><br><span class="line">    [x <span class="keyword">if</span> x % <span class="number">2</span> == <span class="number">0</span> <span class="keyword">for</span> x <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="number">11</span>)]</span><br><span class="line">                       ^</span><br><span class="line">SyntaxError: invalid syntax</span><br></pre></td></tr></table></figure>
-    
-    
-    
-      
-<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Exercise/" rel="tag">Exercise</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/" rel="tag">Python</a></li></ul>
 
-    
-  </div>
+<span id="more"></span>
 
-</article>
-      
-  
-  
-      <article class="archive-article archive-type-post">
-  
-  
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      
-  
-  <h2 class="archive-article-title" itemprop="name">
-    <a href="/2023/01/23/Iteration/">Iteration</a>
-  </h2>
-  
-  
+<p><strong>这是因为<code>for</code>前面的部分是一个表达式，它必须根据<code>x</code>计算出一个结果。</strong>因此，考察表达式：<code>x if x % 2 == 0</code>，它无法根据<code>x</code>计算出结果，因为缺少<code>else</code>，必须加上<code>else</code>：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>[x <span class="keyword">if</span> x % <span class="number">2</span> == <span class="number">0</span> <span class="keyword">else</span> -x <span class="keyword">for</span> x <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="number">11</span>)]</span><br><span class="line">[-<span class="number">1</span>, <span class="number">2</span>, -<span class="number">3</span>, <span class="number">4</span>, -<span class="number">5</span>, <span class="number">6</span>, -<span class="number">7</span>, <span class="number">8</span>, -<span class="number">9</span>, <span class="number">10</span>]</span><br></pre></td></tr></table></figure>
 
-      <a href="/2023/01/23/Iteration/" class="archive-article-date">
-  <time datetime="2023-01-23T19:20:00.000Z" itemprop="datePublished">01/23</time>
-</a>
-    </header>
-    
-      
-    
-    
-    
-      
-<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Exercise/" rel="tag">Exercise</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/" rel="tag">Python</a></li></ul>
+<p>上述<code>for</code>前面的表达式<code>x if x % 2 == 0 else -x</code>才能根据<code>x</code>计算出确定的结果。</p>
+<p><strong>可见，在一个列表生成式中，<code>for</code>前面的<code>if ... else</code>是表达式，而<code>for</code>后面的<code>if</code>是过滤条件，不能带<code>else</code>。</strong></p>
+<h2 id="Exercise"><a href="#Exercise" class="headerlink" title="Exercise"></a>Exercise</h2><p>如果list中既包含字符串，又包含整数，由于非字符串类型没有<code>lower()</code>方法，所以列表生成式会报错：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>L = [<span class="string">&#x27;Hello&#x27;</span>, <span class="string">&#x27;World&#x27;</span>, <span class="number">18</span>, <span class="string">&#x27;Apple&#x27;</span>, <span class="literal">None</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>[s.lower() <span class="keyword">for</span> s <span class="keyword">in</span> L]</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File <span class="string">&quot;&lt;stdin&gt;&quot;</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">  File <span class="string">&quot;&lt;stdin&gt;&quot;</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;listcomp&gt;</span><br><span class="line">AttributeError: <span class="string">&#x27;int&#x27;</span> <span class="built_in">object</span> has no attribute <span class="string">&#x27;lower&#x27;</span></span><br></pre></td></tr></table></figure>
 
-    
-  </div>
+<p>使用内建的<code>isinstance</code>函数可以判断一个变量是不是字符串：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>x = <span class="string">&#x27;abc&#x27;</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>y = <span class="number">123</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">isinstance</span>(x, <span class="built_in">str</span>)</span><br><span class="line"><span class="literal">True</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">isinstance</span>(y, <span class="built_in">str</span>)</span><br><span class="line"><span class="literal">False</span></span><br></pre></td></tr></table></figure>
 
-</article>
-      
-  
-  
-      <article class="archive-article archive-type-post">
-  
-  
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      
-  
-  <h2 class="archive-article-title" itemprop="name">
-    <a href="/2023/01/23/Slices/">Slices</a>
-  </h2>
-  
-  
+<p>请修改列表生成式，通过添加<code>if</code>语句保证列表生成式能正确地执行</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">L1 = [<span class="string">&#x27;Hello&#x27;</span>, <span class="string">&#x27;World&#x27;</span>, <span class="number">18</span>, <span class="string">&#x27;Apple&#x27;</span>, <span class="literal">None</span>]</span><br><span class="line">L2 = [s.lower() <span class="keyword">for</span> s <span class="keyword">in</span> L1 <span class="keyword">if</span> <span class="built_in">isinstance</span>(s,<span class="built_in">str</span>)]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 测试:</span></span><br><span class="line"><span class="built_in">print</span>(L2)</span><br><span class="line"><span class="keyword">if</span> L2 == [<span class="string">&#x27;hello&#x27;</span>, <span class="string">&#x27;world&#x27;</span>, <span class="string">&#x27;apple&#x27;</span>]:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;测试通过!&#x27;</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;测试失败!&#x27;</span>)</span><br></pre></td></tr></table></figure>
 
-      <a href="/2023/01/23/Slices/" class="archive-article-date">
-  <time datetime="2023-01-23T08:01:17.000Z" itemprop="datePublished">01/23</time>
-</a>
-    </header>
-    
-      
-    
-    
-    
-      
-<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Exercise/" rel="tag">Exercise</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/" rel="tag">Python</a></li></ul>
 
-    
-  </div>
-
-</article>
-      
-  
-  
-      <article class="archive-article archive-type-post">
-  
-  
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      
-  
-  <h2 class="archive-article-title" itemprop="name">
-    <a href="/2023/01/22/Recursion/">Recursion</a>
-  </h2>
-  
-  
-
-      <a href="/2023/01/22/Recursion/" class="archive-article-date">
-  <time datetime="2023-01-22T05:57:19.000Z" itemprop="datePublished">01/22</time>
-</a>
-    </header>
-    
-      
-    
-    
-    
-      
-<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Exercise/" rel="tag">Exercise</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/" rel="tag">Python</a></li></ul>
-
-    
-  </div>
-
-</article>
-      
-  
-  
-      <article class="archive-article archive-type-post">
-  
-  
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      
-  
-  <h2 class="archive-article-title" itemprop="name">
-    <a href="/2023/01/21/Parameter-of-Function/">Parameter of Function</a>
-  </h2>
-  
-  
-
-      <a href="/2023/01/21/Parameter-of-Function/" class="archive-article-date">
-  <time datetime="2023-01-22T03:45:43.000Z" itemprop="datePublished">01/21</time>
-</a>
-    </header>
-    
-      
-    
-    
-    
-      
-<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Exercise/" rel="tag">Exercise</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/" rel="tag">Python</a></li></ul>
-
-    
-  </div>
-
-</article>
-      
       
     </div>
+    <footer class="article-footer">
+      <a data-url="https://awbjcj.github.io/2023/01/23/List-Generator/" data-id="cld98qtsg0001qcl02g6qfans" class="article-share-link">
+        Share
+      </a>
+      
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Exercise/" rel="tag">Exercise</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/" rel="tag">Python</a></li></ul>
+
+    </footer>
+
   </div>
+
   
+  
+<nav class="article-nav">
+  
+  
+  <a href="/2023/01/23/Iteration/" class="article-nav-link">
+    <strong class="article-nav-caption">Older</strong>
+    <div class="article-nav-title">Iteration</div>
+  </a>
+  
+</nav>
+
   
 
   
+  
+  
+  
+
+</article>
 </section>
     <footer class="footer">
   <div class="outer">
@@ -243,6 +150,8 @@
     <p><ul class="list-inline">
   
   <li><i class="fe fe-smile-alt tooltip" data-tooltip="UV"></i> <span id="busuanzi_value_site_uv"></span></li>
+  
+  <li><i class="fe fe-bookmark tooltip" data-tooltip="PV"></i> <span id="busuanzi_value_page_pv"></span></li>
   
 </ul></p>
   </div>
@@ -323,6 +232,24 @@
 
 
 
+
+
+<script src="/js/tocbot.min.js"></script>
+
+
+<script>
+  // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto',
+  });
+</script>
 
 
 
