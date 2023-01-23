@@ -78,6 +78,8 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">===&gt; fact_iter(<span class="number">5</span>, <span class="number">1</span>)</span><br><span class="line">===&gt; fact_iter(<span class="number">4</span>, <span class="number">5</span>)</span><br><span class="line">===&gt; fact_iter(<span class="number">3</span>, <span class="number">20</span>)</span><br><span class="line">===&gt; fact_iter(<span class="number">2</span>, <span class="number">60</span>)</span><br><span class="line">===&gt; fact_iter(<span class="number">1</span>, <span class="number">120</span>)</span><br><span class="line">===&gt; <span class="number">120</span></span><br></pre></td></tr></table></figure>
 
 <p>尾递归调用时，如果做了优化，栈不会增长，因此，无论多少次调用也不会导致栈溢出。</p>
+<span id="more"></span>
+
 <p>遗憾的是，大多数编程语言没有针对尾递归做优化，Python解释器也没有做优化，所以，即使把上面的<code>fact(n)</code>函数改成尾递归方式，也会导致栈溢出。</p>
 <p>使用递归函数的优点是逻辑简单清晰，缺点是过深的调用会导致栈溢出。</p>
 <h2 id="Exercise"><a href="#Exercise" class="headerlink" title="Exercise"></a>Exercise</h2><p>请编写<code>move(n, a, b, c)</code>函数，它接收参数<code>n</code>，表示3个柱子A、B、C中第1个柱子A的盘子数量，然后打印出把所有盘子从A借助B移动到C的方法</p>

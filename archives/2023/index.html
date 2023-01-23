@@ -56,6 +56,34 @@
       
   
   <h2 class="archive-article-title" itemprop="name">
+    <a href="/2023/01/23/Generator/">Generator</a>
+  </h2>
+  
+  
+
+      <a href="/2023/01/23/Generator/" class="archive-article-date">
+  <time datetime="2023-01-23T20:09:47.000Z" itemprop="datePublished">01/23</time>
+</a>
+    </header>
+    
+      
+    
+    
+    
+  </div>
+
+</article>
+      
+  
+  
+      <article class="archive-article archive-type-post">
+  
+  
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      
+  
+  <h2 class="archive-article-title" itemprop="name">
     <a href="/2023/01/23/List-Generator/">List Generator</a>
   </h2>
   
@@ -106,7 +134,12 @@
 </a>
     </header>
     
-      
+      <h2 id="Take-Away"><a href="#Take-Away" class="headerlink" title="Take Away"></a>Take Away</h2><p>当我们使用<code>for</code>循环时，只要作用于一个可迭代对象，<code>for</code>循环就可以正常运行，而我们不太关心该对象究竟是<code>list</code>还是其他数据类型。</p>
+<p>那么，如何判断一个对象是可迭代对象呢？方法是通过<code>collections.abc</code>模块的<code>Iterable</code>类型判断：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> collections.abc <span class="keyword">import</span> Iterable</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">isinstance</span>(<span class="string">&#x27;abc&#x27;</span>, Iterable) <span class="comment"># str是否可迭代</span></span><br><span class="line"><span class="literal">True</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">isinstance</span>([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>], Iterable) <span class="comment"># list是否可迭代</span></span><br><span class="line"><span class="literal">True</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">isinstance</span>(<span class="number">123</span>, Iterable) <span class="comment"># 整数是否可迭代</span></span><br><span class="line"><span class="literal">False</span></span><br></pre></td></tr></table></figure>
+
+<p>如果要对<code>list</code>实现类似Java那样的下标循环怎么办？Python内置的<code>enumerate</code>函数可以把一个<code>list</code>变成索引-元素对，这样就可以在<code>for</code>循环中同时迭代索引和元素本身：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">for</span> i, value <span class="keyword">in</span> <span class="built_in">enumerate</span>([<span class="string">&#x27;A&#x27;</span>, <span class="string">&#x27;B&#x27;</span>, <span class="string">&#x27;C&#x27;</span>]):</span><br><span class="line"><span class="meta">... </span>    <span class="built_in">print</span>(i, value)</span><br><span class="line">...</span><br><span class="line"><span class="number">0</span> A</span><br><span class="line"><span class="number">1</span> B</span><br><span class="line"><span class="number">2</span> C</span><br></pre></td></tr></table></figure>
     
     
     
@@ -162,7 +195,16 @@
 </a>
     </header>
     
-      
+      <h2 id="Take-Away"><a href="#Take-Away" class="headerlink" title="Take Away"></a>Take Away</h2><p>解决递归调用栈溢出的方法是通过<strong>尾递归</strong>优化，事实上尾递归和循环的效果是一样的，所以，把循环看成是一种特殊的尾递归函数也是可以的。</p>
+<p>尾递归是指，在函数返回的时候，调用自身本身，并且，return语句不能包含表达式。这样，编译器或者解释器就可以把尾递归做优化，使递归本身无论调用多少次，都只占用一个栈帧，不会出现栈溢出的情况。</p>
+<p>上面的<code>fact(n)</code>函数由于<code>return n * fact(n - 1)</code>引入了乘法表达式，所以就不是尾递归了。要改成尾递归方式，需要多一点代码，主要是要把每一步的乘积传入到递归函数中：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">fact</span>(<span class="params">n</span>):</span><br><span class="line">    <span class="keyword">return</span> fact_iter(n, <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">fact_iter</span>(<span class="params">num, product</span>):</span><br><span class="line">    <span class="keyword">if</span> num == <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">return</span> product</span><br><span class="line">    <span class="keyword">return</span> fact_iter(num - <span class="number">1</span>, num * product)</span><br></pre></td></tr></table></figure>
+
+<p>可以看到，<code>return fact_iter(num - 1, num * product)</code>仅返回递归函数本身，<code>num - 1</code>和<code>num * product</code>在函数调用前就会被计算，不影响函数调用。</p>
+<p><code>fact(5)</code>对应的<code>fact_iter(5, 1)</code>的调用如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">===&gt; fact_iter(<span class="number">5</span>, <span class="number">1</span>)</span><br><span class="line">===&gt; fact_iter(<span class="number">4</span>, <span class="number">5</span>)</span><br><span class="line">===&gt; fact_iter(<span class="number">3</span>, <span class="number">20</span>)</span><br><span class="line">===&gt; fact_iter(<span class="number">2</span>, <span class="number">60</span>)</span><br><span class="line">===&gt; fact_iter(<span class="number">1</span>, <span class="number">120</span>)</span><br><span class="line">===&gt; <span class="number">120</span></span><br></pre></td></tr></table></figure>
+
+<p>尾递归调用时，如果做了优化，栈不会增长，因此，无论多少次调用也不会导致栈溢出。</p>
     
     
     
@@ -218,7 +260,17 @@
 </a>
     </header>
     
-      
+      <h2 id="Take-Away"><a href="#Take-Away" class="headerlink" title="Take Away"></a>Take Away</h2><p>Python的函数具有非常灵活的参数形态，既可以实现简单的调用，又可以传入非常复杂的参数。</p>
+<p>默认参数一定要用不可变对象，如果是可变对象，程序运行时会有逻辑错误！</p>
+<p>要注意定义可变参数和关键字参数的语法：</p>
+<p><code>*args</code>是可变参数，args接收的是一个tuple；</p>
+<p><code>**kw</code>是关键字参数，kw接收的是一个dictionary。</p>
+<p>以及调用函数时如何传入可变参数和关键字参数的语法：</p>
+<p>可变参数既可以直接传入：<code>func(1, 2, 3)</code>，又可以先组装list或tuple，再通过<code>*args</code>传入：<code>func(*(1, 2, 3))</code>；</p>
+<p>关键字参数既可以直接传入：<code>func(a=1, b=2)</code>，又可以先组装dict，再通过<code>**kw</code>传入：<code>func(**&#123;&#39;a&#39;: 1, &#39;b&#39;: 2&#125;)</code>。</p>
+<p>使用<code>*args</code>和<code>**kw</code>是Python的习惯写法，当然也可以用其他参数名，但最好使用习惯用法。</p>
+<p>命名的关键字参数是为了限制调用者可以传入的参数名，同时可以提供默认值。</p>
+<p>定义命名的关键字参数在没有可变参数的情况下不要忘了写分隔符<code>*</code>，否则定义的将是位置参数。</p>
     
     
     
