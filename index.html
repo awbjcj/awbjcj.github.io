@@ -64,6 +64,72 @@
     <h1 class="page-type-title"></h1>
     
     
+    <article id="post-Map-Reduce" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+  
+  <h2 class="article-title" itemprop="name">
+    <a href="/2023/01/25/Map-Reduce/">Map &amp; Reduce</a>
+  </h2>
+  
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2023/01/25/Map-Reduce/" class="article-date">
+  <time datetime="2023-01-25T21:07:23.000Z" itemprop="datePublished">2023-01-25</time>
+</a>
+      
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+        
+      
+      
+        <h2 id="Take-Away"><a href="#Take-Away" class="headerlink" title="Take Away"></a>Take Away</h2><p><code>map()</code>函数接收两个参数，一个是函数，一个是<code>Iterable</code>，<code>map</code>将传入的函数依次作用到序列的每个元素，并把结果作为新的<code>Iterator</code>返回。举例说明，比如我们有一个函数$f(x)&#x3D;x^2$，要把这个函数作用在一个list <code>[1, 2, 3, 4, 5, 6, 7, 8, 9]</code>上，就可以用<code>map()</code>实现如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">             f(x) = x * x</span><br><span class="line">                  │</span><br><span class="line">                  │</span><br><span class="line">  ┌───┬───┬───┬───┼───┬───┬───┬───┐</span><br><span class="line">  │   │   │   │   │   │   │   │   │</span><br><span class="line">  ▼   ▼   ▼   ▼   ▼   ▼   ▼   ▼   ▼</span><br><span class="line"></span><br><span class="line">[ 1   2   3   4   5   6   7   8   9 ]</span><br><span class="line"></span><br><span class="line">  │   │   │   │   │   │   │   │   │</span><br><span class="line">  │   │   │   │   │   │   │   │   │</span><br><span class="line">  ▼   ▼   ▼   ▼   ▼   ▼   ▼   ▼   ▼</span><br><span class="line"></span><br><span class="line">[ 1   4   9  16  25  36  49  64  81 ]</span><br></pre></td></tr></table></figure>
+
+<p><code>map()</code>传入的第一个参数是<code>f</code>，即函数对象本身。由于结果<code>r</code>是一个<code>Iterator</code>，<code>Iterator</code>是惰性序列，因此通过<code>list()</code>函数让它把整个序列都计算出来并返回一个list。</p>
+<p><code>reduce</code>把一个函数作用在一个序列<code>[x1, x2, x3, ...]</code>上，这个函数必须接收两个参数，<code>reduce</code>把结果继续和序列的下一个元素做累积计算，其效果就是：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reduce(f, [x1, x2, x3, x4]) = f(f(f(x1, x2), x3), x4)</span><br></pre></td></tr></table></figure>
+        
+          <p>
+            <a class="article-more-link" href="/2023/01/25/Map-Reduce/">
+              Read More...
+            </a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://awbjcj.github.io/2023/01/25/Map-Reduce/" data-id="cldc7qwiz0000egl04tv3gz9i" class="article-share-link">
+        Share
+      </a>
+      
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Exercise/" rel="tag">Exercise</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/" rel="tag">Python</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+    
     <article id="post-Generator" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
