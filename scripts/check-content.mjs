@@ -10,13 +10,13 @@
  *
  * Run locally at any time:  npm run check:content
  */
-import { access, readFile } from "node:fs/promises";
+import { access, readFile, readdir } from "node:fs/promises";
 import { constants } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = fileURLToPath(new URL("../", import.meta.url));
-const DATA_FILE = path.join("app", "portfolio-data.ts");
+const CONTENT_DIRECTORY = path.join("app", "content");
 
 /**
  * Which findings block a deploy, and which are advisory.
@@ -33,25 +33,29 @@ function isAdvisory(detail) {
 
 const findings = [];
 
-/* ── 1. Unfinished copy in the content file ──────────────────────────── */
-const source = await readFile(path.join(root, DATA_FILE), "utf8");
+/* ── 1. Unfinished copy in editable config files ─────────────────────── */
+const configFiles = (await readdir(path.join(root, CONTENT_DIRECTORY)))
+  .filter((name) => name.endsWith(".config.ts"))
+  .sort();
 
-source.split(/\r?\n/).forEach((line, index) => {
-  // Skip comments and the marker definition itself — they legitimately
-  // contain the token without being placeholder content.
-  if (/^\s*(\*|\/\/|\/\*)/.test(line)) return;
-  if (line.includes("PLACEHOLDER_PREFIX =")) return;
+for (const configFile of configFiles) {
+  const relativeFile = path.join(CONTENT_DIRECTORY, configFile);
+  const source = await readFile(path.join(root, relativeFile), "utf8");
 
-  const match = line.match(/["'`]\s*TODO:\s*([^"'`]*)/);
-  if (!match) return;
+  source.split(/\r?\n/).forEach((line, index) => {
+    if (/^\s*(\*|\/\/|\/\*)/.test(line)) return;
 
-  const detail = match[1].trim();
-  findings.push({
-    blocking: !isAdvisory(detail),
-    where: `${DATA_FILE}:${index + 1}`,
-    message: `unfinished copy — "${detail.slice(0, 68)}${detail.length > 68 ? "…" : ""}"`,
+    const match = line.match(/["'`]\s*TODO:\s*([^"'`]*)/);
+    if (!match) return;
+
+    const detail = match[1].trim();
+    findings.push({
+      blocking: !isAdvisory(detail),
+      where: `${relativeFile}:${index + 1}`,
+      message: `unfinished copy — "${detail.slice(0, 68)}${detail.length > 68 ? "…" : ""}"`,
+    });
   });
-});
+}
 
 /* ── 2. Assets the site links to must actually exist ─────────────────── */
 const REQUIRED_ASSETS = [
@@ -81,7 +85,7 @@ for (const finding of blocking) {
 if (blocking.length > 0) {
   console.error(
     `\nContent check failed: ${blocking.length} item${blocking.length === 1 ? "" : "s"} must be resolved before publishing.` +
-      `\nEdit ${DATA_FILE} to replace the placeholder text, and add any missing files listed above.\n`,
+      `\nEdit the files in ${CONTENT_DIRECTORY} to replace placeholder text, and add any missing files listed above.\n`,
   );
   process.exit(1);
 }
