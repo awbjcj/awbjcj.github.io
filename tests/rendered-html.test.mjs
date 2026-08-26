@@ -20,7 +20,7 @@ test("server-renders the finished portfolio", async () => {
   const html = await response.text();
   assert.match(html, /David Wu/);
   assert.match(html, /beyond the demo/);
-  assert.match(html, /Copilot Proxy/);
+  assert.match(html, /Resume Agent/);
   assert.match(html, /Experience in practice/);
   assert.match(html, /og\.png/);
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton|Your site is taking shape/i);
@@ -31,7 +31,7 @@ test("includes accessible navigation and public project links", async () => {
   const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
   assert.match(html, /aria-label="Primary navigation"/);
   assert.match(html, /href="#work"/);
-  assert.match(html, /github\.com\/awbjcj\/vscode-copilot-proxy/);
+  assert.match(html, /github\.com\/awbjcj\/resume-agent/);
   assert.match(css, /prefers-reduced-motion/);
 });
 
@@ -47,10 +47,20 @@ test("renders the résumé section with a timeline, education, and a download", 
 test("exposes reachable contact channels", async () => {
   const html = await (await render()).text();
   assert.match(html, /id="contact"/);
-  assert.match(html, /href="mailto:awbjcj@gmail\.com"/);
-  assert.match(html, /awbjcj@gmail\.com/);
+  assert.match(html, /href="mailto:wujiajin0303@gmail\.com"/);
+  assert.match(html, /wujiajin0303@gmail\.com/);
   assert.match(html, /LinkedIn/);
+  assert.match(html, /linkedin\.com\/in\/david-jiajin-wu/);
   assert.match(html, /href="https:\/\/github\.com\/awbjcj"/);
+});
+
+test("renders verified employment and education instead of placeholders", async () => {
+  const html = await (await render()).text();
+  assert.match(html, /Aptiv Corporation/);
+  assert.match(html, /Vehicle Issue Triage Engineer/);
+  assert.match(html, /Varian Medical Systems/);
+  assert.match(html, /Master of Engineering, Systems Engineering &amp; Design/);
+  assert.doesNotMatch(html, /class="unfilled"/);
 });
 
 test("never ships the raw placeholder marker, even in the RSC payload", async () => {
@@ -59,4 +69,49 @@ test("never ships the raw placeholder marker, even in the RSC payload", async ()
   // serialized into the flight payload embedded in the HTML.
   const html = await (await render()).text();
   assert.doesNotMatch(html, /TODO:/);
+});
+
+test("keeps editable content in purpose-specific config files", async () => {
+  const page = await readFile(new URL("../app/page.tsx", import.meta.url), "utf8");
+  const projectsConfig = await readFile(new URL("../app/content/projects.config.ts", import.meta.url), "utf8");
+  const experienceConfig = await readFile(new URL("../app/content/experience.config.ts", import.meta.url), "utf8");
+  const resumeConfig = await readFile(new URL("../app/content/resume.config.ts", import.meta.url), "utf8");
+
+  assert.match(page, /from "\.\/content"/);
+  assert.doesNotMatch(page, /Food Manager|Aptiv Corporation|Vehicle Issue Triage Engineer/);
+  assert.match(projectsConfig, /export const projects = \[/);
+  assert.match(experienceConfig, /export const experience = \[/);
+  assert.match(resumeConfig, /export const resume = \{/);
+});
+
+test("features the live products with working entry points", async () => {
+  const html = await (await render()).text();
+  assert.match(html, /id="live"/);
+  assert.match(html, /href="https:\/\/resume-agent\.up\.railway\.app"/);
+  assert.match(html, /href="https:\/\/t\.me\/foodie_manager_bot"/);
+});
+
+test("the trial form is a plain GET form that prefills the real sign-up", async () => {
+  // No JavaScript is involved: the browser serialises these two fields into the
+  // query string, and the target's registration page reads `name` and `email`
+  // back to prefill itself. No password field exists here on purpose.
+  const html = await (await render()).text();
+  assert.match(html, /action="https:\/\/resume-agent\.up\.railway\.app\/register"/);
+  assert.match(html, /method="get"/);
+  assert.match(html, /name="name"/);
+  assert.match(html, /name="email"/);
+  assert.doesNotMatch(html, /type="password"/);
+});
+
+test("every project is dossier-backed, and private repos are stated not linked", async () => {
+  const html = await (await render()).text();
+  const projectsConfig = await readFile(new URL("../app/content/projects.config.ts", import.meta.url), "utf8");
+
+  // Dropped for having no dossier — they must not reappear anywhere.
+  assert.doesNotMatch(html, /Copilot Proxy|H-1B Job Search/);
+  assert.doesNotMatch(projectsConfig, /vscode-copilot-proxy|h1b-job-search-mcp/);
+
+  // Cards without a public repository say so rather than offering a dead link.
+  assert.match(html, /Private repository/);
+  assert.doesNotMatch(html, /github\.com\/awbjcj\/(vsda-deep-agent|LangGraph-test|Jira-Polarion-automation)/);
 });
