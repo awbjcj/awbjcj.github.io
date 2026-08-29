@@ -62,6 +62,11 @@ function ArrowUpIcon() {
   );
 }
 
+/** Keeps new-window behavior explicit without adding visual noise to every link. */
+function ExternalLinkHint({ destination = "link" }: { destination?: string }) {
+  return <span className="sr-only"> ({destination} opens in a new tab)</span>;
+}
+
 /** Section eyebrow. `count` is shown only where a total is genuinely informative. */
 function Label({ children, count }: { children: string; count?: string }) {
   return (
@@ -94,7 +99,7 @@ export default function Home() {
 
   return (
     <>
-      <a className="skip-link" href="#top">Skip to content</a>
+      <a className="skip-link" href="#main-content">Skip to main content</a>
 
       <header className="site-header">
         <div className="wrap header-inner">
@@ -105,11 +110,13 @@ export default function Home() {
           <nav aria-label="Primary navigation">
             {navigation.map((item) => <a href={item.href} key={item.href}>{item.label}</a>)}
           </nav>
-          <a className="header-cta" href={profile.github} target="_blank" rel="noreferrer">GitHub <ArrowIcon /></a>
+          <a className="header-cta" href={profile.github} target="_blank" rel="noreferrer">
+            GitHub <ArrowIcon /><ExternalLinkHint destination="GitHub" />
+          </a>
         </div>
       </header>
 
-      <main>
+      <main id="main-content" className="main-content" tabIndex={-1}>
         <section className="hero" id="top">
           <div className="wrap hero-inner">
             <div className="hero-copy">
@@ -118,7 +125,9 @@ export default function Home() {
               <p className="lede">{profile.summary}</p>
               <div className="hero-actions">
                 <a className="button button-primary" href="#live">{hero.primaryAction}</a>
-                <a className="button button-ghost" href={profile.github} target="_blank" rel="noreferrer">{hero.githubAction} <ArrowIcon /></a>
+                <a className="button button-ghost" href={profile.github} target="_blank" rel="noreferrer">
+                  {hero.githubAction} <ArrowIcon /><ExternalLinkHint destination="GitHub" />
+                </a>
               </div>
               <p className="availability"><span className="dot" aria-hidden="true" /> {profile.availability}</p>
             </div>
@@ -168,41 +177,47 @@ export default function Home() {
             </div>
 
             <div className="live-grid">
-              {liveProducts.map((product) => (
-                <article className="live-card" key={product.name}>
-                  <div className="live-head">
-                    <span className="live-status"><i aria-hidden="true" /> live</span>
-                    <p className="live-tagline">{product.tagline}</p>
-                  </div>
-                  <h3>{product.name}</h3>
-                  <p className="live-copy">{product.description}</p>
-                  <ul className="live-facts">
-                    {product.facts.map((fact) => <li key={fact}>{fact}</li>)}
-                  </ul>
+              {liveProducts.map((product, productIndex) => {
+                const fieldIdPrefix = `trial-${productIndex + 1}`;
 
-                  {product.trial ? (
-                    <form className="trial-form" action={product.trial.action} method="get" target="_blank" rel="noreferrer">
-                      <p className="trial-heading">{product.trial.heading}</p>
-                      <div className="trial-fields">
-                        <label htmlFor="trial-name">
-                          <span>{product.trial.nameField}</span>
-                          <input id="trial-name" name="name" type="text" autoComplete="name" required placeholder="Ada Lovelace" />
-                        </label>
-                        <label htmlFor="trial-email">
-                          <span>{product.trial.emailField}</span>
-                          <input id="trial-email" name="email" type="email" autoComplete="email" required placeholder="ada@example.com" />
-                        </label>
-                      </div>
-                      <button className="button button-signal" type="submit">{product.trial.submitLabel} <ArrowIcon /></button>
-                      <p className="trial-note">{product.trial.note}</p>
-                    </form>
-                  ) : null}
+                return (
+                  <article className="live-card" key={product.name}>
+                    <div className="live-head">
+                      <span className="live-status"><i aria-hidden="true" /> live</span>
+                      <p className="live-tagline">{product.tagline}</p>
+                    </div>
+                    <h3>{product.name}</h3>
+                    <p className="live-copy">{product.description}</p>
+                    <ul className="live-facts">
+                      {product.facts.map((fact) => <li key={fact}>{fact}</li>)}
+                    </ul>
 
-                  <a className="live-action" href={product.href} target="_blank" rel="noreferrer">
-                    {product.actionLabel} <ArrowIcon />
-                  </a>
-                </article>
-              ))}
+                    {product.trial ? (
+                      <form className="trial-form" action={product.trial.action} method="get" target="_blank" rel="noreferrer">
+                        <p className="trial-heading">{product.trial.heading}</p>
+                        <div className="trial-fields">
+                          <label htmlFor={`${fieldIdPrefix}-name`}>
+                            <span>{product.trial.nameField}</span>
+                            <input id={`${fieldIdPrefix}-name`} name="name" type="text" autoComplete="name" required placeholder="Ada Lovelace" />
+                          </label>
+                          <label htmlFor={`${fieldIdPrefix}-email`}>
+                            <span>{product.trial.emailField}</span>
+                            <input id={`${fieldIdPrefix}-email`} name="email" type="email" autoComplete="email" required placeholder="ada@example.com" />
+                          </label>
+                        </div>
+                        <button className="button button-signal" type="submit">
+                          {product.trial.submitLabel} <ArrowIcon /><ExternalLinkHint destination="registration" />
+                        </button>
+                        <p className="trial-note">{product.trial.note}</p>
+                      </form>
+                    ) : null}
+
+                    <a className="live-action" href={product.href} target="_blank" rel="noreferrer">
+                      {product.actionLabel} <ArrowIcon /><ExternalLinkHint />
+                    </a>
+                  </article>
+                );
+              })}
             </div>
           </div>
         </section>
@@ -236,12 +251,12 @@ export default function Home() {
                     <div className="project-links">
                       {project.live ? (
                         <a className="project-link project-link-live" href={project.live.href} target="_blank" rel="noreferrer">
-                          {project.live.label} <ArrowIcon />
+                          {project.live.label} <ArrowIcon /><ExternalLinkHint />
                         </a>
                       ) : null}
                       {project.repo ? (
                         <a className="project-link" href={project.repo.href} target="_blank" rel="noreferrer">
-                          {project.repo.label} <ArrowIcon />
+                          {project.repo.label} <ArrowIcon /><ExternalLinkHint destination="source" />
                         </a>
                       ) : null}
                       {!project.live && !project.repo ? (
@@ -270,7 +285,10 @@ export default function Home() {
                   <div className="experience-title"><p>{item.label}</p><h3>{item.title}</h3></div>
                   <p className="experience-copy">{item.description}</p>
                   {item.link ? (
-                    <a href={item.link} target="_blank" rel="noreferrer" aria-label={`See evidence for ${item.title}`}><ArrowIcon /></a>
+                    <a href={item.link} target="_blank" rel="noreferrer">
+                      {sections.experience.evidenceLabel} <ArrowIcon />
+                      <ExternalLinkHint destination={`evidence for ${item.title}`} />
+                    </a>
                   ) : null}
                 </article>
               ))}
@@ -391,11 +409,11 @@ export default function Home() {
                 <span>LinkedIn</span>
                 {isPlaceholder(contact.linkedin)
                   ? <span className="unfilled">Add your LinkedIn URL<span className="sr-only"> (placeholder content, not yet written)</span></span>
-                  : <a href={contact.linkedin} target="_blank" rel="noreferrer">{contact.linkedin.replace(/^https?:\/\/(www\.)?/, "")} <ArrowIcon /></a>}
+                  : <a href={contact.linkedin} target="_blank" rel="noreferrer">{contact.linkedin.replace(/^https?:\/\/(www\.)?/, "")} <ArrowIcon /><ExternalLinkHint destination="LinkedIn" /></a>}
               </li>
               <li>
                 <span>GitHub</span>
-                <a href={contact.github} target="_blank" rel="noreferrer">{contact.github.replace(/^https?:\/\//, "")} <ArrowIcon /></a>
+                <a href={contact.github} target="_blank" rel="noreferrer">{contact.github.replace(/^https?:\/\//, "")} <ArrowIcon /><ExternalLinkHint destination="GitHub" /></a>
               </li>
               <li>
                 <span>Résumé</span>

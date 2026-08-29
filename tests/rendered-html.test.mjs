@@ -30,9 +30,14 @@ test("includes accessible navigation and public project links", async () => {
   const html = await (await render()).text();
   const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
   assert.match(html, /aria-label="Primary navigation"/);
+  assert.match(html, /href="#main-content">Skip to main content/);
+  assert.match(html, /<main id="main-content" class="main-content" tabindex="-1">/);
   assert.match(html, /href="#work"/);
   assert.match(html, /github\.com\/awbjcj\/resume-agent/);
   assert.match(css, /prefers-reduced-motion/);
+  assert.match(css, /prefers-contrast: more/);
+  assert.match(css, /forced-colors: active/);
+  assert.match(css, /--accent-ink: #087a50/);
 });
 
 test("renders the résumé section with a timeline, education, and a download", async () => {
@@ -100,7 +105,18 @@ test("the trial form is a plain GET form that prefills the real sign-up", async 
   assert.match(html, /method="get"/);
   assert.match(html, /name="name"/);
   assert.match(html, /name="email"/);
+  assert.match(html, /id="trial-1-name"/);
+  assert.match(html, /for="trial-1-name"/);
   assert.doesNotMatch(html, /type="password"/);
+});
+
+test("documents copy-ready recipes for every frequently edited content type", async () => {
+  const guide = await readFile(new URL("../app/content/README.md", import.meta.url), "utf8");
+  assert.match(guide, /## Add a project/);
+  assert.match(guide, /## Add an engineering experience story/);
+  assert.match(guide, /## Add a role or internship/);
+  assert.match(guide, /## Add skills/);
+  assert.match(guide, /npm run check:content/);
 });
 
 test("every project is dossier-backed, and private repos are stated not linked", async () => {

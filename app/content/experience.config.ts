@@ -4,6 +4,7 @@ import type { ExperienceConfig } from "./types";
  * Thematic tracks drawn from the same dossier-backed projects as the work grid.
  * `link` is omitted where the underlying repository is private — a card with no
  * link is honest, a card with a dead link is not.
+ * Copy-ready authoring recipe: app/content/README.md
  */
 export const experience = [
   {

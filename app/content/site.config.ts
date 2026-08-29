@@ -65,6 +65,7 @@ export const siteConfig = {
       countNoun: "tracks",
       title: "From architecture to operation.",
       description: "Evidence-backed engineering drawn from the same projects. A full employment timeline is available below.",
+      evidenceLabel: "View evidence",
     },
     resume: {
       label: "Résumé",

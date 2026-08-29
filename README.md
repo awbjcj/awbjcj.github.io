@@ -16,6 +16,9 @@ All editable website copy lives in the purpose-specific configuration files unde
 
 Each list is rendered automatically. Add, remove, or reorder its objects to change the number and order of items on the website. TypeScript checks the required fields during lint and build.
 
+For copy-ready recipes for projects, engineering stories, roles, and skill
+groups, use the [portfolio content guide](app/content/README.md).
+
 For example, add another project by copying an object in `projects.config.ts`:
 
 ```ts

@@ -1,6 +1,6 @@
 import type { EducationConfig, ResumeRoleConfig } from "./types";
 
-/** Add, remove, or reorder formal roles and education entries freely. */
+/** Add, remove, or reorder formal roles and education entries freely. See app/content/README.md. */
 export const resume = {
   roles: [
     {

@@ -4,6 +4,7 @@ import type { ProjectConfig } from "./types";
  * Selected project cards. Every entry is backed by a repository dossier, and
  * every number below is quoted from that dossier's evidence-checked
  * "Quantified outcomes" section rather than estimated.
+ * Copy-ready authoring recipe: app/content/README.md
  */
 export const projects = [
   {
