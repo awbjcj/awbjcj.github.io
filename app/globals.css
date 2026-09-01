@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 /* ============================================================================
-   David Wu — portfolio
+   Jiajin (David) Wu — portfolio
    Design language: "instrument".
 
    The light side of the site is deliberately quiet. Dark surfaces stand for a
@@ -219,8 +219,9 @@ h2 {
   font-size: 0.9375rem;
   font-weight: 500;
   color: var(--muted);
-  transition: color 150ms var(--ease), background-color 150ms var(--ease);
+  transition: color 150ms var(--ease), background-color 150ms var(--ease), transform 150ms var(--ease);
 }
+.site-header nav a:active { transform: scale(0.97); }
 .header-cta {
   justify-self: end;
   display: inline-flex; align-items: center; gap: 8px;
@@ -233,7 +234,7 @@ h2 {
   box-shadow: var(--shadow-sm);
   transition: border-color 160ms var(--ease), transform 160ms var(--ease);
 }
-.header-cta:active { transform: scale(0.98); }
+.header-cta:active { transform: scale(0.97); }
 
 /* ---------------------------------------------------------------------- hero */
 
@@ -286,7 +287,7 @@ h2 {
   white-space: nowrap;
   transition: transform 160ms var(--ease), box-shadow 200ms var(--ease), background-color 160ms var(--ease);
 }
-.button:active { transform: scale(0.98); }
+.button:active { transform: scale(0.97); }
 .button-primary { background: var(--ink); color: var(--canvas); box-shadow: var(--shadow-md); }
 .button-ghost { border-color: var(--line-strong); background: var(--surface); color: var(--ink); box-shadow: var(--shadow-sm); }
 .button-light { background: var(--surface); color: var(--ink); }
@@ -428,7 +429,7 @@ h2 {
   background: var(--surface);
   overflow: hidden;
   box-shadow: var(--shadow-sm);
-  transition: transform 220ms var(--ease), box-shadow 220ms var(--ease), border-color 220ms var(--ease);
+  transition: box-shadow 180ms var(--ease), border-color 180ms var(--ease);
 }
 /* The card head is a slice of the same dark instrument surface as the hero panel. */
 .project-head {
@@ -645,12 +646,13 @@ h2 {
 }
 .project-link {
   display: inline-flex; align-items: center; gap: 7px;
-  min-height: 32px;
+  min-height: 44px;
   font-size: 0.9375rem; font-weight: 500;
   border-bottom: 1px solid var(--line-strong);
   padding-bottom: 2px;
-  transition: border-color 160ms var(--ease), color 160ms var(--ease);
+  transition: border-color 160ms var(--ease), color 160ms var(--ease), transform 160ms var(--ease);
 }
+.project-link:active { transform: scale(0.97); }
 .project-link-live { color: var(--accent-ink); border-bottom-color: currentColor; }
 /* Honest empty state: these repositories are private, so there is nothing to link. */
 .project-private {
@@ -707,7 +709,7 @@ h2 {
   white-space: nowrap;
   transition: background-color 180ms var(--ease), color 180ms var(--ease), transform 180ms var(--ease);
 }
-.experience-item > a:active { transform: scale(0.96); }
+.experience-item > a:active { transform: scale(0.97); }
 .experience-item > a .icon { width: 14px; height: 14px; opacity: 0.85; }
 
 /* -------------------------------------------------------------------- résumé */
@@ -762,6 +764,16 @@ h2 {
   color: var(--muted);
 }
 .resume-detail h3 { margin: 0 0 5px; font-size: clamp(1.2rem, 1.7vw, 1.45rem); }
+.resume-publication-link {
+  display: inline;
+  color: inherit;
+  text-decoration-color: transparent;
+  text-underline-offset: 0.2em;
+  transition: color 150ms var(--ease), text-decoration-color 150ms var(--ease), transform 150ms var(--ease);
+}
+.resume-publication-link:focus-visible { color: var(--accent-ink); text-decoration-color: currentColor; }
+.resume-publication-link:active { transform: scale(0.97); }
+.resume-publication-link .icon { margin-left: 0.15em; }
 .resume-org { margin: 0 0 14px; font-size: 1rem; color: var(--muted); }
 /* Tailwind's preflight strips list markers globally — opt back in here. */
 .resume-detail ul { margin: 0; padding-left: 18px; display: grid; gap: 7px; list-style: disc; }
@@ -851,8 +863,9 @@ h2 {
   font-weight: 500;
   border-bottom: 1px solid transparent;
   padding-bottom: 2px;
-  transition: border-color 160ms var(--ease), color 160ms var(--ease);
+  transition: border-color 160ms var(--ease), color 160ms var(--ease), transform 160ms var(--ease);
 }
+.contact-channels a:active { transform: scale(0.97); }
 .contact-note { margin: 28px 0 0; max-width: 58ch; color: var(--panel-muted); font-size: 0.9375rem; }
 
 /* -------------------------------------------------------------------- footer */
@@ -867,9 +880,11 @@ h2 {
 .site-footer p { margin: 0; }
 .site-footer a {
   display: inline-flex; align-items: center; gap: 7px;
+  min-height: 44px;
   color: var(--panel-text); font-weight: 500;
-  transition: color 160ms var(--ease);
+  transition: color 160ms var(--ease), transform 160ms var(--ease);
 }
+.site-footer a:active { transform: scale(0.97); }
 
 /* ------------------------------------------------------- authoring placeholder */
 
@@ -893,11 +908,12 @@ h2 {
   .button-ghost:hover { border-color: var(--ink); }
   .button-light:hover { background: #ffffff; }
   .text-link:hover { border-color: var(--ink); }
-  .project-card:hover { transform: translateY(-3px); border-color: var(--line-strong); box-shadow: var(--shadow-md); }
+  .project-card:hover { border-color: var(--line-strong); box-shadow: var(--shadow-md); }
   .project-content > a:hover { border-color: var(--ink); }
   .experience-item > a:hover { background: var(--signal); color: var(--panel); border-color: var(--signal); }
   .contact-channels a:hover { border-color: var(--signal); color: var(--signal); }
   .site-footer a:hover { color: var(--signal); }
+  .resume-publication-link:hover { color: var(--accent-ink); text-decoration-color: currentColor; }
 }
 
 /* --------------------------------------------------------------- responsive */
