@@ -3,14 +3,14 @@ import type { LiveProductConfig } from "./types";
 /** Edit global identity, hero, headings, calls to action, and contact copy here. */
 export const siteConfig = {
   profile: {
-    name: "David Wu",
+    name: "Jiajin (David) Wu",
     initials: "DW",
-    brandSubtitle: "AI systems engineer",
-    title: "AI Agent & MCP Server Developer",
+    brandSubtitle: "AI/LLM systems engineer",
+    title: "AI/LLM Software & Application Engineer",
     location: "Ann Arbor, Michigan",
     github: "https://github.com/awbjcj",
-    summary: "I design and ship agentic software—from MCP servers and multi-provider gateways to secure, production-ready chat experiences.",
-    availability: "Open to AI engineering, platform, and full-stack roles",
+    summary: "AI/LLM software and application engineer with 3+ years building production Python and TypeScript systems for enterprise workflows, from governed multi-agent platforms and hybrid RAG to full-stack operator consoles.",
+    availability: "Open to AI/LLM software, application, and platform engineering roles",
   },
   contact: {
     email: "wujiajin0303@gmail.com",
@@ -19,6 +19,14 @@ export const siteConfig = {
     /** Served from `public/resume.pdf`; the content check verifies it exists. */
     resumeFile: "/resume.pdf",
     responseNote: "I read every message and reply to genuine opportunities within a couple of days.",
+  },
+  accessibility: {
+    skipToContent: "Skip to main content",
+    primaryNavigation: "Primary navigation",
+    backToTop: "back to top",
+    githubLabel: "GitHub",
+    engineeringOverview: "Engineering focus overview",
+    coreSpecialties: "Core specialties",
   },
   navigation: [
     { label: "Live", href: "#live" },
@@ -33,14 +41,14 @@ export const siteConfig = {
     titleEmphasis: "beyond the demo.",
     primaryAction: "Try one right now",
     githubAction: "GitHub profile",
-    specialties: ["Agent architecture", "MCP", "LLM interoperability", "Full-stack delivery", "Developer tools"],
+    specialties: ["Multi-agent systems", "RAG & OpenSearch", "MCP & tool calling", "Full-stack AI applications", "Enterprise automation"],
     panel: {
       title: "system.profile",
       status: "live",
       rows: [
-        { label: "Orchestrate", description: "LangGraph agents with tools, memory & human approvals" },
-        { label: "Connect", description: "MCP servers and multi-provider model gateways" },
-        { label: "Ship", description: "Secure full-stack products with measurable constraints" },
+        { label: "Orchestrate", description: "LangGraph supervisors, subagents, tools & durable memory" },
+        { label: "Retrieve", description: "Hybrid BM25/kNN search across enterprise data" },
+        { label: "Govern", description: "Identity, quotas & human approval around every write" },
       ],
       pipeline: ["Model", "Agent", "Tools"],
       footer: "Ready to build useful AI",
@@ -49,6 +57,7 @@ export const siteConfig = {
   sections: {
     live: {
       label: "Running right now",
+      statusLabel: "Live",
       title: "Two of these you can use in the next minute.",
       description: "Not screenshots and not a demo video — deployed products with real users, real billing, and a real support burden. Open either one and judge the engineering for yourself.",
     },
@@ -64,14 +73,20 @@ export const siteConfig = {
       label: "Experience in practice",
       countNoun: "tracks",
       title: "From architecture to operation.",
-      description: "Evidence-backed engineering drawn from the same projects. A full employment timeline is available below.",
+      description: "Evidence-backed engineering drawn from repository and experience dossiers. A full employment timeline is available below.",
       evidenceLabel: "View evidence",
     },
     resume: {
       label: "Résumé",
       title: "The formal record.",
-      description: "Roles, dates, and education — the details a hiring team needs alongside the work itself.",
+      description: "Roles, outcomes, education, and publications — the formal record behind the work.",
       downloadLabel: "Download résumé (PDF)",
+      experienceLabel: "Experience",
+      educationLabel: "Education",
+      publicationsLabel: "Publications",
+      locationLabel: "Based in",
+      focusLabel: "Focus",
+      statusLabel: "Status",
     },
     approach: {
       label: "How I think",
@@ -83,6 +98,12 @@ export const siteConfig = {
       label: "Let's build something useful",
       title: "Looking for an engineer who can connect the model, the system, and the user?",
       actionLabel: "Email me",
+      emailLabel: "Email",
+      linkedinLabel: "LinkedIn",
+      linkedinPlaceholder: "Add your LinkedIn URL",
+      githubLabel: "GitHub",
+      resumeLabel: "Résumé",
+      resumeActionLabel: "Download PDF",
     },
   },
   footer: { note: "Designed for clarity. Built for the open web.", backToTopLabel: "Back to top" },
@@ -99,8 +120,8 @@ export const liveProducts = [
   {
     name: "Resume Agent",
     tagline: "Fact-locked job-hunt pipeline",
-    description: "Pulls postings from 16 connectors, scores them against your real experience, and tailors a resume that cannot claim anything you did not do.",
-    facts: ["16 job-board connectors", "Fact-check gate on every bullet", "Tailor, cover letter, PDF, tracking"],
+    description: "Pulls postings through 18 connector kinds, scores them against your real experience, and tailors a resume that cannot claim anything you did not do.",
+    facts: ["18 connector kinds", "3 deterministic fact-lock gates", "Tailor, cover letter, PDF, tracking"],
     href: "https://resume-agent.up.railway.app",
     actionLabel: "Open the app",
     trial: {
@@ -108,7 +129,9 @@ export const liveProducts = [
       heading: "Start a trial account",
       note: "Takes you to the sign-up page with these details filled in. You choose your own password there — this site never sees it.",
       nameField: "Your name",
+      namePlaceholder: "Ada Lovelace",
       emailField: "Email address",
+      emailPlaceholder: "ada@example.com",
       submitLabel: "Create trial account",
     },
   },

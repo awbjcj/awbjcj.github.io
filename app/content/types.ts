@@ -38,6 +38,14 @@ export type EducationConfig = {
   detail: string;
 };
 
+export type PublicationConfig = {
+  title: string;
+  authors: string;
+  venue: string;
+  year: string;
+  href: string;
+};
+
 export type FocusAreaConfig = { title: string; description: string };
 export type SkillGroupConfig = { label: string; skills: readonly string[] };
 
@@ -59,7 +67,9 @@ export type LiveProductConfig = {
     heading: string;
     note: string;
     nameField: string;
+    namePlaceholder: string;
     emailField: string;
+    emailPlaceholder: string;
     submitLabel: string;
   };
 };

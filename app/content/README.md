@@ -11,7 +11,7 @@ change to `app/page.tsx`.
 | Name, intro, contact links, navigation, or section headings | `site.config.ts` |
 | A selected project | `projects.config.ts` |
 | An evidence-backed engineering story | `experience.config.ts` |
-| A job, internship, or education entry | `resume.config.ts` |
+| A job, internship, education entry, or publication | `resume.config.ts` |
 | A skill, skill group, or working principle | `skills.config.ts` |
 
 Items appear in the same order as their objects in each list. Copy an existing
@@ -73,6 +73,23 @@ Paste this inside `resume.roles` in `resume.config.ts`:
 ```
 
 Education entries use the shorter object already shown in `resume.education`.
+
+## Add a publication
+
+Paste this inside `resume.publications` in `resume.config.ts`:
+
+```ts
+{
+  title: "Publication title",
+  authors: "A. Author, B. Author, and Your Name",
+  venue: "Conference or journal",
+  year: "2026",
+  href: "https://publisher.example.com/publication",
+},
+```
+
+Use the publisher or DOI landing page for `href`, and keep the author order the
+same as the published record.
 
 ## Add skills
 

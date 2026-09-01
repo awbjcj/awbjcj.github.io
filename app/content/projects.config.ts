@@ -8,12 +8,12 @@ import type { ProjectConfig } from "./types";
  */
 export const projects = [
   {
-    name: "Resume Agent",
-    kind: "Shipped product",
-    signal: "FACT-LOCKED · 16 CONNECTORS",
-    description: "A multi-tenant job-hunt pipeline that pulls postings from 16 ATS and job-board connectors, scores them against a fact-locked profile, and tailors resumes through a panel of reviewer agents. A hard fact-check gate fails any bullet that cannot be traced to a real fact — the agents reframe, they never invent.",
-    skills: ["Python", "FastAPI", "React", "LangGraph", "SQLite"],
-    repo: { href: "https://github.com/awbjcj/resume-agent", label: "Source" },
+    name: "Résumé Tailor Harness / Resume Agent",
+    kind: "Shipped multi-tenant product",
+    signal: "3,411 TESTS · 18 CONNECTORS",
+    description: "A full job-application workflow built around deterministic authority: three in-process fact-lock gates run before paid reviewers, 35 SHA-256-verified career skills bind agents to approved procedures, and every write stays behind user approval. It spans discovery, fit scoring, tailored resumes and cover letters, cited research, H-1B evidence, tracking, and analytics across web, API, and CLI surfaces.",
+    skills: ["Python", "FastAPI", "React", "Agno", "SQLModel"],
+    repo: { href: "https://github.com/awbjcj/resume-tailor-harness", label: "Source" },
     live: { href: "https://resume-agent.up.railway.app", label: "Open the app" },
   },
   {
@@ -26,11 +26,11 @@ export const projects = [
     live: { href: "https://t.me/foodie_manager_bot", label: "Open in Telegram" },
   },
   {
-    name: "Deep Agent",
+    name: "VSDA Deep Agent",
     kind: "Enterprise platform",
-    signal: "1 SUPERVISOR · 7 SUBAGENTS",
-    description: "An agentic backend where an LLM supervisor routes engineering-data requests to seven domain subagents spanning issue tracking, requirements management, CI, wikis, and chat, over an OpenSearch retrieval layer — served behind a role-governed FastAPI API with 69 tool definitions and 21 composable agent middlewares.",
-    skills: ["LangGraph", "FastAPI", "OpenSearch", "RAG", "LangSmith"],
+    signal: "8 GRAPHS · 60 TOOLS",
+    description: "A governed enterprise engineering platform with one LangGraph supervisor and seven domain subagents for Jira, Teams, email, OpenSearch, Polarion, Confluence, and Jenkins. It exposes 60 tools through 46 authenticated FastAPI routes, combines BM25 and kNN retrieval across 68 managed source manifests, and enforces role policy, human approval, durable jobs, semantic memory, and independent usage caps.",
+    skills: ["LangGraph", "FastAPI", "OpenSearch", "Hybrid RAG", "SQLAlchemy"],
   },
   {
     name: "Deep Agents UI",
@@ -43,15 +43,36 @@ export const projects = [
   {
     name: "Release-Email Intelligence Pipeline",
     kind: "Automation system",
-    signal: "PROSE → SCHEMA → CI/CD",
-    description: "Software-release announcements arrive as free-form email with version strings, change-set IDs, and bus-database files buried in prose. This ingests them from disk or a live Outlook mailbox, runs a multi-stage LangGraph workflow with structured output to emit a validated record, and triggers the downstream build job from it.",
+    signal: "7 ENGINES · 4 PARSERS",
+    description: "A four-stage LangGraph pipeline that turns free-form software-release email into schema-validated records and parameterized Jenkins builds. It ingests local documents or Outlook mail, routes across four release variants, constrains OpenAI output with closed Pydantic schemas, and normalizes content through seven pluggable conversion engines and five domain cleaners.",
     skills: ["LangGraph", "OpenAI", "Microsoft Graph", "Pydantic", "Jenkins"],
   },
   {
     name: "Enterprise Engineering Automation Suite",
     kind: "Five-system toolset",
-    signal: "5 SYSTEMS · 1,477 COMMITS",
-    description: "A suite automating the recurring work of an engineering triage team: a typed Polarion ALM client with 62 async methods, an async Confluence client and report pipeline, a LangGraph multi-agent assistant over Jira and Teams with approval gates on writes, a scheduled Jira reporting service, and a MATLAB toolset for vehicle-signal plotting.",
+    signal: "62 CLIENT METHODS · 5 SYSTEMS",
+    description: "Five connected systems for engineering operations: a typed Polarion ALM client with 62 async methods and 19 domain models; a config-driven Confluence publishing pipeline; a supervisor with three Jira, Teams, and email subagents; six scheduled Jira report types; and a MATLAB vehicle-signal suite backed by 111 unit-test methods.",
     skills: ["Python", "asyncio", "LangGraph", "Polarion / Jira APIs", "MATLAB"],
+  },
+  {
+    name: "Field-Trip Issue Analytics",
+    kind: "Data pipeline",
+    signal: "20 DATASETS · 42 CHARTS",
+    description: "A Python pipeline that turns heterogeneous engineering field-trip workbooks into a closed 15-field issue schema, responsible-party attribution, assignee and liability charts, unified JSON counts, and semantic natural-language records prepared for LLM ingestion. It auto-discovers worksheets and ships both CLI and Tkinter entry points.",
+    skills: ["Python", "pandas", "Pydantic", "matplotlib", "Excel"],
+  },
+  {
+    name: "MCP CI/CD Orchestration Agent",
+    kind: "Agentic integration",
+    signal: "3 TOOLS · 1 AGENT",
+    description: "A FastMCP server and reusable client that let an LLM generate schema-constrained build parameters, submit Jenkins jobs, and monitor queue and build state. Three single-purpose server concepts were consolidated into one multi-tool agent with bounded retries, typed tool boundaries, and stdio-based protocol isolation.",
+    skills: ["Python", "MCP", "FastMCP", "Pydantic", "Jenkins"],
+  },
+  {
+    name: "AutoGen MCP Orchestration Lab",
+    kind: "Architecture prototype",
+    signal: "3 TOPOLOGIES · 5 MODELS",
+    description: "A focused prototype that evolved a CI/CD assistant from in-process function tools to an external MCP server, then compared round-robin, swarm, and model-selected multi-agent topologies. It uses typed outputs, bounded termination, and a head-and-tail context window to keep tool-driven conversations controlled.",
+    skills: ["Python", "AutoGen", "MCP", "OpenAI", "Jenkins"],
   },
 ] satisfies readonly ProjectConfig[];

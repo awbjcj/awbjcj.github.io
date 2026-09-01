@@ -29,9 +29,9 @@ const mono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "David Wu — AI Agent & MCP Server Developer",
-  description: "Portfolio of David Wu, an AI agent and MCP server developer building production-ready agentic systems.",
-  icons: { icon: "/favicon.svg", shortcut: "/favicon.svg" },
+  title: "Jiajin (David) Wu — AI/LLM Software & Application Engineer",
+  description: "Portfolio of Jiajin (David) Wu, an AI/LLM engineer building governed multi-agent platforms, hybrid retrieval systems, and full-stack AI applications.",
+  icons: { icon: "/favicon.svg", shortcut: "/favicon.ico" },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

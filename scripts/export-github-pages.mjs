@@ -22,5 +22,5 @@ await cp(path.join(root, "public"), target, { recursive: true });
 await writeFile(path.join(target, ".nojekyll"), "");
 
 const html = await readFile(path.join(target, "index.html"), "utf8");
-if (!html.includes("David Wu") || html.includes("codex-preview")) throw new Error("Static export validation failed");
+if (!html.includes("Jiajin (David) Wu") || html.includes("codex-preview")) throw new Error("Static export validation failed");
 console.log(`GitHub Pages export ready at ${pathToFileURL(target).href}`);
