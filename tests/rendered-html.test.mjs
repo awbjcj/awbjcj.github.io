@@ -20,7 +20,7 @@ test("server-renders the finished portfolio", async () => {
   const html = await response.text();
   assert.match(html, /Jiajin \(David\) Wu/);
   assert.match(html, /beyond the demo/);
-  assert.match(html, /Resume Agent/);
+  assert.match(html, /Resume Tailor Harness/);
   assert.match(html, /Experience in practice/);
   assert.match(html, /og\.png/);
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton|Your site is taking shape/i);

@@ -8,7 +8,7 @@ import type { ProjectConfig } from "./types";
  */
 export const projects = [
   {
-    name: "Résumé Tailor Harness / Resume Agent",
+    name: "Resume Tailor Harness",
     kind: "Shipped multi-tenant product",
     signal: "3,411 TESTS · 18 CONNECTORS",
     description: "A full job-application workflow built around deterministic authority: three in-process fact-lock gates run before paid reviewers, 35 SHA-256-verified career skills bind agents to approved procedures, and every write stays behind user approval. It spans discovery, fit scoring, tailored resumes and cover letters, cited research, H-1B evidence, tracking, and analytics across web, API, and CLI surfaces.",

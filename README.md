@@ -47,7 +47,7 @@ not go on the site.
 ## Live products and the trial form
 
 `liveProducts` in `app/content/site.config.ts` drives the dark "Running right
-now" section. The Resume Agent card carries a **plain GET form** — no
+now" section. The Resume Tailor Harness card carries a **plain GET form** — no
 JavaScript, no backend, no API route. The browser serializes `name` and `email`
 into the query string of the target's own registration page, which reads both
 back to prefill itself:

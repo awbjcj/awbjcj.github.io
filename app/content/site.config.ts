@@ -110,7 +110,7 @@ export const siteConfig = {
 } as const;
 
 /**
- * Products a visitor can open and use. The Resume Agent card carries a plain GET
+ * Products a visitor can open and use. The Resume Tailor Harness card carries a plain GET
  * form: the browser serialises `name` and `email` into the query string, and the
  * target's registration page reads both back to prefill itself. No JavaScript,
  * no backend on this site, and no password ever handled here — the visitor sets
@@ -118,7 +118,7 @@ export const siteConfig = {
  */
 export const liveProducts = [
   {
-    name: "Resume Agent",
+    name: "Resume Tailor Harness",
     tagline: "Fact-locked job-hunt pipeline",
     description: "Pulls postings through 18 connector kinds, scores them against your real experience, and tailors a resume that cannot claim anything you did not do.",
     facts: ["18 connector kinds", "3 deterministic fact-lock gates", "Tailor, cover letter, PDF, tracking"],
