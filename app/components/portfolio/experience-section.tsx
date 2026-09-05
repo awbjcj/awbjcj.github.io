@@ -17,12 +17,14 @@ export function ExperienceSection() {
           {experience.map((item) => (
             <article className="experience-item" key={item.title}>
               <div className="experience-title"><p>{item.label}</p><h3>{item.title}</h3></div>
-              <p className="experience-copy">{item.description}</p>
-              {item.link ? (
-                <ExternalLink href={item.link} destination={`evidence for ${item.title}`}>
-                  {section.evidenceLabel}
-                </ExternalLink>
-              ) : null}
+              <div className="experience-body">
+                <p className="experience-copy">{item.description}</p>
+                {item.link ? (
+                  <ExternalLink href={item.link} destination={`evidence for ${item.title}`}>
+                    {section.evidenceLabel}
+                  </ExternalLink>
+                ) : null}
+              </div>
             </article>
           ))}
         </div>

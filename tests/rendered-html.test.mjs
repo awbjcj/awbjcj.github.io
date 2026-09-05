@@ -40,6 +40,16 @@ test("includes accessible navigation and public project links", async () => {
   assert.match(css, /--accent-ink: #087a50/);
 });
 
+test("keeps repeated portfolio text on shared alignment rails", async () => {
+  const html = await (await render()).text();
+  const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
+  assert.match(html, /class="experience-body"/);
+  assert.match(css, /--content-grid: minmax\(0, 4fr\) minmax\(0, 8fr\)/);
+  assert.match(css, /--detail-label-width: 160px/);
+  assert.match(css, /\.project-content h3 \{[\s\S]*?min-block-size: 2\.4em/);
+  assert.match(css, /\.experience-body \{[\s\S]*?grid-template-columns: minmax\(0, 1fr\) auto/);
+});
+
 test("renders the résumé section with a timeline, education, publications, and a download", async () => {
   const html = await (await render()).text();
   assert.match(html, /id="resume"/);

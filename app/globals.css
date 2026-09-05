@@ -44,6 +44,9 @@
   --measure: 68ch;
   --gutter: clamp(24px, 6vw, 120px);
   --pad-y: clamp(64px, 8vw, 112px);
+  --content-grid: minmax(0, 4fr) minmax(0, 8fr);
+  --content-gap: clamp(24px, 4vw, 72px);
+  --detail-label-width: 160px;
   --r-sm: 8px;
   --r-md: 12px;
   --r-lg: 18px;
@@ -407,8 +410,8 @@ h2 {
 .section-heading {
   margin-bottom: clamp(40px, 5vw, 64px);
   display: grid;
-  grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
-  gap: clamp(24px, 4vw, 72px);
+  grid-template-columns: var(--content-grid);
+  gap: var(--content-gap);
   align-items: start;
 }
 .section-heading > p { margin: 0; max-width: var(--measure); color: var(--muted); }
@@ -462,8 +465,21 @@ h2 {
   color: var(--signal);
 }
 .project-content { padding: 22px; display: flex; flex: 1; flex-direction: column; }
-.project-content h3 { margin: 0 0 10px; font-size: 1.5rem; letter-spacing: -0.018em; }
-.project-content > p { margin: 0; max-width: var(--measure); font-size: 1rem; color: var(--muted); line-height: 1.65; }
+.project-content h3 {
+  min-block-size: 2.4em;
+  margin: 0 0 10px;
+  font-size: 1.5rem;
+  line-height: 1.2;
+  letter-spacing: -0.018em;
+}
+.project-content > p {
+  min-block-size: 4.95em;
+  margin: 0;
+  max-width: var(--measure);
+  font-size: 1rem;
+  color: var(--muted);
+  line-height: 1.65;
+}
 /* Bottom-anchored so the tag row and link sit on the same line across all three
    cards regardless of how long each description runs. */
 .tags { list-style: none; padding: 0; margin: 18px 0 20px; display: flex; flex-wrap: wrap; gap: 6px; }
@@ -642,6 +658,7 @@ h2 {
 /* -------------------------------------------------------------- project links */
 
 .project-links {
+  min-height: 44px;
   display: flex; align-items: center; flex-wrap: wrap; gap: 8px 18px;
 }
 .project-link {
@@ -656,6 +673,9 @@ h2 {
 .project-link-live { color: var(--accent-ink); border-bottom-color: currentColor; }
 /* Honest empty state: these repositories are private, so there is nothing to link. */
 .project-private {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
   font-family: var(--font-code);
   font-size: 0.8125rem; font-weight: 500;
   letter-spacing: 0.06em; text-transform: uppercase;
@@ -682,9 +702,9 @@ h2 {
 .experience-item {
   padding: 26px 0;
   display: grid;
-  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr) auto;
-  gap: clamp(20px, 3vw, 48px);
-  align-items: center;
+  grid-template-columns: var(--content-grid);
+  gap: var(--content-gap);
+  align-items: start;
   border-bottom: 1px solid var(--panel-line);
 }
 .experience-title p {
@@ -696,7 +716,13 @@ h2 {
 }
 .experience-title h3 { margin: 0; font-size: clamp(1.4rem, 2.2vw, 2rem); }
 .experience-copy { margin: 0; font-size: 1rem; color: var(--panel-muted); }
-.experience-item > a {
+.experience-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 24px;
+  align-items: start;
+}
+.experience-body > a {
   justify-self: end;
   min-height: 44px;
   padding: 0 14px;
@@ -709,15 +735,15 @@ h2 {
   white-space: nowrap;
   transition: background-color 180ms var(--ease), color 180ms var(--ease), transform 180ms var(--ease);
 }
-.experience-item > a:active { transform: scale(0.97); }
-.experience-item > a .icon { width: 14px; height: 14px; opacity: 0.85; }
+.experience-body > a:active { transform: scale(0.97); }
+.experience-body > a .icon { width: 14px; height: 14px; opacity: 0.85; }
 
 /* -------------------------------------------------------------------- résumé */
 
 .resume-layout {
   display: grid;
-  grid-template-columns: minmax(0, 0.72fr) minmax(0, 1.28fr);
-  gap: clamp(36px, 5vw, 80px);
+  grid-template-columns: var(--content-grid);
+  gap: var(--content-gap);
   align-items: start;
 }
 .resume-aside {
@@ -753,7 +779,7 @@ h2 {
 .resume-entry {
   padding: 26px 0;
   display: grid;
-  grid-template-columns: 160px minmax(0, 1fr);
+  grid-template-columns: var(--detail-label-width) minmax(0, 1fr);
   gap: 28px;
   border-bottom: 1px solid var(--line);
 }
@@ -786,8 +812,8 @@ h2 {
 .approach-section { background: var(--surface); border-block: 1px solid var(--line); }
 .approach-layout {
   display: grid;
-  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
-  gap: clamp(36px, 5vw, 88px);
+  grid-template-columns: var(--content-grid);
+  gap: var(--content-gap);
   align-items: start;
 }
 .approach-intro h2 { margin-bottom: 20px; }
@@ -801,14 +827,14 @@ h2 {
 
 .toolkit-layout {
   display: grid;
-  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
-  gap: clamp(36px, 5vw, 88px);
+  grid-template-columns: var(--content-grid);
+  gap: var(--content-gap);
   align-items: start;
 }
 .skill-groups { border-top: 1px solid var(--line); }
 .skill-group {
   padding: 20px 0;
-  display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 24px;
+  display: grid; grid-template-columns: var(--detail-label-width) minmax(0, 1fr); gap: 24px;
   align-items: start;
   border-bottom: 1px solid var(--line);
 }
@@ -844,7 +870,7 @@ h2 {
 }
 .contact-channels li {
   padding: 17px 0;
-  display: grid; grid-template-columns: 130px minmax(0, 1fr); gap: 24px;
+  display: grid; grid-template-columns: var(--detail-label-width) minmax(0, 1fr); gap: 24px;
   align-items: baseline;
   border-bottom: 1px solid var(--panel-line);
 }
@@ -910,7 +936,7 @@ h2 {
   .text-link:hover { border-color: var(--ink); }
   .project-card:hover { border-color: var(--line-strong); box-shadow: var(--shadow-md); }
   .project-content > a:hover { border-color: var(--ink); }
-  .experience-item > a:hover { background: var(--signal); color: var(--panel); border-color: var(--signal); }
+  .experience-body > a:hover { background: var(--signal); color: var(--panel); border-color: var(--signal); }
   .contact-channels a:hover { border-color: var(--signal); color: var(--signal); }
   .site-footer a:hover { color: var(--signal); }
   .resume-publication-link:hover { color: var(--accent-ink); text-decoration-color: currentColor; }
@@ -924,12 +950,10 @@ h2 {
   .live-grid { grid-template-columns: minmax(0, 1fr); }
   .approach-layout, .toolkit-layout, .resume-layout { grid-template-columns: minmax(0, 1fr); }
   .resume-aside { position: static; }
-  .experience-item { grid-template-columns: minmax(0, 1fr) auto; row-gap: 12px; }
-  .experience-copy { grid-column: 1; }
-  .experience-item > a { grid-column: 2; grid-row: 1 / span 2; align-self: start; }
+  .experience-item { grid-template-columns: minmax(0, 1fr); row-gap: 14px; }
 }
 
-@media (max-width: 760px) {
+@media (max-width: 800px) {
   .header-inner { min-height: 60px; grid-template-columns: auto 1fr; gap: 8px 12px; }
   .brand-copy small { display: none; }
   /* Navigation stays reachable on mobile — it scrolls rather than disappearing. */
@@ -949,6 +973,8 @@ h2 {
 
   .section-heading { grid-template-columns: minmax(0, 1fr); gap: 18px; align-items: start; }
   .project-grid { grid-template-columns: minmax(0, 1fr); }
+  .project-content h3,
+  .project-content > p { min-block-size: 0; }
   .resume-entry { padding: 22px 0; grid-template-columns: minmax(0, 1fr); gap: 10px; }
   .skill-group { grid-template-columns: minmax(0, 1fr); gap: 12px; }
   .contact-channels li { grid-template-columns: minmax(0, 1fr); gap: 6px; }
@@ -958,10 +984,8 @@ h2 {
 }
 
 @media (max-width: 520px) {
-  .experience-item { grid-template-columns: minmax(0, 1fr); }
-  .experience-copy,
-  .experience-item > a { grid-column: 1; grid-row: auto; }
-  .experience-item > a { justify-self: start; }
+  .experience-body { grid-template-columns: minmax(0, 1fr); gap: 14px; }
+  .experience-body > a { justify-self: start; }
 }
 
 /* Users who request more contrast get stronger separators and no glass effect. */
@@ -987,7 +1011,7 @@ h2 {
   .project-head::before,
   .hero { background-image: none; }
   .button,
-  .experience-item > a,
+  .experience-body > a,
   .project-card,
   .live-card { border: 1px solid ButtonText; }
 }
