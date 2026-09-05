@@ -29,8 +29,8 @@ const mono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Jiajin (David) Wu — AI/LLM Software & Application Engineer",
-  description: "Portfolio of Jiajin (David) Wu, an AI/LLM engineer building governed multi-agent platforms, hybrid retrieval systems, and full-stack AI applications.",
+  title: "Jiajin (David) Wu — AI Full-Stack Engineer",
+  description: "Portfolio of Jiajin (David) Wu, an AI full-stack engineer building governed agents, hybrid retrieval, and production web apps.",
   icons: { icon: "/favicon.svg", shortcut: "/favicon.ico" },
 };
 
