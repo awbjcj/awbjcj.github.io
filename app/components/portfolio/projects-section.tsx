@@ -14,10 +14,13 @@ export function ProjectsSection() {
           count={`${projects.length} ${section.countNoun}`}
         />
         <div className="project-grid">
-          {projects.map((project) => (
+          {projects.map((project, projectIndex) => (
             <article className="project-card" key={project.name}>
               <div className="project-head">
-                <div className="project-meta"><span>{project.kind}</span></div>
+                <div className="project-meta">
+                  <span>{project.kind}</span>
+                  <span className="project-index" aria-hidden="true">{String(projectIndex + 1).padStart(2, "0")}</span>
+                </div>
                 <p className="project-signal">{project.signal}</p>
               </div>
               <div className="project-content">

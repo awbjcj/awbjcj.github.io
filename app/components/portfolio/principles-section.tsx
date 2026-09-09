@@ -13,8 +13,11 @@ export function PrinciplesSection() {
           <p>{approach.description}</p>
         </div>
         <ul className="focus-list">
-          {focusAreas.map((area) => (
-            <li key={area.title}><h3>{area.title}</h3><p>{area.description}</p></li>
+          {focusAreas.map((area, areaIndex) => (
+            <li key={area.title}>
+              <span className="focus-index" aria-hidden="true">{String(areaIndex + 1).padStart(2, "0")}</span>
+              <div><h3>{area.title}</h3><p>{area.description}</p></div>
+            </li>
           ))}
         </ul>
       </div>
