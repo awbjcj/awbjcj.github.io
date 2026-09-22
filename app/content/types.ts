@@ -2,6 +2,7 @@
 export type ProjectLink = { href: string; label: string };
 
 export type ProjectConfig = {
+  id: string;
   name: string;
   kind: string;
   signal: string;

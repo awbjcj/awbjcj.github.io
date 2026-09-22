@@ -14,7 +14,7 @@ All editable website copy lives in the purpose-specific configuration files unde
 | `app/content/resume.config.ts` | Employment timeline and education |
 | `app/content/skills.config.ts` | Product principles and skill groups |
 
-Each list is rendered automatically. Add, remove, or reorder its objects to change the number and order of items on the website. TypeScript checks the required fields during lint and build.
+English lists are rendered automatically; update `zh-CN.config.ts` alongside them. Add, remove, or reorder its objects to change the number and order of items on the website. The catalog types check required fields; translation checks validate both languages during `check:content`.
 
 For copy-ready recipes for projects, engineering stories, roles, and skill
 groups, use the [portfolio content guide](app/content/README.md).
@@ -23,6 +23,7 @@ For example, add another project by copying an object in `projects.config.ts`:
 
 ```ts
 {
+  id: "project-id",
   name: "Project name",
   kind: "Original project",
   signal: "SHORT OUTCOME OR PROOF",
@@ -39,15 +40,12 @@ URL that returns 404.
 
 ## Project evidence rule
 
-Every entry in `projects.config.ts` is backed by a repository dossier, and every
-figure quoted on a card comes from that dossier's evidence-checked "Quantified
-outcomes" section. Numbers are never estimated. A project without a dossier does
-not go on the site.
+Back project descriptions with repository code, documentation, and commits. Record the reviewed revision in `app/content/github-evidence.md`. Identify fork contributions and avoid carrying old test totals or scale claims forward without fresh measurements. Private work stays unlinked.
 
 ## Live products and the trial form
 
-`liveProducts` in `app/content/site.config.ts` drives the dark "Running right
-now" section. The Resume Tailor Harness card carries a **plain GET form** — no
+`liveProducts` in `app/content/site.config.ts` drives the "Applications"
+section. The Resume Tailor Harness card carries a **plain GET form** — no
 JavaScript, no backend, no API route. The browser serializes `name` and `email`
 into the query string of the target's own registration page, which reads both
 back to prefill itself:
@@ -101,3 +99,23 @@ Pushing `main` deploys the static export to GitHub Pages through `.github/workfl
 ## Template research
 
 The information architecture was informed by [Ryan Fitzgerald's DevPortfolio](https://github.com/RyanFitzgerald/devportfolio), selected from a shortlist of popular portfolio templates for its concise tech-job focus, project and experience sections, and simple content model. This implementation is an original design and codebase.
+
+
+## Language and theme preferences
+
+English copy remains in the purpose-specific config files. `zh-CN.config.ts`
+contains Simplified Chinese copy, checked against the `ContentCatalog` type.
+Update both languages when adding or changing content. Project translations use
+stable IDs; links and technology names are shared. Publication titles and author
+names keep their original spelling. The downloadable résumé remains in English.
+
+The header language selector uses `?lang=en` or `?lang=zh-CN`, so a language
+choice can be shared and browser Back restores previous choices. Without a URL
+selection, the saved preference takes priority over the browser language.
+Language changes update `html[lang]`, the page title, and description. The static
+HTML and social-preview metadata are English; Chinese is applied after hydration.
+
+The theme button switches light/dark mode. On a first visit it follows the OS
+color preference; an explicit selection is saved. A small head script applies the
+theme before paint. Storage failures do not disable either control. No translation
+service or additional runtime dependency is required.

@@ -1,4 +1,7 @@
+"use client";
+
 import type { ReactNode } from "react";
+import { useContent } from "./preferences";
 import { displayValue, isPlaceholder } from "../../content";
 
 /** Inline SVG avoids platform-dependent emoji rendering for directional arrows. */
@@ -19,8 +22,9 @@ export function ArrowUpIcon() {
 }
 
 /** Keeps new-window behavior explicit without adding visual noise to every link. */
-export function ExternalLinkHint({ destination = "link" }: { destination?: string }) {
-  return <span className="sr-only"> ({destination} opens in a new tab)</span>;
+export function ExternalLinkHint({ destination }: { destination?: string }) {
+  const { siteConfig } = useContent();
+  return <span className="sr-only"> ({destination === "GitHub" || destination === "LinkedIn" ? `${destination}: ` : ""}{siteConfig.accessibility.newTab})</span>;
 }
 
 /** Section eyebrow. `count` is shown only where a total is genuinely informative. */
@@ -38,11 +42,12 @@ export function Label({ children, count }: { children: string; count?: string })
  * The content publishing gate prevents this authoring state from shipping.
  */
 export function Field({ value, as: Tag = "span" }: { value: string; as?: "span" | "h3" | "p" }) {
+  const { siteConfig } = useContent();
   if (!isPlaceholder(value)) return <Tag>{value}</Tag>;
   return (
-    <Tag className="unfilled" title="Placeholder — replace in app/content/*.config.ts">
+    <Tag className="unfilled" title={siteConfig.accessibility.placeholderTitle}>
       {displayValue(value)}
-      <span className="sr-only"> (placeholder content, not yet written)</span>
+      <span className="sr-only"> ({siteConfig.accessibility.placeholder})</span>
     </Tag>
   );
 }

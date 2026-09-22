@@ -19,9 +19,9 @@ test("server-renders the finished portfolio", async () => {
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
   const html = await response.text();
   assert.match(html, /Jiajin \(David\) Wu/);
-  assert.match(html, /beyond the demo/);
+  assert.match(html, /Engineered end to end/);
   assert.match(html, /Resume Tailor Harness/);
-  assert.match(html, /Experience in practice/);
+  assert.match(html, /Engineering experience/);
   assert.match(html, /og\.png/);
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton|Your site is taking shape/i);
 });
@@ -137,15 +137,27 @@ test("documents copy-ready recipes for every frequently edited content type", as
   assert.match(guide, /npm run check:content/);
 });
 
-test("every project is dossier-backed, and private repos are stated not linked", async () => {
+test("includes reviewed GitHub additions and keeps private repositories unlinked", async () => {
   const html = await (await render()).text();
   const projectsConfig = await readFile(new URL("../app/content/projects.config.ts", import.meta.url), "utf8");
 
-  // Dropped for having no dossier — they must not reappear anywhere.
-  assert.doesNotMatch(html, /Copilot Proxy|H-1B Job Search/);
-  assert.doesNotMatch(projectsConfig, /vscode-copilot-proxy|h1b-job-search-mcp/);
+  for (const repository of ["video-dedup", "h1b-job-search-mcp", "diagram-design"]) {
+    assert.ok(html.includes(`github.com/awbjcj/${repository}`));
+    assert.ok(projectsConfig.includes(repository));
+  }
+  assert.match(html, /Open-source fork contributions/);
+  assert.match(html, /Requirement Analyzer/);
+  assert.doesNotMatch(html, /3,411 TESTS|735 TESTS|8 GRAPHS|60 TOOLS/);
 
   // Cards without a public repository say so rather than offering a dead link.
   assert.match(html, /Private repository/);
-  assert.doesNotMatch(html, /github\.com\/awbjcj\/(vsda-deep-agent|LangGraph-test|Jira-Polarion-automation)/);
+  assert.doesNotMatch(html, /github\.com\/awbjcj\/(vsda-deep-agent|LangGraph-test|Jira-Polarion-automation|requirement-analyzer)/);
+});
+
+test("renders accessible preference controls and a theme initializer before the body", async () => {
+  const html = await (await render()).text();
+  assert.match(html, /aria-label="Display preferences"/);
+  assert.match(html, /<option value="zh-CN" lang="zh-CN">中文<\/option>/);
+  assert.match(html, /aria-label="Dark mode" aria-pressed="false"/);
+  assert.ok(html.indexOf("portfolio-theme") < html.indexOf("<body"));
 });

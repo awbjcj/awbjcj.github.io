@@ -1,7 +1,10 @@
-import { profile, siteConfig } from "../../content";
+"use client";
+
+import { useContent, PreferenceControls } from "./preferences";
 import { ArrowIcon, ArrowUpIcon, ExternalLinkHint } from "./primitives";
 
 export function SiteHeader() {
+  const { profile, siteConfig } = useContent();
   const { accessibility, navigation } = siteConfig;
 
   return (
@@ -19,9 +22,12 @@ export function SiteHeader() {
           <nav aria-label={accessibility.primaryNavigation}>
             {navigation.map((item) => <a href={item.href} key={item.href}>{item.label}</a>)}
           </nav>
-          <a className="header-cta" href={profile.github} target="_blank" rel="noreferrer">
-            {accessibility.githubLabel} <ArrowIcon /><ExternalLinkHint destination="GitHub" />
-          </a>
+          <div className="header-actions">
+            <PreferenceControls />
+            <a className="header-cta" href={profile.github} target="_blank" rel="noreferrer">
+              {accessibility.githubLabel} <ArrowIcon /><ExternalLinkHint destination="GitHub" />
+            </a>
+          </div>
         </div>
       </header>
     </>
@@ -29,6 +35,7 @@ export function SiteHeader() {
 }
 
 export function SiteFooter() {
+  const { profile, siteConfig } = useContent();
   const { footer } = siteConfig;
 
   return (

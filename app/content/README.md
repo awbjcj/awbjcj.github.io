@@ -23,6 +23,7 @@ Paste this inside the `projects` list in `projects.config.ts`:
 
 ```ts
 {
+  id: "project-id",
   name: "Project name",
   kind: "Shipped product",
   signal: "ONE SHORT PROOF POINT",
@@ -35,7 +36,7 @@ Paste this inside the `projects` list in `projects.config.ts`:
 
 `repo` and `live` are optional. Remove either line when it does not apply. If
 both are absent, the card automatically shows the configured private-project
-note. Keep `name` unique so React can track the card reliably.
+note. Keep `id` unique and stable; it identifies both the card and its Chinese translation.
 
 ## Add an engineering experience story
 
@@ -125,3 +126,23 @@ npm run export:github
 
 TypeScript reports missing or misspelled required fields during lint/build. The
 content check catches unfinished copy and required public assets.
+
+
+## Language and theme preferences
+
+English copy remains in the purpose-specific config files. `zh-CN.config.ts`
+contains Simplified Chinese copy, checked against the `ContentCatalog` type.
+Update both languages when adding or changing content. Project translations use
+stable IDs; links and technology names are shared. Publication titles and author
+names keep their original spelling. The downloadable résumé remains in English.
+
+The header language selector uses `?lang=en` or `?lang=zh-CN`, so a language
+choice can be shared and browser Back restores previous choices. Without a URL
+selection, the saved preference takes priority over the browser language.
+Language changes update `html[lang]`, the page title, and description. The static
+HTML and social-preview metadata are English; Chinese is applied after hydration.
+
+The theme button switches light/dark mode. On a first visit it follows the OS
+color preference; an explicit selection is saved. A small head script applies the
+theme before paint. Storage failures do not disable either control. No translation
+service or additional runtime dependency is required.

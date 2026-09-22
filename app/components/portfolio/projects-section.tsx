@@ -1,7 +1,10 @@
-import { projects, siteConfig } from "../../content";
+"use client";
+
+import { useContent } from "./preferences";
 import { ExternalLink, SectionHeading } from "./primitives";
 
 export function ProjectsSection() {
+  const { projects, siteConfig } = useContent();
   const { projects: section } = siteConfig.sections;
 
   return (
@@ -15,7 +18,7 @@ export function ProjectsSection() {
         />
         <div className="project-grid">
           {projects.map((project, projectIndex) => (
-            <article className="project-card" key={project.name}>
+            <article className="project-card" key={project.id}>
               <div className="project-head">
                 <div className="project-meta">
                   <span>{project.kind}</span>
@@ -26,7 +29,7 @@ export function ProjectsSection() {
               <div className="project-content">
                 <h3>{project.name}</h3>
                 <p>{project.description}</p>
-                <ul className="tags" aria-label={`${project.name} technologies`}>
+                <ul className="tags" aria-label={`${project.name} ${siteConfig.accessibility.technologies}`}>
                   {project.skills.map((skill) => <li key={skill}>{skill}</li>)}
                 </ul>
                 <div className="project-links">

@@ -1,7 +1,10 @@
-import { profile, siteConfig } from "../../content";
+"use client";
+
+import { useContent } from "./preferences";
 import { ArrowIcon, ExternalLinkHint } from "./primitives";
 
 export function HeroSection() {
+  const { profile, siteConfig } = useContent();
   const { accessibility, hero } = siteConfig;
 
   return (

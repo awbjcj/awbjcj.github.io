@@ -29,14 +29,15 @@ const mono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Jiajin (David) Wu — AI Full-Stack Engineer",
-  description: "Portfolio of Jiajin (David) Wu, an AI full-stack engineer building governed agents, hybrid retrieval, and production web apps.",
   icons: { icon: "/favicon.svg", shortcut: "/favicon.ico" },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${display.variable} ${body.variable} ${mono.variable}`}>
+    <html lang="en" suppressHydrationWarning className={`${display.variable} ${body.variable} ${mono.variable}`}>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: `(function(){var t;try{t=localStorage.getItem('portfolio-theme')}catch(e){}document.documentElement.dataset.theme=t==='dark'||t==='light'?t:matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'})()` }} />
+      </head>
       <body>{children}</body>
     </html>
   );

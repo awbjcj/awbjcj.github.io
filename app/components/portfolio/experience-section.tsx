@@ -1,7 +1,10 @@
-import { experience, siteConfig } from "../../content";
+"use client";
+
+import { useContent } from "./preferences";
 import { ExternalLink, SectionHeading } from "./primitives";
 
 export function ExperienceSection() {
+  const { experience, siteConfig } = useContent();
   const { experience: section } = siteConfig.sections;
 
   return (

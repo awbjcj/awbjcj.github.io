@@ -1,7 +1,10 @@
-import { liveProducts, siteConfig } from "../../content";
+"use client";
+
+import { useContent } from "./preferences";
 import { ArrowIcon, ExternalLinkHint, SectionHeading } from "./primitives";
 
 export function LiveProductsSection() {
+  const { liveProducts, siteConfig } = useContent();
   const { sections } = siteConfig;
 
   return (

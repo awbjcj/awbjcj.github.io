@@ -1,7 +1,10 @@
-import { contact, profile, resume, siteConfig } from "../../content";
+"use client";
+
+import { useContent } from "./preferences";
 import { ExternalLinkHint, Field, SectionHeading, ArrowIcon } from "./primitives";
 
 export function ResumeSection() {
+  const { contact, profile, resume, siteConfig } = useContent();
   const { resume: section } = siteConfig.sections;
 
   return (

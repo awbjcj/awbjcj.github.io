@@ -1,7 +1,10 @@
-import { focusAreas, siteConfig, skillGroups } from "../../content";
+"use client";
+
+import { useContent } from "./preferences";
 import { Label } from "./primitives";
 
 export function PrinciplesSection() {
+  const { focusAreas, siteConfig } = useContent();
   const { approach } = siteConfig.sections;
 
   return (
@@ -26,6 +29,7 @@ export function PrinciplesSection() {
 }
 
 export function ToolkitSection() {
+  const { siteConfig, skillGroups } = useContent();
   const { toolkit } = siteConfig.sections;
 
   return (

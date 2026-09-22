@@ -13,6 +13,7 @@ import {
   ToolkitSection,
 } from "./components/portfolio";
 import { profile } from "./content";
+import { PortfolioProvider } from "./components/portfolio/preferences";
 
 export async function generateMetadata(): Promise<Metadata> {
   const requestHeaders = await headers();
@@ -22,8 +23,6 @@ export async function generateMetadata(): Promise<Metadata> {
 
   return {
     metadataBase: baseUrl,
-    title: `${profile.name} — ${profile.title}`,
-    description: profile.summary,
     alternates: { canonical: "/" },
     openGraph: {
       type: "website",
@@ -43,7 +42,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default function Home() {
   return (
-    <>
+    <PortfolioProvider>
       <SiteHeader />
       <main id="main-content" className="main-content" tabIndex={-1}>
         <HeroSection />
@@ -56,6 +55,6 @@ export default function Home() {
         <ContactSection />
       </main>
       <SiteFooter />
-    </>
+    </PortfolioProvider>
   );
 }

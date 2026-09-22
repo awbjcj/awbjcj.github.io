@@ -1,7 +1,11 @@
-import { contact, isPlaceholder, profile, siteConfig } from "../../content";
+"use client";
+
+import { useContent } from "./preferences";
+import { isPlaceholder } from "../../content";
 import { ArrowIcon, ExternalLinkHint, Label } from "./primitives";
 
 export function ContactSection() {
+  const { contact, profile, siteConfig } = useContent();
   const { contact: section } = siteConfig.sections;
 
   return (
@@ -12,7 +16,7 @@ export function ContactSection() {
 
         <div className="contact-actions">
           <a className="button button-light" href={`mailto:${contact.email}`}>{section.actionLabel} <ArrowIcon /></a>
-          <p>{profile.availability}.</p>
+          <p>{profile.availability}</p>
         </div>
 
         <ul className="contact-channels">
@@ -23,7 +27,7 @@ export function ContactSection() {
           <li>
             <span>{section.linkedinLabel}</span>
             {isPlaceholder(contact.linkedin)
-              ? <span className="unfilled">{section.linkedinPlaceholder}<span className="sr-only"> (placeholder content, not yet written)</span></span>
+              ? <span className="unfilled">{section.linkedinPlaceholder}<span className="sr-only">{siteConfig.accessibility.placeholder}</span></span>
               : <a href={contact.linkedin} target="_blank" rel="noreferrer">{contact.linkedin.replace(/^https?:\/\/(www\.)?/, "")} <ArrowIcon /><ExternalLinkHint destination="LinkedIn" /></a>}
           </li>
           <li>

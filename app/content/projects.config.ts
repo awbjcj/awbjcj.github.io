@@ -1,57 +1,169 @@
 import type { ProjectConfig } from "./types";
 
-/**
- * Selected project cards. Every entry is backed by a repository dossier, and
- * every number below is quoted from that dossier's evidence-checked
- * "Quantified outcomes" section rather than estimated.
- * Copy-ready authoring recipe: app/content/README.md
- */
+/** Reviewed against GitHub on 2026-09-22. Source notes: github-evidence.md. */
 export const projects = [
   {
-    name: "Resume Tailor Harness",
-    kind: "Shipped multi-tenant product",
-    signal: "3,411 TESTS · 18 CONNECTORS",
-    description: "Fact-locked job search with three deterministic gates, 35 verified skills, and approval before every write.",
-    skills: ["Python", "FastAPI", "React", "TypeScript", "SQLModel"],
-    repo: { href: "https://github.com/awbjcj/resume-tailor-harness", label: "Source" },
-    live: { href: "https://resume-agent.up.railway.app", label: "Open the app" },
+    "id": "resume",
+    "name": "Resume Tailor Harness",
+    "kind": "Full-stack application",
+    "signal": "FACT VALIDATION · WORKSPACE ISOLATION",
+    "description": "Job discovery, résumé tailoring, cover letters, and application tracking. Deterministic gates check claims against source facts; recent work adds Gmail sync recovery and subscription-credit lifecycle handling.",
+    "skills": [
+      "Python",
+      "FastAPI",
+      "React",
+      "TypeScript",
+      "SQLite"
+    ],
+    "repo": {
+      "href": "https://github.com/awbjcj/resume-tailor-harness",
+      "label": "Source"
+    },
+    "live": {
+      "href": "https://resume-agent.up.railway.app",
+      "label": "Open the app"
+    }
   },
   {
-    name: "Food Manager",
-    kind: "Shipped product",
-    signal: "4 LLM PROVIDERS · 735 TESTS",
-    description: "Production Telegram pantry app with four LLM providers, per-user switching, and 735 offline tests.",
-    skills: ["Python", "LLM routing", "aiogram", "SQLModel", "Alembic"],
-    repo: { href: "https://github.com/awbjcj/food-manager", label: "Source" },
-    live: { href: "https://t.me/foodie_manager_bot", label: "Open in Telegram" },
+    "id": "food",
+    "name": "Food Manager",
+    "kind": "Telegram bot & Mini App",
+    "signal": "RECEIPT PARSING · SHARED HOUSEHOLDS",
+    "description": "Converts receipt photos into pantry records with expiry reminders and meal plans. The Mini App runs bot workflows through the existing authorization, quota, and confirmation handlers, with localized messages.",
+    "skills": [
+      "Python",
+      "aiogram",
+      "SQLModel",
+      "LLM routing",
+      "Telegram Mini Apps"
+    ],
+    "repo": {
+      "href": "https://github.com/awbjcj/food-manager",
+      "label": "Source"
+    },
+    "live": {
+      "href": "https://t.me/foodie_manager_bot",
+      "label": "Open in Telegram"
+    }
   },
   {
-    name: "VSDA Deep Agent",
-    kind: "Enterprise platform",
-    signal: "8 GRAPHS · 60 TOOLS",
-    description: "Governed multi-agent platform with eight LangGraph entry points, 60 tools, 46 API routes, hybrid RAG, and human approval.",
-    skills: ["LangGraph", "FastAPI", "OpenSearch", "Hybrid RAG", "SQLAlchemy"],
+    "id": "video",
+    "name": "Video Dedup",
+    "kind": "Local media tooling",
+    "signal": "CLIP MATCHING · REVIEW BEFORE REMOVAL",
+    "description": "Finds identical videos, re-encoded copies, and shared clips using FFmpeg and cached fingerprints. A browser review groups matches by clip, combines keeper coverage, and moves approved removals to quarantine.",
+    "skills": [
+      "Python",
+      "FFmpeg",
+      "SQLite",
+      "React",
+      "TypeScript"
+    ],
+    "repo": {
+      "href": "https://github.com/awbjcj/video-dedup",
+      "label": "Source"
+    }
   },
   {
-    name: "Deep Agents UI",
-    kind: "Governance layer on open source",
-    signal: "HITL APPROVALS · 3 ROLE TIERS",
-    description: "Real-time LangGraph operator console with token and state streams, three role tiers, model governance, and tool approvals.",
-    skills: ["Next.js", "React 19", "TypeScript", "LangGraph SDK", "Radix UI"],
-    repo: { href: "https://github.com/awbjcj/deep-agents-ui", label: "Source" },
+    "id": "h1b",
+    "name": "H-1B Job Search MCP",
+    "kind": "Open-source fork contributions",
+    "signal": "DISK INDEX · BOUNDED QUERY CACHE",
+    "description": "Extended an MCP server for searching U.S. Department of Labor disclosure records. Added disk-backed indexing and bounded caches, with idle cache release and documented memory/query tradeoffs.",
+    "skills": [
+      "Python",
+      "FastMCP",
+      "SQLite",
+      "MCP"
+    ],
+    "repo": {
+      "href": "https://github.com/awbjcj/h1b-job-search-mcp",
+      "label": "Source"
+    }
   },
   {
-    name: "Release-Email Intelligence Pipeline",
-    kind: "Automation system",
-    signal: "7 ENGINES · 4 PARSERS",
-    description: "Turns release email into validated records and Jenkins builds through four stages, four parsers, and seven conversion engines.",
-    skills: ["LangGraph", "OpenAI", "Microsoft Graph", "Pydantic", "Jenkins"],
+    "id": "console",
+    "name": "Deep Agents UI",
+    "kind": "Customized open-source frontend",
+    "signal": "STREAMING · ACCESS & USAGE CONTROLS",
+    "description": "Extended LangChain's agent console with authentication, role-based access, usage budgets, and tool approvals. Recent changes add code-analysis and source-image interfaces and preserve edits during settings saves.",
+    "skills": [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "LangGraph SDK",
+      "Radix UI"
+    ],
+    "repo": {
+      "href": "https://github.com/awbjcj/deep-agents-ui",
+      "label": "Source"
+    }
   },
   {
-    name: "Enterprise Engineering Automation Suite",
-    kind: "Five-system toolset",
-    signal: "62 CLIENT METHODS · 5 SYSTEMS",
-    description: "Typed async automation for Polarion, Jira, Confluence, Teams, and email—62 client methods and approval-gated agents.",
-    skills: ["Python", "asyncio", "LangGraph", "REST APIs", "Jenkins"],
+    "id": "diagram",
+    "name": "Diagram Design",
+    "kind": "Open-source fork contributions",
+    "signal": "HTML / SVG · VALIDATION TOOLING",
+    "description": "Contributed hardening fixes to the diagram skill's extraction and verification scripts, normalizing extractor handling and expanding validation coverage for generated diagrams and documentation.",
+    "skills": [
+      "Python",
+      "HTML",
+      "SVG",
+      "Validation"
+    ],
+    "repo": {
+      "href": "https://github.com/awbjcj/diagram-design",
+      "label": "Source"
+    }
   },
-] satisfies readonly ProjectConfig[];
+  {
+    "id": "requirements",
+    "name": "Requirement Analyzer",
+    "kind": "Requirements engineering workflow",
+    "signal": "MCP CONNECTORS · INDEPENDENT REVIEW",
+    "description": "Coordinates source retrieval, requirements drafting, independent review, and verification proposals through Jira and Polarion MCP tools. A Python SDK runtime streams progress and retains artifacts; recent work expands document-layout and revision reads.",
+    "skills": ["Python", "MCP", "GitHub Copilot SDK", "Jira", "Polarion"]
+  },
+  {
+    "id": "vsda",
+    "name": "VSDA Deep Agent",
+    "kind": "Enterprise agent platform",
+    "signal": "SUPERVISOR ROUTING · HYBRID RETRIEVAL",
+    "description": "A LangGraph supervisor routes work across enterprise tools, retrieval, and isolated repository analysis. FastAPI provides authentication, model policy, usage controls, and administration.",
+    "skills": [
+      "LangGraph",
+      "FastAPI",
+      "OpenSearch",
+      "Hybrid RAG",
+      "SQLAlchemy"
+    ]
+  },
+  {
+    "id": "release",
+    "name": "Release-Email Intelligence Pipeline",
+    "kind": "Engineering automation",
+    "signal": "STRUCTURED EXTRACTION · CI INTEGRATION",
+    "description": "Parses software release emails into structured records, coordinates Jenkins builds, and generates summaries from test reports. Release data can be compared with MinIO exports for validation.",
+    "skills": [
+      "LangGraph",
+      "OpenAI",
+      "Microsoft Graph",
+      "Pydantic",
+      "Jenkins"
+    ]
+  },
+  {
+    "id": "enterprise",
+    "name": "Enterprise Engineering Automation",
+    "kind": "Integration libraries & agents",
+    "signal": "TYPED CLIENTS · APPROVAL WORKFLOWS",
+    "description": "Python clients and agent workflows for Jira, Polarion, Confluence, Teams, and email. Supports ticket reporting, test-run management, and human approval for sensitive operations.",
+    "skills": [
+      "Python",
+      "asyncio",
+      "LangGraph",
+      "REST APIs",
+      "Jenkins"
+    ]
+  }
+] as const satisfies readonly ProjectConfig[];

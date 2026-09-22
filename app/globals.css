@@ -11,6 +11,7 @@
    ========================================================================= */
 
 :root {
+  color-scheme: light;
   /* Light ground */
   --canvas: #f2f3f0;
   --surface: #ffffff;
@@ -59,6 +60,23 @@
   /* Motion — strong ease-out; UI stays under 250ms */
   --ease: cubic-bezier(0.23, 1, 0.32, 1);
   --ease-spring: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* Theme tokens cover page surfaces, cards, form controls, and text together. */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --canvas: #101b1e;
+  --surface: #162529;
+  --surface-sunk: #1e3236;
+  --ink: #edf5f2;
+  --ink-70: #cfdfda;
+  --muted: #afc4bd;
+  --line: rgba(218, 240, 230, 0.17);
+  --line-strong: rgba(218, 240, 230, 0.32);
+  --accent-ink: #62e8b4;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.16);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.2);
+  --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.28);
 }
 
 * { box-sizing: border-box; }
@@ -522,7 +540,7 @@ h2 {
 /* Bottom-anchored so the tag row and link sit on the same line across all three
    cards regardless of how long each description runs. */
 .tags { list-style: none; padding: 0; margin: 18px 0 20px; display: flex; flex-wrap: wrap; gap: 6px; }
-.project-content .tags { margin-top: auto; }
+.project-content .tags { margin-top: auto; padding-top: 18px; }
 .tags li {
   padding: 5px 9px;
   border: 1px solid var(--line);
@@ -1018,9 +1036,9 @@ h2 {
 @media (hover: hover) and (pointer: fine) {
   .site-header nav a:hover { color: var(--ink); background: color-mix(in srgb, var(--ink) 6%, transparent); }
   .header-cta:hover { border-color: var(--ink); }
-  .button-primary:hover { background: #16242b; box-shadow: var(--shadow-lg); }
+  .button-primary:hover { background: color-mix(in srgb, var(--ink) 88%, var(--canvas)); box-shadow: var(--shadow-lg); }
   .button-ghost:hover { border-color: var(--ink); }
-  .button-light:hover { background: #ffffff; }
+  .button-light:hover { background: color-mix(in srgb, var(--surface) 88%, var(--ink)); }
   .text-link:hover { border-color: var(--ink); }
   .project-card:hover { border-color: var(--line-strong); box-shadow: var(--shadow-md); transform: translateY(-4px); }
   .project-content > a:hover { border-color: var(--ink); }
@@ -1136,4 +1154,42 @@ h2 {
   }
   /* The travelling signal is decorative motion; hold it still instead. */
   .pipeline-pulse { display: none; }
+}
+
+/* Header preferences remain visible beside the identity on narrow screens. */
+.header-inner { grid-template-columns: auto minmax(0, 1fr) auto; gap: 18px; }
+.site-header nav { justify-self: center; }
+.header-actions { display: flex; align-items: center; gap: 10px; justify-self: end; }
+.preference-controls { display: flex; align-items: center; gap: 4px; padding: 3px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
+.language-control { display: flex; }
+.language-control select { min-height: 40px; width: 68px; padding: 0 6px; border: 0; border-radius: 6px; color: var(--ink); background: var(--surface); font: inherit; font-size: 0.875rem; cursor: pointer; }
+.theme-toggle { display: grid; place-items: center; width: 40px; min-height: 40px; padding: 0; border: 0; border-left: 1px solid var(--line); border-radius: 5px; background: transparent; color: var(--ink); cursor: pointer; }
+.theme-toggle:hover { background: var(--surface-sunk); }
+:root:lang(zh-CN) {
+  --font-sans: var(--font-body), "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", system-ui, sans-serif;
+  --font-head: var(--font-display), "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", system-ui, sans-serif;
+  --font-code: var(--font-mono), "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", system-ui, sans-serif;
+}
+:lang(zh-CN) h1 { max-width: 12em; font-size: clamp(2rem, 5vw, 5rem); line-height: 1.3; letter-spacing: -0.025em; }
+:lang(zh-CN) h1 .h1-lead { display: block; }
+:lang(zh-CN) h2 { line-height: 1.25; }
+:lang(zh-CN) .label, :lang(zh-CN) .rail li, :lang(zh-CN) .project-meta { letter-spacing: 0.035em; }
+:lang(zh-CN) .lede { line-height: 1.8; }
+@media (max-width: 1200px) {
+  .header-inner { grid-template-columns: minmax(0, 1fr) auto; gap: 8px 12px; padding-top: 8px; }
+  .site-header nav { grid-column: 1 / -1; grid-row: 2; justify-self: stretch; justify-content: center; margin-bottom: 8px; }
+  .header-actions { grid-column: 2; grid-row: 1; }
+  section[id] { scroll-margin-top: 136px; }
+}
+@media (max-width: 800px) {
+  .site-header nav { justify-content: flex-start; margin-bottom: 0; }
+  .header-actions .header-cta { display: none; }
+}
+@media (max-width: 380px) {
+  .brand { gap: 7px; }
+  .brand-copy strong { font-size: 0.85rem; }
+  .brand-mark { display: none; }
+}
+@media (prefers-contrast: more) {
+  :root[data-theme="dark"] { --line: rgba(218, 240, 230, 0.5); --line-strong: rgba(218, 240, 230, 0.7); }
 }
