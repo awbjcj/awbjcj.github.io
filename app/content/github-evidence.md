@@ -9,11 +9,10 @@ Reviewed 2026-09-22 using the connected GitHub account. These are source-backed 
 | video-dedup | [178b400](https://github.com/awbjcj/video-dedup/commit/178b40088fd282d06ecf2d0ced854fb081d075af) | Clip-based groups, cumulative keeper coverage, quarantine and browser review. |
 | h1b-job-search-mcp | [3eb1cf6](https://github.com/awbjcj/h1b-job-search-mcp/commit/3eb1cf6cab50bbb6ada0b373ee8f7ce9b4e7acdc) | Fork contributions: disk indexing, bounded caches and idle cache release. |
 | deep-agents-ui | [db48873](https://github.com/awbjcj/deep-agents-ui/commit/db488738f1487a7bb8e735dc4ea5ad78f7a93d31) | Customized LangChain frontend: governance, code-analysis and source-image interfaces. |
-| diagram-design | [6280a61](https://github.com/awbjcj/diagram-design/commit/6280a612b3756601b0636e819fdd25b378d1f4f2) | Fork contributions to extraction and verification scripts (6cfe653). |
 
 READMEs were read alongside recent commits. Source descriptions were checked on the repository default branch, which can be a development branch. Public cards link to repositories rather than implying every recent commit has reached a hosted deployment.
 
-BlueFish was inspected but excluded: its default branch contained the upstream initial commit, which does not establish an original project or contribution by the portfolio owner. Diagram Design, H-1B Job Search MCP and Deep Agents UI explicitly identify fork/customization work.
+BlueFish was inspected but excluded: its default branch contained the upstream initial commit, which does not establish an original project or contribution by the portfolio owner. H-1B Job Search MCP and Deep Agents UI explicitly identify fork/customization work.
 
 Existing private enterprise work remains described at the same product level, with stale counts removed and no private repository links. Employment and education details were cross-checked against the supplied Resume-latex source; GitHub activity does not establish changes to employment history.
 

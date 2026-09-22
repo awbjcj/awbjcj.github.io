@@ -141,12 +141,13 @@ test("includes reviewed GitHub additions and keeps private repositories unlinked
   const html = await (await render()).text();
   const projectsConfig = await readFile(new URL("../app/content/projects.config.ts", import.meta.url), "utf8");
 
-  for (const repository of ["video-dedup", "h1b-job-search-mcp", "diagram-design"]) {
+  for (const repository of ["video-dedup", "h1b-job-search-mcp"]) {
     assert.ok(html.includes(`github.com/awbjcj/${repository}`));
     assert.ok(projectsConfig.includes(repository));
   }
   assert.match(html, /Open-source fork contributions/);
   assert.match(html, /Requirement Analyzer/);
+  assert.doesNotMatch(html, /Diagram Design|diagram-design/);
   assert.doesNotMatch(html, /3,411 TESTS|735 TESTS|8 GRAPHS|60 TOOLS/);
 
   // Cards without a public repository say so rather than offering a dead link.

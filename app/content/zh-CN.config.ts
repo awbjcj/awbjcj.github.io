@@ -73,7 +73,6 @@ export const chinese: ContentCatalog = {
       video: { kind: "本地媒体工具", signal: "片段匹配 · 删除前审核", description: "借助 FFmpeg 与指纹缓存识别相同视频、转码副本和共享片段。浏览器界面按片段分组，汇总保留文件的覆盖范围，并将审核通过的待移除文件转入隔离目录。" },
       h1b: { kind: "开源分支贡献", signal: "磁盘索引 · 有界查询缓存", description: "扩展用于检索美国劳工部公开申报记录的 MCP 服务，加入磁盘索引和有界缓存，支持空闲时释放缓存，并记录内存占用与查询性能的取舍。" },
       console: { kind: "开源前端定制", signal: "流式交互 · 权限与用量控制", description: "在 LangChain 智能体控制台上增加身份认证、角色权限、用量预算和工具审批。近期加入代码分析与源图片界面，并保留设置保存期间的编辑内容。" },
-      diagram: { kind: "开源分支贡献", signal: "HTML / SVG · 校验工具", description: "为图表技能的提取与校验脚本贡献加固修复，统一提取器处理方式，并扩展对生成图表和文档的校验覆盖。" },
       vsda: { kind: "企业智能体平台", signal: "监督路由 · 混合检索", description: "LangGraph 监督智能体在企业工具、检索和隔离式代码仓库分析之间分配任务。FastAPI 提供身份认证、模型策略、用量控制与管理功能。" },
       requirements: { kind: "需求工程工作流", signal: "MCP 连接器 · 独立评审", description: "通过 Jira 和 Polarion MCP 工具协调资料检索、需求起草、独立评审与验证方案。Python SDK 运行时流式输出进度并保留产物；近期扩展了文档布局和修订版本读取能力。" },
       release: { kind: "工程自动化", signal: "结构化提取 · CI 集成", description: "将软件发布邮件解析为结构化记录，协调 Jenkins 构建，并依据测试报告生成摘要。支持与 MinIO 导出数据比对，以核验发布记录。" },

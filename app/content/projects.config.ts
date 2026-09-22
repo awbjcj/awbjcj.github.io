@@ -100,23 +100,6 @@ export const projects = [
     }
   },
   {
-    "id": "diagram",
-    "name": "Diagram Design",
-    "kind": "Open-source fork contributions",
-    "signal": "HTML / SVG · VALIDATION TOOLING",
-    "description": "Contributed hardening fixes to the diagram skill's extraction and verification scripts, normalizing extractor handling and expanding validation coverage for generated diagrams and documentation.",
-    "skills": [
-      "Python",
-      "HTML",
-      "SVG",
-      "Validation"
-    ],
-    "repo": {
-      "href": "https://github.com/awbjcj/diagram-design",
-      "label": "Source"
-    }
-  },
-  {
     "id": "requirements",
     "name": "Requirement Analyzer",
     "kind": "Requirements engineering workflow",
