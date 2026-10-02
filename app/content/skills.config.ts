@@ -8,7 +8,7 @@ export const focusAreas = [
 
 /** Add or remove both groups and individual skills freely. See app/content/README.md. */
 export const skillGroups = [
-  { label: "Agent systems", skills: ["LangGraph", "LangChain", "Deep Agents", "Agno", "MCP", "Tool calling", "LLM evaluation", "Human-in-the-loop"] },
+  { label: "Agent systems", skills: ["LangGraph", "LangChain", "Deep Agents", "Agno", "MCP", "GitHub Copilot SDK", "Tool calling", "LLM evaluation", "Human-in-the-loop"] },
   { label: "AI full stack", skills: ["Python", "TypeScript", "FastAPI", "React", "Next.js", "Pydantic", "SQLAlchemy"] },
   { label: "Retrieval & data", skills: ["RAG", "OpenSearch", "Hybrid search", "BM25", "Embeddings", "Vector search", "SQLite", "MinIO / S3"] },
   { label: "Models & routing", skills: ["OpenAI", "Anthropic Claude", "Google Gemini", "DeepSeek", "Multi-provider routing"] },

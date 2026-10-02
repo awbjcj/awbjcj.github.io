@@ -1,25 +1,36 @@
-# GitHub content review
+# Project content evidence
 
-Reviewed 2026-09-22 using the connected GitHub account. These are source-backed feature descriptions, not claims that every repository feature is deployed on the hosted apps. Test totals and old graph/tool counts were removed because they were snapshots, not current measurements.
+Refreshed 2026-10-02 from local repositories after fetching GitHub. The reviewed
+branches matched their remote tracking branches before the dossier edits. These
+are implementation descriptions; a hosted entry point does not imply every
+reviewed development-branch feature is deployed.
 
-| Project | Reviewed default-branch commit | Content reflected in the site |
+| Project | Reviewed source revision / branch | Content reflected in both languages |
 | --- | --- | --- |
-| resume-tailor-harness | [331aefd](https://github.com/awbjcj/resume-tailor-harness/commit/331aefdd6e4a123ccdc0f31e311c3ade0f1e630d) | Fact validation and workspace separation; Gmail recovery and subscription credits. |
-| food-manager | [10ab208](https://github.com/awbjcj/food-manager/commit/10ab208d5e762ffd42ca3f4fb5303bd9bfdd8479) | Shared pantry, Mini App workflows, confirmation/quota controls and localization. |
-| video-dedup | [178b400](https://github.com/awbjcj/video-dedup/commit/178b40088fd282d06ecf2d0ced854fb081d075af) | Clip-based groups, cumulative keeper coverage, quarantine and browser review. |
-| h1b-job-search-mcp | [3eb1cf6](https://github.com/awbjcj/h1b-job-search-mcp/commit/3eb1cf6cab50bbb6ada0b373ee8f7ce9b4e7acdc) | Fork contributions: disk indexing, bounded caches and idle cache release. |
-| deep-agents-ui | [db48873](https://github.com/awbjcj/deep-agents-ui/commit/db488738f1487a7bb8e735dc4ea5ad78f7a93d31) | Customized LangChain frontend: governance, code-analysis and source-image interfaces. |
+| Resume Tailor Harness | `c102d6ac` / `dev` ([source](https://github.com/awbjcj/resume-tailor-harness/commit/c102d6ac)) | Fact gates and workspace isolation; browser-free posting acquisition, verified recovery, cooldowns, and provider transport checks. |
+| Food Manager | `548eb0db` / `dev` ([source](https://github.com/awbjcj/food-manager/commit/548eb0db)) | Shared pantry, source-receipt grouping, Mini App Kitchen, domain-handler reuse, quota/confirmation controls, and localization. |
+| Deep Agents UI | `f9087b19` / `dev` ([source](https://github.com/awbjcj/deep-agents-ui/commit/f9087b19)) | Customized upstream console; server-head checkpoint submission, pending subagent files, artifact previews, interrupt-bound approvals, and usage budgets. |
+| Requirement Analyzer | `6ffa2ee7` / `master` | Three enterprise MCP boundaries, validated source-context packets, independent review, and SDK run custody with cancellation/resume. |
+| VSDA Deep Agent | `4ab9d345` / `dev` | Reviewed wiki/ALM writes with target checks and durable claims; hybrid retrieval, isolated analysis, and adaptive export concurrency. |
+| Release-Email Intelligence Pipeline | `8225bb75` / `main` | Typed release extraction, reviewer/token receiver, and automatic run summaries. The new Jenkins behavior is a configurable delay before the first queue query, not a status cache. |
+| Enterprise Engineering Automation | `628173b2` / `David_Dev` | Validated wiki page creation, metadata-aware authoring, shared SOAP/REST result-image handling, adaptive bulk scheduling, and deferred export timeouts. |
 
-READMEs were read alongside recent commits. Source descriptions were checked on the repository default branch, which can be a development branch. Public cards link to repositories rather than implying every recent commit has reached a hosted deployment.
+Each refreshed project has a root dossier with its canonical repository
+identity, source revision, cited implementation paths, and reproducible static
+counts. The five automation-suite dossiers have distinct component links so
+downstream project ingestion does not merge them into one record. Private work
+remains unlinked in public cards and these notes.
 
-BlueFish was inspected but excluded: its default branch contained the upstream initial commit, which does not establish an original project or contribution by the portfolio owner. H-1B Job Search MCP and Deep Agents UI explicitly identify fork/customization work.
+Video Dedup and H-1B Job Search MCP have no existing root dossiers in the requested
+scope; their prior descriptions remain based on the 2026-09-22 review:
 
-Existing private enterprise work remains described at the same product level, with stale counts removed and no private repository links. Employment and education details were cross-checked against the supplied Resume-latex source; GitHub activity does not establish changes to employment history.
+| Project | Prior reviewed revision | Retained content |
+| --- | --- | --- |
+| Video Dedup | [178b400](https://github.com/awbjcj/video-dedup/commit/178b40088fd282d06ecf2d0ced854fb081d075af) | Clip-based groups, cumulative keeper coverage, quarantine, and browser review. |
+| H-1B Job Search MCP | [3eb1cf6](https://github.com/awbjcj/h1b-job-search-mcp/commit/3eb1cf6cab50bbb6ada0b373ee8f7ce9b4e7acdc) | Fork contributions: disk indexing, bounded caches, and idle cache release. |
 
-Résumé downloads remain the existing English PDF; the Chinese UI labels that explicitly. Publication titles and author names retain their original spelling.
-
-
-Requirement Analyzer was also reviewed at default-branch revision `e464f4d`
-(2026-09-22). Its card summarizes requirements drafting/review, Jira and Polarion
-MCP integration, SDK progress streams, and document-layout/revision reads. The
-repository is private: no repository URL is published in the site or source notes.
+Employment, education, and publication records retain their existing source
+basis; repository commits do not establish changes to employment history. The
+English two-page résumé was rebuilt from `Resume-latex` on 2026-10-02 and copied
+byte-for-byte to `public/resume.pdf`. Publication titles and author names retain
+their original spelling in both site languages.

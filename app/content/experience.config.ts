@@ -9,8 +9,8 @@ import type { ExperienceConfig } from "./types";
 export const experience = [
   {
     label: "Agent platform engineering",
-    title: "Routing enterprise work through a governed supervisor",
-    description: "A supervisor routes tasks to specialist agents for enterprise integrations, OpenSearch retrieval, and repository analysis. Authentication, model policy, budgets, and approval controls sit around those workflows.",
+    title: "Reviewing enterprise writes before execution",
+    description: "A supervisor routes enterprise tasks, retrieval, and isolated code analysis. Confluence and Polarion authoring combine human review, target revalidation, and durable mutation claims around external writes.",
   },
   {
     label: "Multi-provider LLM interoperability",
@@ -26,8 +26,8 @@ export const experience = [
   },
   {
     label: "Real-time streaming interfaces",
-    title: "Real-time agent operations",
-    description: "A LangGraph console streams tokens and state while exposing tool approvals, workspace files, code analysis, and usage controls.",
+    title: "Continuing agent runs from current state",
+    description: "A LangGraph console streams tokens and state, resumes from the server's latest checkpoint, and shows pending subagent files while saving. Approvals stay bound to their original interrupts.",
     link: "https://github.com/awbjcj/deep-agents-ui",
   },
   {

@@ -68,23 +68,23 @@ export const chinese: ContentCatalog = {
   projects: projects.map((entry) => {
     const project: ProjectConfig = entry;
     const copy: Record<(typeof projects)[number]["id"], { kind: string; signal: string; description: string }> = {
-      resume: { kind: "全栈应用", signal: "事实核验 · 工作区隔离", description: "集职位发现、简历定制、求职信生成与申请跟踪于一体。确定性校验依据来源事实核验陈述；近期新增 Gmail 同步恢复与订阅额度生命周期处理。" },
-      food: { kind: "Telegram 机器人与 Mini App", signal: "小票解析 · 家庭共享", description: "将小票照片转为食材记录，提供到期提醒与膳食计划。Mini App 复用既有权限、配额和确认机制来执行机器人工作流，并提供本地化消息。" },
+      resume: { kind: "全栈应用", signal: "事实核验 · 工作区隔离", description: "提供职位发现、简历定制、求职信生成与申请跟踪，并依据来源事实核验陈述。近期加入无需浏览器的职位采集、经核验的采集恢复、来源冷却机制和模型传输检查。" },
+      food: { kind: "Telegram 机器人与 Mini App", signal: "小票分组 · 共享厨房", description: "将小票照片转为家庭共享食材记录，提供到期提醒与膳食计划。按小票分组保留采购来源；Mini App Kitchen 在本地化工作流中复用机器人的权限、配额和确认机制。" },
       video: { kind: "本地媒体工具", signal: "片段匹配 · 删除前审核", description: "借助 FFmpeg 与指纹缓存识别相同视频、转码副本和共享片段。浏览器界面按片段分组，汇总保留文件的覆盖范围，并将审核通过的待移除文件转入隔离目录。" },
       h1b: { kind: "开源分支贡献", signal: "磁盘索引 · 有界查询缓存", description: "扩展用于检索美国劳工部公开申报记录的 MCP 服务，加入磁盘索引和有界缓存，支持空闲时释放缓存，并记录内存占用与查询性能的取舍。" },
-      console: { kind: "开源前端定制", signal: "流式交互 · 权限与用量控制", description: "在 LangChain 智能体控制台上增加身份认证、角色权限、用量预算和工具审批。近期加入代码分析与源图片界面，并保留设置保存期间的编辑内容。" },
-      vsda: { kind: "企业智能体平台", signal: "监督路由 · 混合检索", description: "LangGraph 监督智能体在企业工具、检索和隔离式代码仓库分析之间分配任务。FastAPI 提供身份认证、模型策略、用量控制与管理功能。" },
-      requirements: { kind: "需求工程工作流", signal: "MCP 连接器 · 独立评审", description: "通过 Jira 和 Polarion MCP 工具协调资料检索、需求起草、独立评审与验证方案。Python SDK 运行时流式输出进度并保留产物；近期扩展了文档布局和修订版本读取能力。" },
-      release: { kind: "工程自动化", signal: "结构化提取 · CI 集成", description: "将软件发布邮件解析为结构化记录，协调 Jenkins 构建，并依据测试报告生成摘要。支持与 MinIO 导出数据比对，以核验发布记录。" },
-      enterprise: { kind: "集成库与智能体", signal: "类型化客户端 · 审批流程", description: "面向 Jira、Polarion、Confluence、Teams 和邮件的 Python 客户端及智能体工作流，支持工单报告、测试运行管理和敏感操作的人工审批。" },
+      console: { kind: "开源前端定制", signal: "检查点恢复 · 工具审批", description: "在 LangChain 控制台上增加身份认证、角色控制、令牌/调用/费用预算与工具审批。运行从服务端最新检查点继续；保存中的子智能体文件和可读产物预览同步呈现。" },
+      vsda: { kind: "企业智能体平台", signal: "写入审核 · 混合检索", description: "LangGraph 监督智能体协调企业工具、混合检索和隔离式代码分析。Confluence 与 Polarion 创作经过审核、目标检查和持久化变更声明；文档导出在配置范围内自适应调整并发。" },
+      requirements: { kind: "需求工程工作流", signal: "来源上下文 · 独立评审", description: "协调 Jira、Confluence 和 Polarion 资料研究、需求起草、独立评审与验证方案。Python SDK 运行时核验来源包、保留产物、流式输出进度，并支持取消和恢复。" },
+      release: { kind: "工程自动化", signal: "发布提取 · 运行摘要", description: "将发布邮件解析为类型明确的记录和 Jenkins 构建请求。容器化审核界面提供发布数据和令牌更新入口；自动运行摘要记录处理过程、提交结果、队列编号和故障。" },
+      enterprise: { kind: "集成库与智能体", signal: "ALM 创作 · 自适应导出", description: "面向 Jira、Polarion、Confluence、Teams 和邮件的类型化 Python 客户端与工作流。近期核验 wiki 页面创建、统一 SOAP/REST 测试结果图片处理，并为批量导出加入自适应并发和延后超时重试。" },
     };
     return { ...project, ...copy[entry.id], repo: project.repo && { ...project.repo, label: "源码" }, live: project.live && { ...project.live, label: project.id === "food" ? "在 Telegram 中打开" : "打开应用" }, skills: project.skills.map((skill) => ({ "LLM routing": "LLM 路由", "Validation": "校验", "Hybrid RAG": "混合检索 RAG" }[skill] ?? skill)) };
   }),
   experience: [
-    { label: "智能体平台工程", title: "通过受控的监督智能体分配企业任务", description: "监督智能体将任务路由到企业集成、OpenSearch 检索和代码仓库分析等专业智能体，并在工作流周围设置身份认证、模型策略、预算及审批控制。" },
+    { label: "智能体平台工程", title: "执行前审核企业写入", description: "监督智能体协调企业任务、检索和隔离式代码分析。Confluence 与 Polarion 创作通过人工审核、目标复核和持久化变更声明约束外部写入。" },
     { label: "多模型供应商集成", title: "根据模型能力选择调用路径", description: "Food Manager 支持 Anthropic、OpenAI、Gemini 和 DeepSeek。当所选文本模型无法处理图像时，小票解析会回退到具备视觉能力的供应商。", link: "https://github.com/awbjcj/food-manager" },
     { label: "AI 输出核验", title: "用事实约束阻止无依据的陈述", description: "来源、技能名称与数值证据校验约束定制简历的内容。经 SHA-256 核验的技能注册表记录生成每份产物时使用的流程。", link: "https://github.com/awbjcj/resume-tailor-harness" },
-    { label: "实时流式界面", title: "可查看、可干预的智能体运行界面", description: "LangGraph 控制台流式展示模型输出和状态，并提供工具审批、工作区文件、代码分析与用量控制。", link: "https://github.com/awbjcj/deep-agents-ui" },
+    { label: "实时流式界面", title: "从最新状态继续智能体运行", description: "LangGraph 控制台流式展示模型输出和状态，从服务端最新检查点继续，并显示保存中的子智能体文件。审批始终绑定原始中断。", link: "https://github.com/awbjcj/deep-agents-ui" },
     { label: "技术领导", title: "协调九个 ADAS 项目的 430 余项问题", description: "亲自分诊 267 项问题，并统筹九个 ADAS 项目中超过 430 项问题的处理，协调算法、集成、测试和数据挖掘团队。" },
   ],
   resume: {
@@ -107,7 +107,7 @@ export const chinese: ContentCatalog = {
     { title: "负责完整的技术链路", description: "从检索、智能体和 API 到界面与交付。" },
   ],
   skillGroups: [
-    { label: "智能体系统", skills: ["LangGraph", "LangChain", "Deep Agents", "Agno", "MCP", "工具调用", "LLM 评估", "人工介入"] },
+    { label: "智能体系统", skills: ["LangGraph", "LangChain", "Deep Agents", "Agno", "MCP", "GitHub Copilot SDK", "工具调用", "LLM 评估", "人工介入"] },
     { label: "AI 全栈", skills: english.skillGroups[1].skills },
     { label: "检索与数据", skills: ["RAG", "OpenSearch", "混合检索", "BM25", "嵌入模型", "向量检索", "SQLite", "MinIO / S3"] },
     { label: "模型与路由", skills: ["OpenAI", "Anthropic Claude", "Google Gemini", "DeepSeek", "多供应商路由"] },

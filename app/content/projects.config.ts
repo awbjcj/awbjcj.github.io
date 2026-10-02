@@ -1,13 +1,13 @@
 import type { ProjectConfig } from "./types";
 
-/** Reviewed against GitHub on 2026-09-22. Source notes: github-evidence.md. */
+/** Dossier-backed projects refreshed on 2026-10-02. Source notes: github-evidence.md. */
 export const projects = [
   {
     "id": "resume",
     "name": "Resume Tailor Harness",
     "kind": "Full-stack application",
     "signal": "FACT VALIDATION · WORKSPACE ISOLATION",
-    "description": "Job discovery, résumé tailoring, cover letters, and application tracking. Deterministic gates check claims against source facts; recent work adds Gmail sync recovery and subscription-credit lifecycle handling.",
+    "description": "Job discovery, résumé tailoring, cover letters, and application tracking with source-grounded claim checks. Recent work adds browser-free posting acquisition, verified recovery, source cooldowns, and model-transport checks.",
     "skills": [
       "Python",
       "FastAPI",
@@ -28,8 +28,8 @@ export const projects = [
     "id": "food",
     "name": "Food Manager",
     "kind": "Telegram bot & Mini App",
-    "signal": "RECEIPT PARSING · SHARED HOUSEHOLDS",
-    "description": "Converts receipt photos into pantry records with expiry reminders and meal plans. The Mini App runs bot workflows through the existing authorization, quota, and confirmation handlers, with localized messages.",
+    "signal": "RECEIPT GROUPS · SHARED KITCHEN",
+    "description": "Converts receipt photos into shared pantry records with expiry reminders and meal plans. Receipt grouping keeps purchases recognizable; the Mini App Kitchen reuses bot authorization, quota, and confirmation handlers across localized workflows.",
     "skills": [
       "Python",
       "aiogram",
@@ -85,8 +85,8 @@ export const projects = [
     "id": "console",
     "name": "Deep Agents UI",
     "kind": "Customized open-source frontend",
-    "signal": "STREAMING · ACCESS & USAGE CONTROLS",
-    "description": "Extended LangChain's agent console with authentication, role-based access, usage budgets, and tool approvals. Recent changes add code-analysis and source-image interfaces and preserve edits during settings saves.",
+    "signal": "CHECKPOINT RECOVERY · TOOL APPROVALS",
+    "description": "Extended LangChain's console with authentication, role controls, token/call/cost budgets, and tool approvals. Runs continue from the latest server checkpoint; pending subagent files appear while saving, alongside readable artifact previews.",
     "skills": [
       "Next.js",
       "React",
@@ -103,16 +103,16 @@ export const projects = [
     "id": "requirements",
     "name": "Requirement Analyzer",
     "kind": "Requirements engineering workflow",
-    "signal": "MCP CONNECTORS · INDEPENDENT REVIEW",
-    "description": "Coordinates source retrieval, requirements drafting, independent review, and verification proposals through Jira and Polarion MCP tools. A Python SDK runtime streams progress and retains artifacts; recent work expands document-layout and revision reads.",
-    "skills": ["Python", "MCP", "GitHub Copilot SDK", "Jira", "Polarion"]
+    "signal": "SOURCE CONTEXT · INDEPENDENT REVIEW",
+    "description": "Coordinates Jira, Confluence, and Polarion research, requirements drafting, independent review, and verification proposals. A Python SDK runtime validates source packets, retains artifacts, streams progress, and supports cancellation and resume.",
+    "skills": ["Python", "MCP", "GitHub Copilot SDK", "Jira", "Polarion", "Confluence"]
   },
   {
     "id": "vsda",
     "name": "VSDA Deep Agent",
     "kind": "Enterprise agent platform",
-    "signal": "SUPERVISOR ROUTING · HYBRID RETRIEVAL",
-    "description": "A LangGraph supervisor routes work across enterprise tools, retrieval, and isolated repository analysis. FastAPI provides authentication, model policy, usage controls, and administration.",
+    "signal": "REVIEWED WRITES · HYBRID RETRIEVAL",
+    "description": "A LangGraph supervisor routes enterprise tools, hybrid retrieval, and isolated code analysis. Reviewed Confluence and Polarion authoring use target checks and durable mutation claims; document exports adapt concurrency within configured bounds.",
     "skills": [
       "LangGraph",
       "FastAPI",
@@ -125,8 +125,8 @@ export const projects = [
     "id": "release",
     "name": "Release-Email Intelligence Pipeline",
     "kind": "Engineering automation",
-    "signal": "STRUCTURED EXTRACTION · CI INTEGRATION",
-    "description": "Parses software release emails into structured records, coordinates Jenkins builds, and generates summaries from test reports. Release data can be compared with MinIO exports for validation.",
+    "signal": "RELEASE EXTRACTION · RUN SUMMARIES",
+    "description": "Parses release emails into typed records and Jenkins build requests. A containerized reviewer serves release data and receives token updates; automatic run summaries capture processing, submissions, queue IDs, and failures.",
     "skills": [
       "LangGraph",
       "OpenAI",
@@ -139,8 +139,8 @@ export const projects = [
     "id": "enterprise",
     "name": "Enterprise Engineering Automation",
     "kind": "Integration libraries & agents",
-    "signal": "TYPED CLIENTS · APPROVAL WORKFLOWS",
-    "description": "Python clients and agent workflows for Jira, Polarion, Confluence, Teams, and email. Supports ticket reporting, test-run management, and human approval for sensitive operations.",
+    "signal": "ALM AUTHORING · ADAPTIVE EXPORTS",
+    "description": "Typed Python clients and workflows for Jira, Polarion, Confluence, Teams, and email. Recent work validates wiki page creation, aligns SOAP/REST test-result images, and adds adaptive bulk exports with deferred timeout retries.",
     "skills": [
       "Python",
       "asyncio",
