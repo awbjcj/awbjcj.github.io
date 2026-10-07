@@ -3,9 +3,10 @@
 import { createContext, useContext, useEffect, useSyncExternalStore, type ReactNode } from "react";
 import { english, type ContentCatalog, type Locale } from "../../content/catalog";
 import { chinese } from "../../content/zh-CN.config";
+import { installLocalNavigation, preferenceEvent, pushLocalUrl } from "./local-navigation";
 
 const ContentContext = createContext<ContentCatalog>(english);
-const eventName = "portfolio-preferences";
+const eventName = preferenceEvent;
 let volatileTheme: string | null = null;
 
 function readPreference(key: string) {
@@ -52,6 +53,8 @@ export function PortfolioProvider({ children }: { children: ReactNode }) {
   const theme = useSyncExternalStore(subscribe, getTheme, serverTheme);
   const content = locale === "zh-CN" ? chinese : english;
 
+  useEffect(() => installLocalNavigation(), []);
+
   useEffect(() => {
     document.documentElement.lang = locale;
     document.documentElement.dataset.theme = getTheme();
@@ -79,7 +82,7 @@ export function PreferenceControls() {
   function changeLocale(value: Locale) {
     const url = new URL(window.location.href);
     url.searchParams.set("lang", value);
-    window.history.pushState(null, "", url);
+    if (url.href !== window.location.href) pushLocalUrl(url);
     savePreference("portfolio-locale", value);
     window.dispatchEvent(new Event(eventName));
   }

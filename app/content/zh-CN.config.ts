@@ -4,6 +4,15 @@ import type { ProjectConfig } from "./types";
 
 // Proper names, publication titles, URLs, and technology names retain their source spelling.
 export const chinese: ContentCatalog = {
+  enhancements: {
+    menu: {
+      open: "快速导航", title: "找到你感兴趣的内容", search: "搜索栏目、项目或技术名称…",
+      empty: "没有找到匹配内容，试试项目或技术名称。", sections: "跳转到栏目",
+      projects: "浏览项目", links: "联系我", close: "关闭导航",
+      hint: "↑ ↓ 选择 · Enter 确认 · Esc 关闭",
+    },
+    signal: { label: "从模型到系统", nodes: ["模型", "智能体", "工具", "数据"] },
+  },
   siteConfig: {
     profile: {
       ...english.siteConfig.profile,
@@ -71,7 +80,6 @@ export const chinese: ContentCatalog = {
       resume: { kind: "全栈应用", signal: "事实核验 · 工作区隔离", description: "支持职位查找、简历定制、求职信生成和申请跟进，并根据原始资料核对简历内容。最近加入了无需浏览器的职位采集与经过校验的故障恢复；对暂时不可用的数据来源延后重试，并检查模型接口的传输兼容性。" },
       food: { kind: "Telegram 机器人与 Mini App", signal: "小票分组 · 家庭共享", description: "把购物小票照片转成全家共享的食材清单，提供到期提醒和餐食计划。食材按小票分组，方便查看是哪次采购的；Mini App 的厨房页面沿用机器人的权限、用量限制和操作确认逻辑，并支持多语言。" },
       video: { kind: "本地视频工具", signal: "片段匹配 · 移除前审核", description: "用 FFmpeg 和缓存的视频指纹找出重复视频、重新编码的副本，以及不同视频中的相同片段。你可以在浏览器中按片段查看匹配结果，核对保留文件合计覆盖了哪些内容；确认移除的文件会先移入隔离目录。" },
-      h1b: { kind: "开源项目扩展", signal: "磁盘索引 · 缓存上限", description: "在现有 MCP 服务上扩展美国劳工部公开申报记录的检索功能。加入磁盘索引和有容量上限的缓存，空闲时可释放缓存，并记录了内存占用与查询性能之间的取舍。" },
       console: { kind: "开源前端定制", signal: "检查点恢复 · 工具审批", description: "为 LangChain 控制台加入身份认证、角色权限、Token 用量、调用次数和费用预算，以及工具操作审批。智能体可从服务端最新检查点继续运行；界面会显示正在保存的子智能体文件，并支持查看生成文件的内容。" },
       vsda: { kind: "企业智能体平台", signal: "写入前审核 · 混合检索", description: "由 LangGraph 主智能体协调企业工具调用、混合检索和隔离环境中的代码分析。在 Confluence 和 Polarion 中编写或更新内容时，先审核、复核操作对象，并将变更登记持久保存；文档导出会在设定范围内自动调整并发量。" },
       requirements: { kind: "需求工程工作流", signal: "来源资料 · 独立评审", description: "结合 Jira、Confluence 和 Polarion 的资料，完成需求调研、起草、独立评审和验证方案拟定。基于 Python SDK 的运行层会校验来源资料包、保存生成文件、实时显示进度，并支持取消任务和恢复运行。" },

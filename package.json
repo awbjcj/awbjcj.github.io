@@ -7,22 +7,26 @@
   },
   "scripts": {
     "dev": "vinext dev",
-    "build": "vinext build",
+    "build": "node scripts/build.mjs",
     "start": "vinext start",
     "export:github": "node scripts/export-github-pages.mjs",
     "check:content": "node scripts/check-content.mjs && npm run check:translations",
     "check:translations": "tsc --noEmit --skipLibCheck --moduleResolution bundler --module esnext --target es2022 app/content/zh-CN.config.ts",
     "test": "npm run build && node --test tests/rendered-html.test.mjs",
     "lint": "eslint .",
+    "typecheck": "tsc --noEmit --incremental false",
     "db:generate": "drizzle-kit generate"
   },
   "dependencies": {
+    "cmdk": "1.1.1",
     "drizzle-orm": "0.45.2",
+    "motion": "14.0.0",
     "react": "19.2.6",
     "react-dom": "19.2.6"
   },
   "devDependencies": {
     "@cloudflare/vite-plugin": "1.37.1",
+    "@cloudflare/workers-types": "4.20260702.1",
     "@eslint/js": "9.39.4",
     "@next/eslint-plugin-next": "16.2.6",
     "@tailwindcss/postcss": "4.2.1",

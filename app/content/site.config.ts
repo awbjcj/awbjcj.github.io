@@ -9,6 +9,7 @@ export const siteConfig = {
     title: "AI Full-Stack Engineer",
     location: "Ann Arbor, Michigan",
     github: "https://github.com/awbjcj",
+    website: "https://awbjcj.github.io",
     summary: "I build Python and TypeScript applications for agent workflows, hybrid retrieval, and engineering automation. My work connects model behavior to typed APIs, review controls, and usable interfaces.",
     availability: "Open to AI full-stack, platform, and product engineering roles",
   },

@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { headers } from "next/headers";
 import {
   ContactSection,
   ExperienceSection,
@@ -14,15 +13,11 @@ import {
 } from "./components/portfolio";
 import { profile } from "./content";
 import { PortfolioProvider } from "./components/portfolio/preferences";
+import { PortfolioEffects } from "./components/portfolio/enhancements";
 
-export async function generateMetadata(): Promise<Metadata> {
-  const requestHeaders = await headers();
-  const host = requestHeaders.get("x-forwarded-host") ?? requestHeaders.get("host") ?? "awbjcj.github.io";
-  const protocol = requestHeaders.get("x-forwarded-proto") ?? (host.includes("localhost") ? "http" : "https");
-  const baseUrl = new URL(`${protocol}://${host}`);
-
+export function generateMetadata(): Metadata {
   return {
-    metadataBase: baseUrl,
+    metadataBase: new URL(profile.website),
     alternates: { canonical: "/" },
     openGraph: {
       type: "website",
@@ -45,14 +40,16 @@ export default function Home() {
     <PortfolioProvider>
       <SiteHeader />
       <main id="main-content" className="main-content" tabIndex={-1}>
-        <HeroSection />
-        <LiveProductsSection />
-        <ProjectsSection />
-        <ExperienceSection />
-        <ResumeSection />
-        <PrinciplesSection />
-        <ToolkitSection />
-        <ContactSection />
+        <PortfolioEffects>
+          <HeroSection />
+          <LiveProductsSection />
+          <ProjectsSection />
+          <ExperienceSection />
+          <ResumeSection />
+          <PrinciplesSection />
+          <ToolkitSection />
+          <ContactSection />
+        </PortfolioEffects>
       </main>
       <SiteFooter />
     </PortfolioProvider>

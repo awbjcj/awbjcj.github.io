@@ -18,7 +18,7 @@ export function ProjectsSection() {
         />
         <div className="project-grid">
           {projects.map((project, projectIndex) => (
-            <article className="project-card" key={project.id}>
+            <article className="project-card" id={`project-${project.id}`} key={project.id}>
               <div className="project-head">
                 <div className="project-meta">
                   <span>{project.kind}</span>

@@ -65,23 +65,6 @@ export const projects = [
     }
   },
   {
-    "id": "h1b",
-    "name": "H-1B Job Search MCP",
-    "kind": "Open-source fork contributions",
-    "signal": "DISK INDEX · BOUNDED QUERY CACHE",
-    "description": "Extended an MCP server for searching U.S. Department of Labor disclosure records. Added disk-backed indexing and bounded caches, with idle cache release and documented memory/query tradeoffs.",
-    "skills": [
-      "Python",
-      "FastMCP",
-      "SQLite",
-      "MCP"
-    ],
-    "repo": {
-      "href": "https://github.com/awbjcj/h1b-job-search-mcp",
-      "label": "Source"
-    }
-  },
-  {
     "id": "console",
     "name": "Deep Agents UI",
     "kind": "Customized open-source frontend",

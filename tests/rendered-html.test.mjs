@@ -3,21 +3,12 @@ import { readFile } from "node:fs/promises";
 import test from "node:test";
 
 async function render() {
-  const workerUrl = new URL("../dist/server/index.js", import.meta.url);
-  workerUrl.searchParams.set("test", `${process.pid}-${Date.now()}`);
-  const { default: worker } = await import(workerUrl.href);
-  return worker.fetch(
-    new Request("https://awbjcj.github.io/", { headers: { accept: "text/html" } }),
-    { ASSETS: { fetch: async () => new Response("Not found", { status: 404 }) } },
-    { waitUntil() {}, passThroughOnException() {} },
-  );
+  // Assert against the prerendered artifact that will actually be deployed.
+  return readFile(new URL("../dist/client/index.html", import.meta.url), "utf8");
 }
 
-test("server-renders the finished portfolio", async () => {
-  const response = await render();
-  assert.equal(response.status, 200);
-  assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
-  const html = await response.text();
+test("exports the finished portfolio", async () => {
+  const html = await render();
   assert.match(html, /Jiajin \(David\) Wu/);
   assert.match(html, /Engineered end to end/);
   assert.match(html, /Resume Tailor Harness/);
@@ -26,8 +17,18 @@ test("server-renders the finished portfolio", async () => {
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton|Your site is taking shape/i);
 });
 
+test("exports the router payload and canonical public metadata", async () => {
+  const html = await render();
+  const payload = await readFile(new URL("../dist/client/index.rsc", import.meta.url), "utf8");
+  assert.match(html, /rel="canonical" href="https:\/\/awbjcj\.github\.io\/?"/);
+  assert.match(html, /https:\/\/awbjcj\.github\.io\/og\.png/);
+  assert.match(payload, /Jiajin \(David\) Wu/);
+  assert.match(payload, /PortfolioProvider/);
+  assert.doesNotMatch(payload, /TODO:/);
+});
+
 test("includes accessible navigation and public project links", async () => {
-  const html = await (await render()).text();
+  const html = await render();
   const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
   assert.match(html, /aria-label="Primary navigation"/);
   assert.match(html, /href="#main-content">Skip to main content/);
@@ -41,7 +42,7 @@ test("includes accessible navigation and public project links", async () => {
 });
 
 test("keeps repeated portfolio text on shared alignment rails", async () => {
-  const html = await (await render()).text();
+  const html = await render();
   const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
   assert.match(html, /class="experience-body"/);
   assert.match(css, /--content-grid: minmax\(0, 4fr\) minmax\(0, 8fr\)/);
@@ -51,7 +52,7 @@ test("keeps repeated portfolio text on shared alignment rails", async () => {
 });
 
 test("renders the résumé section with a timeline, education, publications, and a download", async () => {
-  const html = await (await render()).text();
+  const html = await render();
   assert.match(html, /id="resume"/);
   assert.match(html, /Experience</);
   assert.match(html, /Education</);
@@ -62,7 +63,7 @@ test("renders the résumé section with a timeline, education, publications, and
 });
 
 test("exposes reachable contact channels", async () => {
-  const html = await (await render()).text();
+  const html = await render();
   assert.match(html, /id="contact"/);
   assert.match(html, /href="mailto:wujiajin0303@gmail\.com"/);
   assert.match(html, /wujiajin0303@gmail\.com/);
@@ -72,7 +73,7 @@ test("exposes reachable contact channels", async () => {
 });
 
 test("renders verified employment and education instead of placeholders", async () => {
-  const html = await (await render()).text();
+  const html = await render();
   assert.match(html, /Aptiv Corporation/);
   assert.match(html, /Vehicle System Triage Engineer/);
   assert.match(html, /Varian Medical Systems/);
@@ -84,7 +85,7 @@ test("never ships the raw placeholder marker, even in the RSC payload", async ()
   // Placeholders render in a visibly "unfilled" state, but the "TODO:" marker
   // itself must not reach the page — including via React keys, which are
   // serialized into the flight payload embedded in the HTML.
-  const html = await (await render()).text();
+  const html = await render();
   assert.doesNotMatch(html, /TODO:/);
 });
 
@@ -107,7 +108,7 @@ test("keeps editable content in purpose-specific config files", async () => {
 });
 
 test("features the live products with working entry points", async () => {
-  const html = await (await render()).text();
+  const html = await render();
   assert.match(html, /id="live"/);
   assert.match(html, /href="https:\/\/resume-agent\.up\.railway\.app"/);
   assert.match(html, /href="https:\/\/t\.me\/foodie_manager_bot"/);
@@ -117,7 +118,7 @@ test("the trial form is a plain GET form that prefills the real sign-up", async 
   // No JavaScript is involved: the browser serialises these two fields into the
   // query string, and the target's registration page reads `name` and `email`
   // back to prefill itself. No password field exists here on purpose.
-  const html = await (await render()).text();
+  const html = await render();
   assert.match(html, /action="https:\/\/resume-agent\.up\.railway\.app\/register"/);
   assert.match(html, /method="get"/);
   assert.match(html, /name="name"/);
@@ -138,14 +139,14 @@ test("documents copy-ready recipes for every frequently edited content type", as
 });
 
 test("includes reviewed GitHub additions and keeps private repositories unlinked", async () => {
-  const html = await (await render()).text();
+  const html = await render();
   const projectsConfig = await readFile(new URL("../app/content/projects.config.ts", import.meta.url), "utf8");
 
-  for (const repository of ["video-dedup", "h1b-job-search-mcp"]) {
+  for (const repository of ["video-dedup"]) {
     assert.ok(html.includes(`github.com/awbjcj/${repository}`));
     assert.ok(projectsConfig.includes(repository));
   }
-  assert.match(html, /Open-source fork contributions/);
+  assert.doesNotMatch(html, /H-1B Job Search MCP|h1b-job-search-mcp/);
   assert.match(html, /Requirement Analyzer/);
   assert.doesNotMatch(html, /Diagram Design|diagram-design/);
   assert.doesNotMatch(html, /3,411 TESTS|735 TESTS|8 GRAPHS|60 TOOLS/);
@@ -156,7 +157,7 @@ test("includes reviewed GitHub additions and keeps private repositories unlinked
 });
 
 test("renders accessible preference controls and a theme initializer before the body", async () => {
-  const html = await (await render()).text();
+  const html = await render();
   assert.match(html, /aria-label="Display preferences"/);
   assert.match(html, /<option value="zh-CN" lang="zh-CN">中文<\/option>/);
   assert.match(html, /aria-label="Dark mode" aria-pressed="false"/);

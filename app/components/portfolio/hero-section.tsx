@@ -2,6 +2,7 @@
 
 import { useContent } from "./preferences";
 import { ArrowIcon, ExternalLinkHint } from "./primitives";
+import { SignalMap } from "./enhancements";
 
 export function HeroSection() {
   const { profile, siteConfig } = useContent();
@@ -30,6 +31,7 @@ export function HeroSection() {
               <span className="panel-status"><i aria-hidden="true" /> {hero.panel.status}</span>
             </div>
             <div className="panel-body">
+              <SignalMap />
               <dl className="panel-rows">
                 {hero.panel.rows.map((row) => (
                   <div key={row.label}><dt>{row.label}</dt><dd>{row.description}</dd></div>

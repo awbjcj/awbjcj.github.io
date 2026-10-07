@@ -13,6 +13,7 @@ All editable website copy lives in the purpose-specific configuration files unde
 | `app/content/experience.config.ts` | Evidence-backed experience and case-study rows |
 | `app/content/resume.config.ts` | Employment timeline and education |
 | `app/content/skills.config.ts` | Product principles and skill groups |
+| `app/content/enhancements.config.ts` | Optional effects and quick-navigation copy |
 
 English lists are rendered automatically; update `zh-CN.config.ts` alongside them. Add, remove, or reorder its objects to change the number and order of items on the website. The catalog types check required fields; translation checks validate both languages during `check:content`.
 
@@ -90,11 +91,21 @@ npm run dev
 ```bash
 npm test            # build + rendered-HTML tests
 npm run lint
+npm run typecheck   # checks the frontend and Cloudflare Worker bindings
 npm run check:content   # publish gate — must pass before deploying
 npm run export:github   # writes the static site to github-pages/
 ```
 
 Pushing `main` deploys the static export to GitHub Pages through `.github/workflows/deploy-pages.yml`.
+
+The build uses vinext's `output: "export"` mode and emits both HTML and the
+`index.rsc` navigation payload. The export script copies both to GitHub Pages,
+and the portfolio handles language and section history locally, so browser Back
+and Forward do not request a server page. Social metadata uses
+the public website URL from `site.config.ts`. Cloudflare runtime types and the
+optional D1 binding are declared for the development Worker; static production
+builds use the Node prerenderer. The build launcher lets successful builds exit
+naturally on Windows / Node 24 to avoid its forced-exit libuv race.
 
 ## Template research
 
@@ -118,4 +129,20 @@ HTML and social-preview metadata are English; Chinese is applied after hydration
 The theme button switches light/dark mode. On a first visit it follows the OS
 color preference; an explicit selection is saved. A small head script applies the
 theme before paint. Storage failures do not disable either control. No translation
-service or additional runtime dependency is required.
+service is required.
+
+## Homepage plugins
+
+Motion powers the hero signal map, scroll entrances, and reading progress bar.
+The signal map is a decorative illustration of the engineering focus, rather
+than a live activity feed. Effects respect the OS reduced-motion preference;
+the page content remains visible when JavaScript is unavailable.
+
+cmdk powers the searchable quick-navigation menu. Open it from the header or
+with **⌘K / Ctrl+K**, search section titles, project names, or technology tags,
+and press Enter to jump to a result. Escape closes the native modal dialog.
+Project results stay on the portfolio, including projects with private source.
+
+Disable any enhancement with `enhancementSettings` in
+`app/content/enhancements.config.ts`. English interface copy lives in that file;
+Chinese copy lives in `zh-CN.config.ts`.

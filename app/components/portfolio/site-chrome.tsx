@@ -2,6 +2,7 @@
 
 import { useContent, PreferenceControls } from "./preferences";
 import { ArrowIcon, ArrowUpIcon, ExternalLinkHint } from "./primitives";
+import { CommandMenu } from "./enhancements";
 
 export function SiteHeader() {
   const { profile, siteConfig } = useContent();
@@ -23,6 +24,7 @@ export function SiteHeader() {
             {navigation.map((item) => <a href={item.href} key={item.href}>{item.label}</a>)}
           </nav>
           <div className="header-actions">
+            <CommandMenu />
             <PreferenceControls />
             <a className="header-cta" href={profile.github} target="_blank" rel="noreferrer">
               {accessibility.githubLabel} <ArrowIcon /><ExternalLinkHint destination="GitHub" />
