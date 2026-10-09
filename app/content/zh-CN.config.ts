@@ -65,7 +65,7 @@ export const chinese: ContentCatalog = {
       description: "查找职位，根据你的个人资料核对定制简历中的内容，并在各自独立的工作区中跟进申请。",
       facts: ["按固定规则核对资料来源、技能名称和数值", "导出简历与求职信 PDF", "通过 Gmail 跟进申请，支持同步故障恢复"],
       href: english.liveProducts[0].href, actionLabel: "打开应用",
-      trial: { action: "https://resume-agent.up.railway.app/register", heading: "注册试用账号", note: "点击后会在新标签页打开注册页面，自动填入姓名和邮箱。密码在注册页面设置。", nameField: "姓名", namePlaceholder: "你的姓名", emailField: "邮箱地址", emailPlaceholder: "you@example.com", submitLabel: "创建试用账号" },
+      trial: { action: english.liveProducts[0].trial!.action, heading: "注册试用账号", note: "点击后会在新标签页打开注册页面，自动填入姓名和邮箱。密码在注册页面设置。", nameField: "姓名", namePlaceholder: "你的姓名", emailField: "邮箱地址", emailPlaceholder: "you@example.com", submitLabel: "创建试用账号" },
     },
     {
       name: "Food Manager", tagline: "一起管食材，安排每天吃什么",

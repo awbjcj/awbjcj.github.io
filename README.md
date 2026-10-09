@@ -52,7 +52,7 @@ into the query string of the target's own registration page, which reads both
 back to prefill itself:
 
 ```
-https://resume-agent.up.railway.app/register?name=Ada+Lovelace&email=ada%40example.com
+https://resume-tailor-harness.up.railway.app/register?name=Ada+Lovelace&email=ada%40example.com
 ```
 
 This site never handles a password; the visitor sets one on the real sign-up

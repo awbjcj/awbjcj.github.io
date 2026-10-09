@@ -110,7 +110,8 @@ test("keeps editable content in purpose-specific config files", async () => {
 test("features the live products with working entry points", async () => {
   const html = await render();
   assert.match(html, /id="live"/);
-  assert.match(html, /href="https:\/\/resume-agent\.up\.railway\.app"/);
+  assert.match(html, /href="https:\/\/resume-tailor-harness\.up\.railway\.app"/);
+  assert.doesNotMatch(html, /resume-agent\.up\.railway\.app/);
   assert.match(html, /href="https:\/\/t\.me\/foodie_manager_bot"/);
 });
 
@@ -119,7 +120,7 @@ test("the trial form is a plain GET form that prefills the real sign-up", async 
   // query string, and the target's registration page reads `name` and `email`
   // back to prefill itself. No password field exists here on purpose.
   const html = await render();
-  assert.match(html, /action="https:\/\/resume-agent\.up\.railway\.app\/register"/);
+  assert.match(html, /action="https:\/\/resume-tailor-harness\.up\.railway\.app\/register"/);
   assert.match(html, /method="get"/);
   assert.match(html, /name="name"/);
   assert.match(html, /name="email"/);

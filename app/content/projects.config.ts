@@ -20,7 +20,7 @@ export const projects = [
       "label": "Source"
     },
     "live": {
-      "href": "https://resume-agent.up.railway.app",
+      "href": "https://resume-tailor-harness.up.railway.app",
       "label": "Open the app"
     }
   },

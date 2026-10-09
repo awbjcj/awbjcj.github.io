@@ -135,10 +135,10 @@ export const liveProducts = [
     tagline: "Evidence-based application workflow",
     description: "Finds jobs, checks tailored claims against profile facts, and tracks applications in separate user workspaces.",
     facts: ["Deterministic provenance, skill, and numeric checks", "Résumé and cover-letter PDF export", "Gmail tracking with sync recovery"],
-    href: "https://resume-agent.up.railway.app",
+    href: "https://resume-tailor-harness.up.railway.app",
     actionLabel: "Open the app",
     trial: {
-      action: "https://resume-agent.up.railway.app/register",
+      action: "https://resume-tailor-harness.up.railway.app/register",
       heading: "Start a trial account",
       note: "Opens sign-up with these details prefilled. You choose a password there.",
       nameField: "Your name",
