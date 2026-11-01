@@ -99,7 +99,7 @@ test("keeps editable content in purpose-specific config files", async () => {
 
   assert.match(page, /from "\.\/components\/portfolio"/);
   assert.match(page, /from "\.\/content"/);
-  assert.doesNotMatch(page, /Food Manager|Aptiv Corporation|Vehicle Issue Triage Engineer/);
+  assert.doesNotMatch(page, /Pantry Manager|Aptiv Corporation|Vehicle Issue Triage Engineer/);
   assert.doesNotMatch(contactSection, />Email<|>LinkedIn<|>GitHub<|>Résumé</);
   assert.doesNotMatch(siteChrome, />GitHub</);
   assert.match(projectsConfig, /export const projects = \[/);
@@ -110,6 +110,9 @@ test("keeps editable content in purpose-specific config files", async () => {
 test("features the live products with working entry points", async () => {
   const html = await render();
   assert.match(html, /id="live"/);
+  assert.match(html, /Pantry Manager/);
+  assert.match(html, /github\.com\/awbjcj\/pantry-manager/);
+  assert.doesNotMatch(html, /Food Manager|github\.com\/awbjcj\/food-manager/);
   assert.match(html, /href="https:\/\/resume-tailor-harness\.up\.railway\.app"/);
   assert.doesNotMatch(html, /resume-agent\.up\.railway\.app/);
   assert.match(html, /href="https:\/\/t\.me\/foodie_manager_bot"/);

@@ -68,7 +68,7 @@ export const chinese: ContentCatalog = {
       trial: { action: english.liveProducts[0].trial!.action, heading: "注册试用账号", note: "点击后会在新标签页打开注册页面，自动填入姓名和邮箱。密码在注册页面设置。", nameField: "姓名", namePlaceholder: "你的姓名", emailField: "邮箱地址", emailPlaceholder: "you@example.com", submitLabel: "创建试用账号" },
     },
     {
-      name: "Food Manager", tagline: "一起管食材，安排每天吃什么",
+      name: "Pantry Manager", tagline: "一起管食材，安排每天吃什么",
       description: "用 Telegram 机器人和 Mini App 导入购物小票，全家共享食材清单，还能接收到期提醒、安排餐食。",
       facts: ["拍下购物小票，生成食材记录", "Mini App 支持用量限制与操作确认", "支持英语、中文、法语和西班牙语"],
       href: english.liveProducts[1].href, actionLabel: "在 Telegram 中打开",
@@ -91,7 +91,7 @@ export const chinese: ContentCatalog = {
   }),
   experience: [
     { label: "智能体平台开发", title: "修改企业系统内容前，先让人审核", description: "聊天、用户自己的定时任务和可选的 Teams 入口都使用同一套权限与预算。向 Jira、Confluence 和 Polarion 写入内容前，需经管理员审核、重新核对目标，并持久保存变更登记。" },
-    { label: "多家模型服务集成", title: "按任务需要，选择合适的模型", description: "Food Manager 接入了 Anthropic、OpenAI、Gemini 和 DeepSeek。如果当前文本模型无法处理图片，小票解析会改用支持图像识别的模型服务。", link: "https://github.com/awbjcj/food-manager" },
+    { label: "多家模型服务集成", title: "按任务需要，选择合适的模型", description: "Pantry Manager 接入了 Anthropic、OpenAI、Gemini 和 DeepSeek。如果当前文本模型无法处理图片，小票解析会改用支持图像识别的模型服务。", link: "https://github.com/awbjcj/pantry-manager" },
     { label: "AI 输出核验", title: "简历里的每项陈述，都要有依据", description: "简历核验会检查资料引用、技能名称和数值证据，也覆盖扩展栏目。排版单独审阅：Typst 检查页面是否超限，评审者查看实际渲染的页面。每份生成文件都会记录所用流程经过校验的技能标识。", link: "https://github.com/awbjcj/resume-tailor-harness" },
     { label: "实时交互界面", title: "从最新检查点接着运行", description: "定制的 LangGraph 控制台实时显示模型输出和状态，可从当前检查点继续。每项审批都对应最初触发它的暂停请求。用户可以在聊天中管理定时任务、引用文件和预览来源图片，跟进后台工作并查看依据。", link: "https://github.com/awbjcj/deep-agents-ui" },
     { label: "技术团队协调", title: "统筹九个 ADAS 项目、430 余项问题的分析与分派", description: "亲自分析并分派了 267 项问题，统筹九个 ADAS 项目中超过 430 项问题的处理，并协调算法、集成、测试和数据挖掘团队。" },

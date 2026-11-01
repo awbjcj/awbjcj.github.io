@@ -18,7 +18,7 @@ their existing source basis.
 | Project | Reviewed GitHub revision / branch | Implementation reflected in both languages |
 | --- | --- | --- |
 | Resume Tailor Harness | [`429106b88587059c97ecedf097fb1338fba07a31`](https://github.com/awbjcj/resume-tailor-harness/commit/429106b88587059c97ecedf097fb1338fba07a31) / `dev` | Deterministic claim checks; external-agent application preparation with revision-checked answers and verified attachments; Gmail, Outlook, and IMAP review-first tracking; evidence-backed optional sections and visual PDF layout review. |
-| Food Manager | [`98a1e59580cfbd38b9159cab2ee740de8dae02aa`](https://github.com/awbjcj/food-manager/commit/98a1e59580cfbd38b9159cab2ee740de8dae02aa) / `dev` | Store grouping, confirmed batch pantry actions, learned food preferences, and owner-managed Telegram, Slack, and WhatsApp connections sharing household authorization. Slack and WhatsApp are self-hosted integration capabilities; Telegram remains the hosted entry point. |
+| Pantry Manager | [`98a1e59580cfbd38b9159cab2ee740de8dae02aa`](https://github.com/awbjcj/pantry-manager/commit/98a1e59580cfbd38b9159cab2ee740de8dae02aa) / `dev` | Store grouping, confirmed batch pantry actions, learned food preferences, and owner-managed Telegram, Slack, and WhatsApp connections sharing household authorization. Slack and WhatsApp are self-hosted integration capabilities; Telegram remains the hosted entry point. |
 | Deep Agents UI | [`6d52a17cb8a91db07137d6a24d228c34b235aa29`](https://github.com/awbjcj/deep-agents-ui/commit/6d52a17cb8a91db07137d6a24d228c34b235aa29) / `dev` | Customized LangChain console; checkpoint continuation, interrupt-bound approvals, budgets, scheduled-task controls, file mentions, queued messages, and LLM Wiki page metadata and source-image previews. Upstream authorship remains explicit. |
 | Video Dedup | [`fec73ed71f24a4329addcbfb8bba3d7e47c992fb`](https://github.com/awbjcj/video-dedup/commit/fec73ed71f24a4329addcbfb8bba3d7e47c992fb) / `master` | Saved-plan recovery, shared-file decision synchronization across clip groups, scan/removal progress, retained-content coverage checks, and quarantine. |
 
@@ -31,7 +31,7 @@ Implementation paths at those pinned revisions:
   `src/resume_tailor_harness/career_skills/registry.py`, and
   `docs/mailbox-connections.md`. Application preparation does not establish
   employer submission; visual layout evidence does not establish factual support.
-- Food Manager: `app/messaging/`, `app/application/messaging_commands.py`,
+- Pantry Manager: `app/messaging/`, `app/application/messaging_commands.py`,
   `app/batch_service.py`, `app/pantry_service.py`, `README.md`, and
   `docs/messaging-connections.md`. The connection console is currently English;
   household workflows and the Mini App support the documented four languages.

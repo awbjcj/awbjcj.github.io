@@ -27,7 +27,7 @@ export const projects = [
   },
   {
     "id": "food",
-    "name": "Food Manager",
+    "name": "Pantry Manager",
     "kind": "Household assistant & Mini App",
     "signal": "SHARED PANTRY · TELEGRAM, SLACK & WHATSAPP",
     "description": "A Telegram bot and multilingual Mini App for receipt scanning, shared pantry records, expiry reminders, and meal plans. Purchases can be grouped by store, batch changes need confirmation, and past choices inform food preferences. Self-hosted deployments also connect Slack and WhatsApp with the same household permissions.",
@@ -39,7 +39,7 @@ export const projects = [
       "Telegram Mini Apps"
     ],
     "repo": {
-      "href": "https://github.com/awbjcj/food-manager",
+      "href": "https://github.com/awbjcj/pantry-manager",
       "label": "Source"
     },
     "live": {

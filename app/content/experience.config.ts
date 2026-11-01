@@ -15,8 +15,8 @@ export const experience = [
   {
     label: "Multi-provider LLM interoperability",
     title: "Model selection with capability-aware routing",
-    description: "Food Manager supports Anthropic, OpenAI, Gemini, and DeepSeek. Receipt parsing falls back to a vision-capable provider when the selected text model cannot process images.",
-    link: "https://github.com/awbjcj/food-manager",
+    description: "Pantry Manager supports Anthropic, OpenAI, Gemini, and DeepSeek. Receipt parsing falls back to a vision-capable provider when the selected text model cannot process images.",
+    link: "https://github.com/awbjcj/pantry-manager",
   },
   {
     label: "Trustworthy AI output",

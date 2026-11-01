@@ -149,7 +149,7 @@ export const liveProducts = [
     },
   },
   {
-    name: "Food Manager",
+    name: "Pantry Manager",
     tagline: "Shared pantry and meal planning",
     description: "A Telegram bot and Mini App for receipt imports, shared household inventories, expiry reminders, and meal planning.",
     facts: ["Receipt-to-pantry workflow", "Mini App with quotas and confirmation controls", "English, Chinese, French, and Spanish"],
