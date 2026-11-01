@@ -67,7 +67,7 @@ The page composition remains in `app/page.tsx`, and the visual system remains in
 
 ## Content publishing gate
 
-The employment timeline and education live in `app/content/resume.config.ts`; contact details live in `app/content/site.config.ts`. The downloadable PDF lives at `public/resume.pdf`.
+The employment timeline and education live in `app/content/resume.config.ts`; contact details live in `app/content/site.config.ts`. The downloadable PDFs live at `public/resume.pdf` (English) and `public/resume-zh.pdf` (Simplified Chinese).
 
 Any future string that starts with `TODO:` is treated as unfinished content. Placeholders render in a visibly "unfilled" state while authoring, and the `TODO:` marker itself never reaches the HTML. To check for unfinished copy or missing public assets:
 
@@ -118,7 +118,8 @@ English copy remains in the purpose-specific config files. `zh-CN.config.ts`
 contains Simplified Chinese copy, checked against the `ContentCatalog` type.
 Update both languages when adding or changing content. Project translations use
 stable IDs; links and technology names are shared. Publication titles and author
-names keep their original spelling. The downloadable résumé remains in English.
+names keep their original spelling. The résumé download follows the selected
+language: English at `/resume.pdf`, Simplified Chinese at `/resume-zh.pdf`.
 
 The header language selector uses `?lang=en` or `?lang=zh-CN`, so a language
 choice can be shared and browser Back restores previous choices. Without a URL
