@@ -65,8 +65,8 @@ test("renders the résumé section with a timeline, education, publications, and
 test("exposes reachable contact channels", async () => {
   const html = await render();
   assert.match(html, /id="contact"/);
-  assert.match(html, /href="mailto:wujiajin0303@gmail\.com"/);
-  assert.match(html, /wujiajin0303@gmail\.com/);
+  assert.match(html, /href="mailto:awbjcj@outlook\.com"/);
+  assert.match(html, /awbjcj@outlook\.com/);
   assert.match(html, /LinkedIn/);
   assert.match(html, /linkedin\.com\/in\/david-jiajin-wu/);
   assert.match(html, /href="https:\/\/github\.com\/awbjcj"/);
@@ -148,13 +148,13 @@ test("includes reviewed GitHub additions and keeps private repositories unlinked
     assert.ok(projectsConfig.includes(repository));
   }
   assert.doesNotMatch(html, /H-1B Job Search MCP|h1b-job-search-mcp/);
-  assert.match(html, /Requirement Analyzer/);
+  assert.match(html, /Requirement Buddy/);
   assert.doesNotMatch(html, /Diagram Design|diagram-design/);
   assert.doesNotMatch(html, /3,411 TESTS|735 TESTS|8 GRAPHS|60 TOOLS/);
 
   // Cards without a public repository say so rather than offering a dead link.
   assert.match(html, /Private repository/);
-  assert.doesNotMatch(html, /github\.com\/awbjcj\/(vsda-deep-agent|LangGraph-test|Jira-Polarion-automation|requirement-analyzer)/);
+  assert.doesNotMatch(html, /github\.com\/awbjcj\/(vsda-deep-agent|LangGraph-test|Jira-Polarion-automation|requirement-buddy)/);
 });
 
 test("renders accessible preference controls and a theme initializer before the body", async () => {

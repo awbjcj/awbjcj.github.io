@@ -85,7 +85,7 @@ export const projects = [
   },
   {
     "id": "requirements",
-    "name": "Requirement Analyzer",
+    "name": "Requirement Buddy",
     "kind": "Requirements engineering workflow",
     "signal": "REVISION CHECKS · VERIFIED ALM WRITES",
     "description": "Requirement Buddy is an engineering dashboard for source research, requirements drafting, independent review, and verification. Its SDK workflows can resume after interruption and check source revisions before reuse. Separate Jira, Confluence, and Polarion MCP servers handle reviewed publication batches and verify test-execution writes by reading the results back.",

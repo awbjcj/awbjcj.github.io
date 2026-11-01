@@ -14,7 +14,7 @@ export const siteConfig = {
     availability: "Open to AI full-stack, platform, and product engineering roles",
   },
   contact: {
-    email: "wujiajin0303@gmail.com",
+    email: "awbjcj@outlook.com",
     linkedin: "https://www.linkedin.com/in/david-jiajin-wu",
     github: "https://github.com/awbjcj",
     /** Served from `public/resume.pdf`; the content check verifies it exists. */
