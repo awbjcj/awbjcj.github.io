@@ -77,22 +77,23 @@ export const chinese: ContentCatalog = {
   projects: projects.map((entry) => {
     const project: ProjectConfig = entry;
     const copy: Record<(typeof projects)[number]["id"], { kind: string; signal: string; description: string }> = {
-      resume: { kind: "全栈应用", signal: "事实核验 · 工作区隔离", description: "支持职位查找、简历定制、求职信生成和申请跟进，并根据原始资料核对简历内容。最近加入了无需浏览器的职位采集与经过校验的故障恢复；对暂时不可用的数据来源延后重试，并检查模型接口的传输兼容性。" },
-      food: { kind: "Telegram 机器人与 Mini App", signal: "小票分组 · 家庭共享", description: "把购物小票照片转成全家共享的食材清单，提供到期提醒和餐食计划。食材按小票分组，方便查看是哪次采购的；Mini App 的厨房页面沿用机器人的权限、用量限制和操作确认逻辑，并支持多语言。" },
-      video: { kind: "本地视频工具", signal: "片段匹配 · 移除前审核", description: "用 FFmpeg 和缓存的视频指纹找出重复视频、重新编码的副本，以及不同视频中的相同片段。你可以在浏览器中按片段查看匹配结果，核对保留文件合计覆盖了哪些内容；确认移除的文件会先移入隔离目录。" },
-      console: { kind: "开源前端定制", signal: "检查点恢复 · 工具审批", description: "为 LangChain 控制台加入身份认证、角色权限、Token 用量、调用次数和费用预算，以及工具操作审批。智能体可从服务端最新检查点继续运行；界面会显示正在保存的子智能体文件，并支持查看生成文件的内容。" },
-      vsda: { kind: "企业智能体平台", signal: "写入前审核 · 混合检索", description: "由 LangGraph 主智能体协调企业工具调用、混合检索和隔离环境中的代码分析。在 Confluence 和 Polarion 中编写或更新内容时，先审核、复核操作对象，并将变更登记持久保存；文档导出会在设定范围内自动调整并发量。" },
-      requirements: { kind: "需求工程工作流", signal: "来源资料 · 独立评审", description: "结合 Jira、Confluence 和 Polarion 的资料，完成需求调研、起草、独立评审和验证方案拟定。基于 Python SDK 的运行层会校验来源资料包、保存生成文件、实时显示进度，并支持取消任务和恢复运行。" },
-      release: { kind: "工程自动化", signal: "发布信息提取 · 运行摘要", description: "从发布邮件中提取结构化记录，生成 Jenkins 构建请求。部署在容器中的审核界面可查看发布数据、更新访问令牌；每次运行后自动汇总处理过程、提交结果、队列编号和故障信息。" },
-      enterprise: { kind: "集成库与智能体", signal: "ALM 内容编写 · 自适应导出", description: "为 Jira、Polarion、Confluence、Teams 和邮件开发带类型约束的 Python 客户端与自动化流程。最近验证了 wiki 页面创建功能，统一了 SOAP 与 REST 接口对测试结果图片的处理，并让批量导出自动调整并发量、延后重试超时任务。" },
+      resume: { kind: "全栈应用", signal: "证据核验 · PDF 排版审阅", description: "查找职位，并根据个人资料中的证据定制简历。Gmail、Outlook 和 IMAP 邮件分析会提出申请状态更新，供用户审核。外部智能体可检查答案版本、校验附件后准备申请。Typst 导出支持有来源依据的扩展栏目，也会检查页面是否超限，并提供排版预览供审阅。" },
+      food: { kind: "家庭助手与 Mini App", signal: "共享食材 · Telegram、Slack 与 WhatsApp", description: "通过 Telegram 机器人和多语言 Mini App 扫描小票、共享食材清单、接收到期提醒并安排餐食。采购记录可按商店分组，批量修改需先确认，饮食偏好会根据使用记录更新。自托管部署还可连接 Slack 和 WhatsApp，沿用同一套家庭权限。" },
+      video: { kind: "本地视频工具", signal: "保存审核计划 · 文件隔离", description: "用 FFmpeg 和缓存指纹找出重复视频及相同片段。在浏览器中查看匹配结果，重新打开已保存的审核计划，并跟进扫描和移除进度。同一文件在不同片段组中的选择会同步更新。确认移除后，程序先检查保留视频能否覆盖其内容，再把文件移入隔离目录。" },
+      console: { kind: "开源前端定制", signal: "任务调度 · 来源预览", description: "基于 LangChain 控制台定制，加入身份认证、用量预算和定时任务。聊天可从当前检查点继续，每项审批都对应最初触发它的暂停请求。支持文件引用、消息排队，以及生成文件、LLM Wiki 搜索结果、页面元数据和来源图片的预览。" },
+      vsda: { kind: "企业智能体平台", signal: "定时任务 · 企业资料检索", description: "LangGraph 主智能体在统一权限和预算约束下调用企业工具、混合检索，并在隔离环境中分析代码。用户可以设置自己的定时任务，也可以启用 Teams 入口。写入经审核后还需复核目标；SharePoint 文件下载和带版本记录的私有技能保留来源上下文。" },
+      requirements: { kind: "需求工程工作流", signal: "版本核对 · ALM 写入验证", description: "Requirement Buddy 是一个工程工作台，用于资料调研、需求起草、独立评审和验证。SDK 工作流可在中断后恢复，复用资料前会检查来源版本。Jira、Confluence 和 Polarion 分别通过独立的 MCP 服务处理审核后的批量发布，并回读测试执行的写入结果，确认是否成功。" },
+      release: { kind: "工程自动化", signal: "提取失败可重试 · 构建状态可追溯", description: "从发布邮件中提取带类型约束的记录，生成 Jenkins 构建请求；提取失败的邮件会保留，供后续重试。容器化审核界面在本地提供浏览器依赖，默认要求远程 Graph 令牌更新使用 HTTPS。运行摘要会列出故障，并区分已入队的请求与已完成的构建。" },
+      enterprise: { kind: "集成库与智能体", signal: "并发量可控 · 导出失败可重试", description: "Python 客户端和工作流通过带类型约束的接口连接 Jira、Polarion、Confluence、Teams 与邮件。批量检索会在操作员设定范围内调整并发量，保持输入顺序，并拒绝不完整的 Jira 搜索结果。Polarion 导出会重试断开的连接和延后处理的超时任务；SOAP 与 REST 客户端共用测试结果图片处理逻辑。" },
+      wiki: { kind: "Confluence 内容编写流程", signal: "独立评审 · 审批回执", description: "Copilot 或 Codex 负责资料调研、页面起草，以及正文和本地渲染图表的独立评审。Python 运行层校验各阶段交接的文件，生成 Confluence XML，并检查页面版本。发布必须对应已批准的内容摘要；还可启用人工审核，预览页面并保存审批回执。" },
     };
     return { ...project, ...copy[entry.id], repo: project.repo && { ...project.repo, label: "源码" }, live: project.live && { ...project.live, label: project.id === "food" ? "在 Telegram 中打开" : "打开应用" }, skills: project.skills.map((skill) => ({ "LLM routing": "LLM 路由", "Validation": "校验", "Hybrid RAG": "混合检索 RAG" }[skill] ?? skill)) };
   }),
   experience: [
-    { label: "智能体平台开发", title: "修改企业系统内容前，先让人审核", description: "主智能体协调企业任务、资料检索和隔离环境中的代码分析。向 Confluence 或 Polarion 写入内容前，需要人工审核、复核操作对象，并持久保存变更登记。" },
+    { label: "智能体平台开发", title: "修改企业系统内容前，先让人审核", description: "聊天、用户自己的定时任务和可选的 Teams 入口都使用同一套权限与预算。向 Jira、Confluence 和 Polarion 写入内容前，需经管理员审核、重新核对目标，并持久保存变更登记。" },
     { label: "多家模型服务集成", title: "按任务需要，选择合适的模型", description: "Food Manager 接入了 Anthropic、OpenAI、Gemini 和 DeepSeek。如果当前文本模型无法处理图片，小票解析会改用支持图像识别的模型服务。", link: "https://github.com/awbjcj/food-manager" },
-    { label: "AI 输出核验", title: "简历里的每项陈述，都要有依据", description: "定制简历时，程序会核对资料来源、技能名称和数值证据，拦截没有依据的内容。技能注册表经过 SHA-256 校验，可追溯生成文件时使用的流程。", link: "https://github.com/awbjcj/resume-tailor-harness" },
-    { label: "实时交互界面", title: "从最新检查点接着运行", description: "LangGraph 控制台实时显示模型输出和运行状态，可从服务端最新检查点继续任务，也会显示正在保存的子智能体文件。每项审批都对应最初触发它的暂停请求。", link: "https://github.com/awbjcj/deep-agents-ui" },
+    { label: "AI 输出核验", title: "简历里的每项陈述，都要有依据", description: "简历核验会检查资料引用、技能名称和数值证据，也覆盖扩展栏目。排版单独审阅：Typst 检查页面是否超限，评审者查看实际渲染的页面。每份生成文件都会记录所用流程经过校验的技能标识。", link: "https://github.com/awbjcj/resume-tailor-harness" },
+    { label: "实时交互界面", title: "从最新检查点接着运行", description: "定制的 LangGraph 控制台实时显示模型输出和状态，可从当前检查点继续。每项审批都对应最初触发它的暂停请求。用户可以在聊天中管理定时任务、引用文件和预览来源图片，跟进后台工作并查看依据。", link: "https://github.com/awbjcj/deep-agents-ui" },
     { label: "技术团队协调", title: "统筹九个 ADAS 项目、430 余项问题的分析与分派", description: "亲自分析并分派了 267 项问题，统筹九个 ADAS 项目中超过 430 项问题的处理，并协调算法、集成、测试和数据挖掘团队。" },
   ],
   resume: {

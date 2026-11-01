@@ -1,18 +1,19 @@
 import type { ProjectConfig } from "./types";
 
-/** Dossier-backed projects refreshed on 2026-10-02. Source notes: github-evidence.md. */
+/** Implementation-backed projects refreshed on 2026-10-31. Source notes: github-evidence.md. */
 export const projects = [
   {
     "id": "resume",
     "name": "Resume Tailor Harness",
     "kind": "Full-stack application",
-    "signal": "FACT VALIDATION · WORKSPACE ISOLATION",
-    "description": "Job discovery, résumé tailoring, cover letters, and application tracking with source-grounded claim checks. Recent work adds browser-free posting acquisition, verified recovery, source cooldowns, and model-transport checks.",
+    "signal": "EVIDENCE CHECKS · VISUAL PDF REVIEW",
+    "description": "Finds jobs and tailors résumés against profile evidence. Gmail, Outlook, and IMAP connections propose tracking updates for review. External agents prepare applications with revision checks on answers and verified attachments. Typst exports include evidence-backed sections, page-fit checks, and visual layout review.",
     "skills": [
       "Python",
       "FastAPI",
       "React",
       "TypeScript",
+      "Typst",
       "SQLite"
     ],
     "repo": {
@@ -27,9 +28,9 @@ export const projects = [
   {
     "id": "food",
     "name": "Food Manager",
-    "kind": "Telegram bot & Mini App",
-    "signal": "RECEIPT GROUPS · SHARED KITCHEN",
-    "description": "Converts receipt photos into shared pantry records with expiry reminders and meal plans. Receipt grouping keeps purchases recognizable; the Mini App Kitchen reuses bot authorization, quota, and confirmation handlers across localized workflows.",
+    "kind": "Household assistant & Mini App",
+    "signal": "SHARED PANTRY · TELEGRAM, SLACK & WHATSAPP",
+    "description": "A Telegram bot and multilingual Mini App for receipt scanning, shared pantry records, expiry reminders, and meal plans. Purchases can be grouped by store, batch changes need confirmation, and past choices inform food preferences. Self-hosted deployments also connect Slack and WhatsApp with the same household permissions.",
     "skills": [
       "Python",
       "aiogram",
@@ -50,8 +51,8 @@ export const projects = [
     "id": "video",
     "name": "Video Dedup",
     "kind": "Local media tooling",
-    "signal": "CLIP MATCHING · REVIEW BEFORE REMOVAL",
-    "description": "Finds identical videos, re-encoded copies, and shared clips using FFmpeg and cached fingerprints. A browser review groups matches by clip, combines keeper coverage, and moves approved removals to quarantine.",
+    "signal": "SAVED REVIEW PLANS · QUARANTINE",
+    "description": "Uses FFmpeg and cached fingerprints to find duplicate videos and shared clips. Review matches in a browser, reopen saved plans, and track scan and removal progress. Decisions about a file carry across clip groups. Approved removals move to quarantine after the tool checks coverage by retained videos.",
     "skills": [
       "Python",
       "FFmpeg",
@@ -68,8 +69,8 @@ export const projects = [
     "id": "console",
     "name": "Deep Agents UI",
     "kind": "Customized open-source frontend",
-    "signal": "CHECKPOINT RECOVERY · TOOL APPROVALS",
-    "description": "Extended LangChain's console with authentication, role controls, token/call/cost budgets, and tool approvals. Runs continue from the latest server checkpoint; pending subagent files appear while saving, alongside readable artifact previews.",
+    "signal": "TASK SCHEDULING · SOURCE PREVIEWS",
+    "description": "A customized LangChain console with authentication, usage budgets, and scheduled tasks. Chat resumes from current checkpoints and keeps each approval tied to the interrupt that requested it. File mentions, queued messages, and previews of artifacts, LLM Wiki search results, page metadata, and source images support ongoing work.",
     "skills": [
       "Next.js",
       "React",
@@ -86,16 +87,16 @@ export const projects = [
     "id": "requirements",
     "name": "Requirement Analyzer",
     "kind": "Requirements engineering workflow",
-    "signal": "SOURCE CONTEXT · INDEPENDENT REVIEW",
-    "description": "Coordinates Jira, Confluence, and Polarion research, requirements drafting, independent review, and verification proposals. A Python SDK runtime validates source packets, retains artifacts, streams progress, and supports cancellation and resume.",
+    "signal": "REVISION CHECKS · VERIFIED ALM WRITES",
+    "description": "Requirement Buddy is an engineering dashboard for source research, requirements drafting, independent review, and verification. Its SDK workflows can resume after interruption and check source revisions before reuse. Separate Jira, Confluence, and Polarion MCP servers handle reviewed publication batches and verify test-execution writes by reading the results back.",
     "skills": ["Python", "MCP", "GitHub Copilot SDK", "Jira", "Polarion", "Confluence"]
   },
   {
     "id": "vsda",
     "name": "VSDA Deep Agent",
     "kind": "Enterprise agent platform",
-    "signal": "REVIEWED WRITES · HYBRID RETRIEVAL",
-    "description": "A LangGraph supervisor routes enterprise tools, hybrid retrieval, and isolated code analysis. Reviewed Confluence and Polarion authoring use target checks and durable mutation claims; document exports adapt concurrency within configured bounds.",
+    "signal": "SCHEDULED TASKS · ENTERPRISE RETRIEVAL",
+    "description": "A LangGraph supervisor runs enterprise tools, hybrid retrieval, and isolated code analysis under shared permissions and budgets. Users can schedule their own tasks or enable a Teams bridge. Reviewed writes recheck their targets; SharePoint downloads and versioned private skills preserve source context.",
     "skills": [
       "LangGraph",
       "FastAPI",
@@ -108,8 +109,8 @@ export const projects = [
     "id": "release",
     "name": "Release-Email Intelligence Pipeline",
     "kind": "Engineering automation",
-    "signal": "RELEASE EXTRACTION · RUN SUMMARIES",
-    "description": "Parses release emails into typed records and Jenkins build requests. A containerized reviewer serves release data and receives token updates; automatic run summaries capture processing, submissions, queue IDs, and failures.",
+    "signal": "RETRYABLE EXTRACTION · BUILD TRACEABILITY",
+    "description": "Parses release emails into typed records and Jenkins build requests. Failed extractions are kept for retry. The containerized reviewer serves its browser dependencies locally and requires HTTPS for remote Graph token updates by default. Run summaries report failures and distinguish queued requests from completed builds.",
     "skills": [
       "LangGraph",
       "OpenAI",
@@ -122,8 +123,8 @@ export const projects = [
     "id": "enterprise",
     "name": "Enterprise Engineering Automation",
     "kind": "Integration libraries & agents",
-    "signal": "ALM AUTHORING · ADAPTIVE EXPORTS",
-    "description": "Typed Python clients and workflows for Jira, Polarion, Confluence, Teams, and email. Recent work validates wiki page creation, aligns SOAP/REST test-result images, and adds adaptive bulk exports with deferred timeout retries.",
+    "signal": "BOUNDED CONCURRENCY · RECOVERABLE EXPORTS",
+    "description": "Python clients and workflows connect Jira, Polarion, Confluence, Teams, and email through typed interfaces. Bulk retrieval adjusts concurrency within operator limits, keeps input order, and rejects incomplete Jira searches. Polarion exports retry dropped connections and deferred timeouts. SOAP and REST clients share test-result image handling.",
     "skills": [
       "Python",
       "asyncio",
@@ -131,5 +132,13 @@ export const projects = [
       "REST APIs",
       "Jenkins"
     ]
+  },
+  {
+    "id": "wiki",
+    "name": "Confluence Wiki Maintainer",
+    "kind": "Confluence authoring workflow",
+    "signal": "INDEPENDENT REVIEW · APPROVAL RECEIPTS",
+    "description": "Copilot or Codex workers research sources, draft pages, and independently review the text and locally rendered diagrams. A Python host validates files passed between workers, generates Confluence XML, and checks page versions. Publication requires an approved content digest. Optional human review adds previews and approval receipts.",
+    "skills": ["Python", "GitHub Copilot SDK", "Codex CLI", "MCP", "Confluence", "Mermaid"]
   }
 ] as const satisfies readonly ProjectConfig[];

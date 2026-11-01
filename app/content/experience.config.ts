@@ -10,7 +10,7 @@ export const experience = [
   {
     label: "Agent platform engineering",
     title: "Reviewing enterprise writes before execution",
-    description: "A supervisor routes enterprise tasks, retrieval, and isolated code analysis. Confluence and Polarion authoring combine human review, target revalidation, and durable mutation claims around external writes.",
+    description: "The same permissions and budgets apply to chat, each user's scheduled tasks, and the optional Teams bridge. Writes to Jira, Confluence, and Polarion require administrator review, a fresh target check, and a persistent record of the claimed change.",
   },
   {
     label: "Multi-provider LLM interoperability",
@@ -21,13 +21,13 @@ export const experience = [
   {
     label: "Trustworthy AI output",
     title: "Fact locks that block unsupported claims",
-    description: "Provenance, skill-naming, and numeric-evidence gates validate tailored résumé claims. A SHA-256-verified skill registry records the procedures used to generate artifacts.",
+    description: "Résumé checks cover source citations, skill names, and numeric evidence, including optional sections. Typst checks page fit, while reviewers inspect rendered pages for layout. Each generated artifact records the verified skill procedure used to produce it.",
     link: "https://github.com/awbjcj/resume-tailor-harness",
   },
   {
     label: "Real-time streaming interfaces",
     title: "Continuing agent runs from current state",
-    description: "A LangGraph console streams tokens and state, resumes from the server's latest checkpoint, and shows pending subagent files while saving. Approvals stay bound to their original interrupts.",
+    description: "The customized LangGraph console streams tokens and state and resumes from current checkpoints. Approvals stay tied to the interrupts that requested them. Users can manage scheduled tasks, mention files, and preview source images from chat to follow background work and inspect its evidence.",
     link: "https://github.com/awbjcj/deep-agents-ui",
   },
   {
