@@ -53,16 +53,16 @@ export function CommandMenu() {
         <div className="command-heading"><h2 id="command-title">{copy.title}</h2><button type="button" onClick={() => dialog.current?.close()} aria-label={copy.close}><TechnicalIcon name="cross" /></button></div>
         <Command label={copy.open} loop>
           <Command.Input ref={input} value={search} onValueChange={setSearch} placeholder={copy.search} />
-          <Command.List>
+          <Command.List label={copy.results}>
             <Command.Empty>{copy.empty}</Command.Empty>
             <Command.Group heading={copy.sections}>
-              {siteConfig.navigation.map((item) => <Command.Item key={item.href} value={`section ${item.href}`} keywords={[item.label]} onSelect={() => jump(item.href)}><span>{item.label}</span><ArrowIcon /></Command.Item>)}
+              {siteConfig.navigation.map((item) => <Command.Item key={item.href} value={`section ${item.href} ${item.label}`} keywords={[item.label]} onSelect={() => jump(item.href)}><span>{item.label}</span><ArrowIcon /></Command.Item>)}
             </Command.Group>
             <Command.Group heading={copy.projects}>
-              {projects.map((project) => <Command.Item key={project.id} value={`project ${project.id}`} keywords={[project.name, ...project.skills]} onSelect={() => jump(`#project-${project.id}`)}><span>{project.name}</span><ArrowIcon /></Command.Item>)}
+              {projects.map((project) => <Command.Item key={project.id} value={`project ${project.id} ${project.name} ${project.kind}`} keywords={[project.name, project.kind, project.signal, project.description, ...project.skills]} onSelect={() => jump(`#project-${project.id}`)}><span>{project.name}</span><ArrowIcon /></Command.Item>)}
             </Command.Group>
             <Command.Group heading={copy.links}>
-              <Command.Item value="email" keywords={[siteConfig.sections.contact.emailLabel]} onSelect={() => { dialog.current?.close(); window.location.assign(`mailto:${contact.email}`); }}><span>{siteConfig.sections.contact.emailLabel}</span><ArrowIcon /></Command.Item>
+              <Command.Item value={`email ${siteConfig.sections.contact.emailLabel}`} keywords={[siteConfig.sections.contact.emailLabel]} onSelect={() => { dialog.current?.close(); window.location.assign(`mailto:${contact.email}`); }}><span>{siteConfig.sections.contact.emailLabel}</span><ArrowIcon /></Command.Item>
             </Command.Group>
           </Command.List>
         </Command>

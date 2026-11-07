@@ -35,6 +35,8 @@ jobs:
         run: npm run lint
       - name: Build and test portfolio
         run: npm test
+      - name: Check bilingual browser rendering
+        run: npm run test:browser
       - name: Export static site
         run: npm run export:github
       - name: Configure Pages

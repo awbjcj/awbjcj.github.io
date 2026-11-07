@@ -168,4 +168,6 @@ test("renders accessible preference controls and a theme initializer before the 
   assert.match(html, /<option value="zh-CN" lang="zh-CN">中文<\/option>/);
   assert.match(html, /aria-label="Dark mode" aria-pressed="false"/);
   assert.ok(html.indexOf("portfolio-theme") < html.indexOf("<body"));
+  assert.ok(html.indexOf('data-local-history-init="true"') > 0);
+  assert.ok(html.indexOf('data-local-history-init="true"') < html.indexOf('type="module"'));
 });

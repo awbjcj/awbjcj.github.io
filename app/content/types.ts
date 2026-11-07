@@ -41,6 +41,8 @@ export type EducationConfig = {
 
 export type PublicationConfig = {
   title: string;
+  /** Original publication title, shown alongside a translated title when present. */
+  originalTitle?: string;
   authors: string;
   venue: string;
   year: string;

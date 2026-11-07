@@ -140,8 +140,9 @@ content check catches unfinished copy and required public assets.
 English copy remains in the purpose-specific config files. `zh-CN.config.ts`
 contains Simplified Chinese copy, checked against the `ContentCatalog` type.
 Update both languages when adding or changing content. Project translations use
-stable IDs; links and technology names are shared. Publication titles and author
-names keep their original spelling. The downloadable résumé remains in English.
+stable IDs; links and technology names are shared. Translate publication titles
+for the Chinese catalog and retain each published title in `originalTitle`;
+author names keep their original spelling. Each language links to its own résumé PDF.
 
 The header language selector uses `?lang=en` or `?lang=zh-CN`, so a language
 choice can be shared and browser Back restores previous choices. Without a URL

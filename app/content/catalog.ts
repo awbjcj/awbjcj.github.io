@@ -5,10 +5,10 @@ import { resume } from "./resume.config";
 import { focusAreas, skillGroups } from "./skills.config";
 import { enhancements } from "./enhancements.config";
 import { casebookConfig } from "./casebook.config";
-import type { ProjectConfig, LiveProductConfig } from "./types";
+import type { ProjectConfig, LiveProductConfig, PublicationConfig } from "./types";
 
 type Widen<T> = T extends string ? string : T extends readonly (infer U)[] ? readonly Widen<U>[] : T extends object ? { [K in keyof T]: Widen<T[K]> } : T;
 
-export const english = { siteConfig, enhancements, casebook: casebookConfig, liveProducts: liveProducts as readonly LiveProductConfig[], projects: projects as readonly ProjectConfig[], experience, resume, focusAreas, skillGroups };
+export const english = { siteConfig, enhancements, casebook: casebookConfig, liveProducts: liveProducts as readonly LiveProductConfig[], projects: projects as readonly ProjectConfig[], experience, resume: { ...resume, publications: resume.publications as readonly PublicationConfig[] }, focusAreas, skillGroups };
 export type ContentCatalog = Widen<typeof english>;
 export type Locale = "en" | "zh-CN";

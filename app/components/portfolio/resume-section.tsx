@@ -70,8 +70,9 @@ export function ResumeSection() {
                         <ExternalLinkHint destination="publication" />
                       </a>
                     </h4>
-                    <p className="resume-org"><Field value={publication.authors} /></p>
-                    <p className="resume-note"><Field value={publication.venue} /></p>
+                    {publication.originalTitle ? <p className="resume-note resume-original-title" lang="en">{publication.originalTitle}</p> : null}
+                    <p className="resume-org" lang="en"><Field value={publication.authors} /></p>
+                    <p className="resume-note" lang="en"><Field value={publication.venue} /></p>
                   </div>
                 </li>
               ))}

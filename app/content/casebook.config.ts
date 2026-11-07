@@ -27,23 +27,23 @@ export const casebookConfig: CasebookConfig = {
     "projects": "Projects",
     "selectProject": "Choose a project",
     "allProjects": "All engineering work",
-    "summary": "What It Does",
+    "summary": "What it does",
     "workflow": "Workflow",
     "technologies": "Technologies",
     "source": "Source",
-    "open": "Open App",
+    "open": "Open app",
     "resume": "Résumé",
     "contact": "Contact",
     "private": "Private repository",
     "architecture": "Project workflow",
-    "approach": "Engineering Approach"
+    "approach": "Engineering approach"
   },
   "projects": {
     "resume": {
       "railDetail": "Profile evidence, claim checks, PDF export",
-      "subtitle": "Job-to-Résumé Tailoring with Claim Checks",
+      "subtitle": "Tailored résumés with evidence checks",
       "purpose": "Finds jobs and tailors résumés against profile facts, with claim checks and Typst PDF export.",
-      "summary": "An end-to-end system that (1) finds relevant job opportunities, (2) selects profile facts, (3) tailors a résumé to each job, and (4) exports a PDF via Typst. Built-in claim checks flag citation, skill, and numeric issues for review.",
+      "summary": "Finds relevant jobs, selects profile facts, and tailors a résumé for each role. Checks flag citation, skill, and numeric issues for review. Users review application updates, answers, and attachments. Typst exports the PDF, with page-fit and visual layout review.",
       "steps": [
         {
           "title": "Find Jobs",
@@ -115,7 +115,7 @@ export const casebookConfig: CasebookConfig = {
     },
     "food": {
       "railDetail": "Receipts, shared pantry, meal planning",
-      "subtitle": "A Shared Pantry and Meal-Planning Assistant",
+      "subtitle": "A shared pantry and meal-planning assistant",
       "purpose": "A Telegram bot and Mini App for receipt imports, shared household inventories, expiry reminders, and meal planning.",
       "summary": "Pantry Manager connects receipt parsing to a household’s shared food inventory. Confirmed batch actions, quotas, and household permissions govern changes. A vision-capable provider handles receipts when the selected text model cannot process images.",
       "steps": [
@@ -189,7 +189,7 @@ export const casebookConfig: CasebookConfig = {
     },
     "enterprise": {
       "railDetail": "Jira, Polarion, Confluence, Teams",
-      "subtitle": "Engineering Cooperation Across Enterprise Tools",
+      "subtitle": "Engineering collaboration across enterprise tools",
       "purpose": "Python integrations and agent workflows connect Jira, Polarion, Confluence, Teams, email, and Jenkins.",
       "summary": "The Jira–Polarion Automation application brings engineering records, reporting, and coordinated workflows together through typed Python clients. Bulk reads use bounded concurrency and preserve input order. Incomplete Jira searches are rejected; interrupted Polarion exports can be retried.",
       "steps": [
@@ -263,7 +263,7 @@ export const casebookConfig: CasebookConfig = {
     },
     "requirements": {
       "railDetail": "Research, independent review, publication",
-      "subtitle": "From Source Research to Reviewed Engineering Artifacts",
+      "subtitle": "From source research to reviewed engineering artifacts",
       "purpose": "An engineering workspace for source research, requirements drafting, independent review, verification, and reviewed publication.",
       "summary": "Requirement Buddy separates research, authoring, review, and verification into explicit stages. Persisted runs resume after interruption. Source freshness checks protect reuse, while reviewed publication batches validate revisions and payloads and read back engineering-tool writes.",
       "steps": [
@@ -360,7 +360,7 @@ export const casebookChinese: CasebookConfig = {
       "railDetail": "资料证据、内容核验、PDF 导出",
       "subtitle": "根据职位定制简历，并核对陈述依据",
       "purpose": "查找职位，根据个人资料中的事实定制简历，核对内容依据，再通过 Typst 导出 PDF。",
-      "summary": "一个以真实经历为依据的求职工作区。定制简历中的陈述来自个人资料；固定规则检查来源、技能和数值。申请状态更新、答案和附件由用户审阅，Typst 负责 PDF 导出和页面超限检查。",
+      "summary": "查找相关职位，挑选个人资料中的事实并定制简历。规则会标记引用、技能和数值问题，供用户审核。申请状态更新、答案和附件由用户审阅。Typst 导出 PDF，并支持页面超限检查和排版审阅。",
       "steps": [
         {
           "title": "查找职位",
@@ -582,7 +582,7 @@ export const casebookChinese: CasebookConfig = {
       "railDetail": "资料调研、独立评审与发布",
       "subtitle": "从来源调研到经过评审的工程成果",
       "purpose": "用于资料调研、需求起草、独立评审、验证及审核后发布的工程工作区。",
-      "summary": "Requirement Buddy 将调研、起草、评审和验证分成明确阶段。运行状态持久保存，中断后可以继续；复用资料前检查新鲜度。审核后的发布批次会校验版本和内容，并回读工程工具中的写入结果。",
+      "summary": "Requirement Buddy 将调研、起草、评审和验证分成明确阶段。运行状态持久保存，中断后可以继续；复用资料前会检查来源版本。审核后的发布批次会校验版本和内容，并回读工程工具中的写入结果。",
       "steps": [
         {
           "title": "调研来源",
@@ -597,7 +597,7 @@ export const casebookChinese: CasebookConfig = {
           "detail": "评审正文与本地渲染的图表。"
         },
         {
-          "title": "检查资料新鲜度",
+          "title": "检查资料是否有更新",
           "detail": "复用前核对来源、反馈和文件哈希。"
         },
         {
@@ -638,7 +638,7 @@ export const casebookChinese: CasebookConfig = {
           "title": "独立评审",
           "items": [
             "正文与图表检查",
-            "来源新鲜度",
+            "来源是否有更新",
             "发布批次校验"
           ]
         },

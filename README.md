@@ -93,8 +93,12 @@ npm test            # build + rendered-HTML tests
 npm run lint
 npm run typecheck   # checks the frontend and Cloudflare Worker bindings
 npm run check:content   # publish gate — must pass before deploying
+npm run test:browser # exercise both languages in an installed Chromium browser, after building
 npm run export:github   # writes the static site to github-pages/
 ```
+
+The browser check finds a local Chrome or Chromium installation. If it is in a
+different location, set `PORTFOLIO_CHROMIUM_PATH` to the browser executable.
 
 Pushing `main` deploys the static export to GitHub Pages through `.github/workflows/deploy-pages.yml`.
 
@@ -117,8 +121,9 @@ The information architecture was informed by [Ryan Fitzgerald's DevPortfolio](ht
 English copy remains in the purpose-specific config files. `zh-CN.config.ts`
 contains Simplified Chinese copy, checked against the `ContentCatalog` type.
 Update both languages when adding or changing content. Project translations use
-stable IDs; links and technology names are shared. Publication titles and author
-names keep their original spelling. The résumé download follows the selected
+stable IDs; links and technology names are shared. Chinese publication entries
+show translated titles alongside the original titles; author names keep their
+original spelling. The résumé download follows the selected
 language: English at `/resume.pdf`, Simplified Chinese at `/resume-zh.pdf`.
 
 The header language selector uses `?lang=en` or `?lang=zh-CN`, so a language

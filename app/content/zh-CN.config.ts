@@ -9,7 +9,7 @@ export const chinese: ContentCatalog = {
   enhancements: {
     menu: {
       open: "快速导航", title: "找到你感兴趣的内容", search: "搜索栏目、项目或技术名称…",
-      empty: "没有找到匹配内容，试试项目或技术名称。", sections: "跳转到栏目",
+      empty: "没有找到匹配内容，试试项目或技术名称。", results: "搜索结果", sections: "跳转到栏目",
       projects: "浏览项目", links: "联系我", close: "关闭导航",
       hint: "↑ ↓ 选择 · Enter 确认 · Esc 关闭",
     },
@@ -21,10 +21,10 @@ export const chinese: ContentCatalog = {
       brandSubtitle: "AI 全栈工程师",
       title: "AI 全栈工程师",
       location: "美国密歇根州安娜堡",
-      summary: "我用 Python 和 TypeScript 开发 AI 应用，主要做智能体工作流、混合检索和工程自动化。从带类型约束的 API、模型调用到人工审核和用户界面，我关注的是如何让这些环节协同工作。",
+      summary: "我用 Python 和 TypeScript 开发 AI 应用，主要做智能体工作流、混合检索和工程自动化。我关注模型调用如何与类型化 API、人工审核和用户界面协同工作。",
       availability: "正在寻找 AI 全栈、平台开发或产品工程岗位",
     },
-    contact: { ...english.siteConfig.contact, resumeFile: "/resume-zh.pdf", responseNote: "如果你正在招聘 AI 应用、智能体平台或全栈开发工程师，欢迎联系我。也欢迎交流相关项目。" },
+    contact: { ...english.siteConfig.contact, resumeFile: "/resume-zh.pdf", responseNote: "欢迎联系我，交流 AI 应用、智能体平台或全栈产品开发相关的岗位和项目。" },
     accessibility: {
       skipToContent: "跳转到正文", primaryNavigation: "主导航", backToTop: "返回顶部",
       githubLabel: "GitHub", engineeringOverview: "工程方向概览", coreSpecialties: "核心技术方向",
@@ -53,7 +53,7 @@ export const chinese: ContentCatalog = {
     sections: {
       live: { label: "应用", statusLabel: "在线应用", title: "试试我做的应用", description: "一个帮你准备简历、跟进求职申请，一个帮家里管理食材、安排饮食。点击下方入口即可访问。" },
       projects: { label: "精选项目", countNoun: "个项目", title: "项目与开源贡献", description: "这里有我开发的应用、开发者工具和企业系统。每个项目都注明了是原创开发，还是基于开源项目的扩展。", linkLabel: "源码", privateNote: "私有仓库" },
-      experience: { label: "工程经验", countNoun: "个方向", title: "我负责的系统与工作", description: "我的工作包括智能体编排和模型集成，也包括权限与审核机制：软件代用户执行操作时，哪些步骤需要确认，哪些行为需要约束。", evidenceLabel: "查看相关项目" },
+      experience: { label: "工程经验", countNoun: "个方向", title: "我负责的系统与工作", description: "我的工作包括智能体编排、模型集成，以及软件代用户执行操作时所需的权限与审核机制：哪些步骤需要确认，哪些行为需要约束。", evidenceLabel: "查看相关项目" },
       resume: { label: "履历", title: "工作与学习经历", description: "工作经历、教育背景与发表的论文。", downloadLabel: "下载简历（中文 PDF）", experienceLabel: "工作经历", educationLabel: "教育背景", publicationsLabel: "论文", locationLabel: "所在地", focusLabel: "专业方向", statusLabel: "求职状态" },
       approach: { label: "工程方法", title: "让系统的行为清楚可控", description: "设计模型调用时，我会先明确几件事：哪些数据可以传入，系统有权执行哪些操作，以及用户如何审核结果。" },
       toolkit: { label: "技术栈", title: "我常用的工具与技术" },
@@ -99,17 +99,20 @@ export const chinese: ContentCatalog = {
   ],
   resume: {
     roles: [
-      { company: "Aptiv Corporation（安波福）", role: "整车系统问题分析工程师 / VSDA 团队技术负责人", period: "2023 年 2 月至今", location: "美国密歇根州特洛伊", highlights: ["部署三个基于 Python 的 AI/LLM 智能体，处理发布邮件、生成报告，并辅助 Jira 问题分析与分派。", "自动化生成 1,000 余项 Jira 用户故事，并通过 Jenkins 生成接近实时更新的报告。", "负责九个 ADAS 项目的问题分析与分派，亲自处理 267 项、统筹 430 余项；两次获得最高等级绩效评价。"] },
-      { company: "密歇根大学工程学院", role: "系统工程课程研究生助教（ISD 521）", period: "2022 年 8 月至 12 月", location: "美国密歇根州安娜堡", highlights: ["共同指导 13 个团队、51 名学生完成基于模型的系统工程（MBSE）项目，从梳理利益相关方需求到建立验证模型。"] },
-      { company: "Varian Medical Systems（西门子医疗旗下）", role: "系统工程实习生", period: "2022 年 6 月至 9 月", location: "美国加利福尼亚州帕洛阿尔托", highlights: ["用 MATLAB 开发测试计划和束流数据处理工具，用于放疗系统验证。"] },
-      { company: "Contemporary Intelligent Manufacturing Co. Ltd.", role: "机械工程实习生", period: "2021 年 5 月至 8 月", location: "中国宁德", highlights: ["部署非接触式测厚系统，满足 10,000 美元成本上限和 0.2 微米测量目标。"] },
-      { company: "上海智驾汽车科技有限公司（MAXIEYE）", role: "系统工程实习生", period: "2020 年 3 月至 6 月", location: "中国上海", highlights: ["编写 L2 碰撞预警需求与验证计划，并开发 MATLAB CAN 信号工具。"] },
+      { company: "Aptiv Corporation（安波福）", role: "整车系统问题分析工程师 / VSDA 团队技术负责人", period: "2023年2月至今", location: "美国密歇根州特洛伊", highlights: ["部署三个基于 Python 的 AI/LLM 智能体，处理发布邮件、生成报告，并辅助 Jira 问题分析与分派。", "自动化生成 1,000 余项 Jira 用户故事，并通过 Jenkins 生成接近实时更新的报告。", "负责九个 ADAS 项目的问题分析与分派，亲自处理 267 项、统筹 430 余项；两次获得最高等级绩效评价。"] },
+      { company: "密歇根大学工程学院", role: "系统工程课程研究生助教（ISD 521）", period: "2022年8月至12月", location: "美国密歇根州安娜堡", highlights: ["共同指导 13 个团队、51 名学生完成基于模型的系统工程（MBSE）项目，从梳理利益相关方需求到建立验证模型。"] },
+      { company: "Varian Medical Systems（西门子医疗旗下）", role: "系统工程实习生", period: "2022年6月至9月", location: "美国加利福尼亚州帕洛阿尔托", highlights: ["用 MATLAB 开发测试计划和束流数据处理工具，用于放疗系统验证。"] },
+      { company: "Contemporary Intelligent Manufacturing Co. Ltd.", role: "机械工程实习生", period: "2021年5月至8月", location: "中国宁德", highlights: ["部署非接触式测厚系统，满足 10,000 美元成本上限和 0.2 微米测量目标。"] },
+      { company: "上海智驾汽车科技有限公司（MAXIEYE）", role: "系统工程实习生", period: "2020年3月至6月", location: "中国上海", highlights: ["编写 L2 碰撞预警需求与验证计划，并开发 MATLAB CAN 信号工具。"] },
     ],
     education: [
-      { school: "密歇根大学安娜堡分校", credential: "工程硕士 / 系统工程与设计", period: "2022 年 12 月", detail: "汽车工程方向 · GPA 3.9" },
-      { school: "上海交通大学", credential: "理学学士 / 机械工程", period: "2021 年 8 月", detail: "GPA 3.6" },
+      { school: "密歇根大学安娜堡分校", credential: "工程硕士 / 系统工程与设计", period: "2022年12月", detail: "汽车工程方向 · GPA 3.9" },
+      { school: "上海交通大学", credential: "理学学士 / 机械工程", period: "2021年8月", detail: "GPA 3.6" },
     ],
-    publications: english.resume.publications,
+    publications: [
+      { ...english.resume.publications[0], title: "融合无监督聚类方法，分析不同涡流比条件下的缸内涡流运动", originalTitle: english.resume.publications[0].title },
+      { ...english.resume.publications[1], title: "用于大范围、高空间分辨率海洋观测的空水两栖航行器", originalTitle: english.resume.publications[1].title },
+    ],
   },
   focusAreas: [
     { title: "AI 生成的内容要有依据", description: "用类型约束和事实校验核对生成结果。" },

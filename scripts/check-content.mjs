@@ -60,6 +60,7 @@ for (const configFile of configFiles) {
 /* ── 2. Assets the site links to must actually exist ─────────────────── */
 const REQUIRED_ASSETS = [
   { file: path.join("public", "resume.pdf"), why: "the résumé download link would 404" },
+  { file: path.join("public", "resume-zh.pdf"), why: "the Chinese résumé download link would 404" },
   { file: path.join("public", "og.png"), why: "social previews would break" },
 ];
 

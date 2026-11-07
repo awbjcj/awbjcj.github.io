@@ -13,8 +13,8 @@ export const experience = [
     description: "The same permissions and budgets apply to chat, each user's scheduled tasks, and the optional Teams bridge. Writes to Jira, Confluence, and Polarion require administrator review, a fresh target check, and a persistent record of the claimed change.",
   },
   {
-    label: "Multi-provider LLM interoperability",
-    title: "Model selection with capability-aware routing",
+    label: "Multiple model providers",
+    title: "Choosing models by capability",
     description: "Pantry Manager supports Anthropic, OpenAI, Gemini, and DeepSeek. Receipt parsing falls back to a vision-capable provider when the selected text model cannot process images.",
     link: "https://github.com/awbjcj/pantry-manager",
   },

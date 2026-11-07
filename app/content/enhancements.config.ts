@@ -11,6 +11,7 @@ export const enhancements = {
     title: "Find your way around.",
     search: "Search sections, projects, or technologies…",
     empty: "No matches. Try a project or technology name.",
+    results: "Search results",
     sections: "Jump to a section",
     projects: "Explore a project",
     links: "Get in touch",

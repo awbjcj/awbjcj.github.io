@@ -1,5 +1,6 @@
 /** This single-page site's query and fragment URLs belong to the browser. */
 export const preferenceEvent = "portfolio-preferences";
+export const localHistoryEvent = "portfolio-local-history";
 type ScrollPosition = { x: number; y: number };
 
 export function pushLocalUrl(url: URL) {
@@ -39,23 +40,22 @@ export function installLocalNavigation() {
     jumpToAnchor(url.hash);
   }
 
-  function onPopState(event: PopStateEvent) {
-    if (window.location.pathname !== pathname) return;
-    // Capture before the framework's server-navigation handler. Notify the
-    // preference store explicitly because this traversal stays in the document.
-    event.stopImmediatePropagation();
+  function onLocalHistory(event: Event) {
+    // The head initializer intercepts same-page history before the framework
+    // can request a server navigation for a language or fragment change.
     window.dispatchEvent(new Event(preferenceEvent));
     if (window.location.hash) focusAnchor(window.location.hash);
     else {
-      const scroll: ScrollPosition | undefined = event.state?.portfolioScroll;
+      const state = (event as CustomEvent<{ portfolioScroll?: ScrollPosition } | null>).detail;
+      const scroll = state?.portfolioScroll;
       window.scrollTo({ left: scroll?.x ?? 0, top: scroll?.y ?? 0, behavior: "instant" });
     }
   }
 
   document.addEventListener("click", onClick, true);
-  window.addEventListener("popstate", onPopState, true);
+  window.addEventListener(localHistoryEvent, onLocalHistory);
   return () => {
     document.removeEventListener("click", onClick, true);
-    window.removeEventListener("popstate", onPopState, true);
+    window.removeEventListener(localHistoryEvent, onLocalHistory);
   };
 }

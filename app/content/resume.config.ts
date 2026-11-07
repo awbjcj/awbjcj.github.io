@@ -20,7 +20,7 @@ export const resume = {
       period: "Aug 2022 — Dec 2022",
       location: "Ann Arbor, Michigan",
       highlights: [
-        "Co-guided 51 students across 13 teams through an MBSE project from stakeholder needs to validation models.",
+        "Helped guide 51 students in 13 teams through an MBSE project, from stakeholder needs to validation models.",
       ],
     },
     {
