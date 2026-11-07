@@ -13,7 +13,6 @@ import {
 } from "./components/portfolio";
 import { profile } from "./content";
 import { PortfolioProvider } from "./components/portfolio/preferences";
-import { PortfolioEffects } from "./components/portfolio/enhancements";
 
 export function generateMetadata(): Metadata {
   return {
@@ -40,16 +39,14 @@ export default function Home() {
     <PortfolioProvider>
       <SiteHeader />
       <main id="main-content" className="main-content" tabIndex={-1}>
-        <PortfolioEffects>
-          <HeroSection />
-          <LiveProductsSection />
-          <ProjectsSection />
-          <ExperienceSection />
-          <ResumeSection />
-          <PrinciplesSection />
-          <ToolkitSection />
-          <ContactSection />
-        </PortfolioEffects>
+        <HeroSection />
+        <PrinciplesSection />
+        <LiveProductsSection />
+        <ProjectsSection />
+        <ExperienceSection />
+        <ResumeSection />
+        <ToolkitSection />
+        <ContactSection />
       </main>
       <SiteFooter />
     </PortfolioProvider>

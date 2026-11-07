@@ -1,5 +1,32 @@
 # Project content evidence
 
+## Portfolio redesign content direction — 2026-11-07
+
+The owner requested removing Deep Agents UI from the portfolio and featuring
+Enterprise Automation Workflow and Requirement Buddy. The owner identified the
+former application by its Jira-Polarion-automation name during this design
+review; this page uses the requested Enterprise Automation Workflow display
+name. Historical Deep Agents UI evidence below
+records the earlier portfolio and is no longer rendered on the page.
+
+Enterprise Automation Workflow copy was checked against local revision
+`db289da22d8f0f8592234e1e39858c972004761e`, including
+`automation_concurrency.py`, `docs/bulk-concurrency.md`, the Jira/Confluence
+clients, `Jyrania/`, and `PolarionAPI/batch_export_polarion_pdf.py`. These support
+bounded concurrency, ordered results, rejection of incomplete Jira searches,
+reporting, coordinated tools, and retryable Polarion exports. The remote
+default branch had advanced to `aefa890fcb8f16eebeae10377fe2e787bbcf0e47`
+during this review; no assertion is made about unreviewed changes at that head.
+
+Requirement Buddy's local and remote `master` both resolved to
+`d74e9a07a21e5a6847ebb553cd5eff8964928018`. Its dossier and SDK implementation
+support the case study's explicit authoring/review stages, resumable runs,
+source freshness, reviewed publication batches, and read-back checks. Both
+private projects remain unlinked. These descriptions establish implementation
+scope, not hosted availability or live-provider acceptance.
+
+## Earlier project review
+
 Refreshed 2026-10-31 against GitHub's default-branch heads using the connected
 GitHub account and live remote ref checks. The revisions below pin the reviewed
 implementation, rather than the older snapshots named inside some project
@@ -53,7 +80,7 @@ and repository-relative paths record the review without publishing private URLs.
 | Requirement Buddy (`requirement-buddy` repository) | `d746fa4a1fe312aa8ab722bff9f71ab0a4ea7ed0` / `master` | `requirement-buddy-dossier.md`; `src/requirement-buddy-sdk/src/requirement_buddy_sdk/{freshness,batches,runtime,store}.py`; `tools/polarion-workitems/src/polarion_workitems/{publication,test_tools,test_management}.py`. Source-revision checks, reviewed batches, resumable execution, and read-back-verified test-management writes. |
 | VSDA Deep Agent | `efd574469409e53a330243c7afea8ca49b87d76a` / `dev` | `vsda-deep-agent-dossier.md`; `src/backends/scheduled_tasks/{contracts,store,worker}.py`; `docs/agent/scheduled-tasks.md`; `src/backends/teams_chat/`; `src/deep_agent/mutations/`; `src/deep_agent/tools/sharepoint_tools.py`; `src/personal_skills/`. Governed schedules, opt-in Teams ingress, reviewed enterprise writes, retrieval, and revisioned private skills. The task-focused candidate is disabled by default and is not described as accepted production behavior. |
 | Release-Email Intelligence Pipeline | `b76246107192bbc3c264026ff6e90fb5dfff96af` / `main` | `src/batch_process_email_releases.py`; `src/graph_token_receiver.py`; `tests/test_release_failure_recovery.py`; `tests/test_run_notifications.py`; `README.md`. Failed extractions remain retryable, reviewer dependencies are served locally, and remote token posts require HTTPS by default, with loopback and explicit operator-override exceptions. Queued jobs are not reported as completed builds. |
-| Enterprise Engineering Automation | `a0c0c394a85ad4a2fe1435c35a9c249c34053fed` / `David_Dev` | `docs/bulk-concurrency.md`; `automation_concurrency.py`; `PolarionAPI/`; the component dossiers. Adaptive concurrency is bounded per batch, preserves input order, and supports live operator limits; incomplete Jira searches fail closed. Polarion PDF exports retry dropped connections and deferred timeouts. |
+| Enterprise Automation Workflow | `a0c0c394a85ad4a2fe1435c35a9c249c34053fed` / `David_Dev` | `docs/bulk-concurrency.md`; `automation_concurrency.py`; `PolarionAPI/`; the component dossiers. Adaptive concurrency is bounded per batch, preserves input order, and supports live operator limits; incomplete Jira searches fail closed. Polarion PDF exports retry dropped connections and deferred timeouts. |
 | Confluence Wiki Maintainer | `3287b1ff8a2d66b58360014a6eb3c0aae0471b15` / `master` | `README.md`; `docs/human-review.md`; `src/confluence_wiki_maintainer/{models,artifacts,preview,publish}.py`. Copilot/Codex workers exchange validated files; independent content/diagram review precedes digest-authorized publication. Human preview approval is optional per run, and receipts bind the exact content, target, images, and preview. The host owns storage XML and page-version checks. |
 
 The selected-work list adds Confluence Wiki Maintainer while retaining the

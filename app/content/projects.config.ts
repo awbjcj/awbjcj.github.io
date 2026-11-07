@@ -66,24 +66,6 @@ export const projects = [
     }
   },
   {
-    "id": "console",
-    "name": "Deep Agents UI",
-    "kind": "Customized open-source frontend",
-    "signal": "TASK SCHEDULING · SOURCE PREVIEWS",
-    "description": "A customized LangChain console with authentication, usage budgets, and scheduled tasks. Chat resumes from current checkpoints and keeps each approval tied to the interrupt that requested it. File mentions, queued messages, and previews of artifacts, LLM Wiki search results, page metadata, and source images support ongoing work.",
-    "skills": [
-      "Next.js",
-      "React",
-      "TypeScript",
-      "LangGraph SDK",
-      "Radix UI"
-    ],
-    "repo": {
-      "href": "https://github.com/awbjcj/deep-agents-ui",
-      "label": "Source"
-    }
-  },
-  {
     "id": "requirements",
     "name": "Requirement Buddy",
     "kind": "Requirements engineering workflow",
@@ -121,7 +103,7 @@ export const projects = [
   },
   {
     "id": "enterprise",
-    "name": "Enterprise Engineering Automation",
+    "name": "Enterprise Automation Workflow",
     "kind": "Integration libraries & agents",
     "signal": "BOUNDED CONCURRENCY · RECOVERABLE EXPORTS",
     "description": "Python clients and workflows connect Jira, Polarion, Confluence, Teams, and email through typed interfaces. Bulk retrieval adjusts concurrency within operator limits, keeps input order, and rejects incomplete Jira searches. Polarion exports retry dropped connections and deferred timeouts. SOAP and REST clients share test-result image handling.",

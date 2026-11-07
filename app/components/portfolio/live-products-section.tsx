@@ -17,11 +17,8 @@ export function LiveProductsSection() {
 
             return (
               <article className="live-card" key={product.name}>
-                <div className="live-head">
-                  <span className="live-status"><i aria-hidden="true" /> {sections.live.statusLabel}</span>
-                  <p className="live-tagline">{product.tagline}</p>
-                </div>
                 <h3>{product.name}</h3>
+                <div className="live-head"><p className="live-tagline">{product.tagline}</p><span className="live-status">{sections.live.statusLabel}</span></div>
                 <p className="live-copy">{product.description}</p>
                 <ul className="live-facts">
                   {product.facts.map((fact) => <li key={fact}>{fact}</li>)}
@@ -40,7 +37,7 @@ export function LiveProductsSection() {
                         <input id={`${fieldIdPrefix}-email`} name="email" type="email" autoComplete="email" required placeholder={product.trial.emailPlaceholder} />
                       </label>
                     </div>
-                    <button className="button button-signal" type="submit">
+                    <button className="button button-primary" type="submit">
                       {product.trial.submitLabel} <ArrowIcon /><ExternalLinkHint destination="registration" />
                     </button>
                     <p className="trial-note">{product.trial.note}</p>

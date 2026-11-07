@@ -17,17 +17,14 @@ export function ProjectsSection() {
           count={`${projects.length} ${section.countNoun}`}
         />
         <div className="project-grid">
-          {projects.map((project, projectIndex) => (
+          {projects.map((project) => (
             <article className="project-card" id={`project-${project.id}`} key={project.id}>
               <div className="project-head">
-                <div className="project-meta">
-                  <span>{project.kind}</span>
-                  <span className="project-index" aria-hidden="true">{String(projectIndex + 1).padStart(2, "0")}</span>
-                </div>
+                <h3>{project.name}</h3>
+                <p className="project-kind">{project.kind}</p>
                 <p className="project-signal">{project.signal}</p>
               </div>
               <div className="project-content">
-                <h3>{project.name}</h3>
                 <p>{project.description}</p>
                 <ul className="tags" aria-label={`${project.name} ${siteConfig.accessibility.technologies}`}>
                   {project.skills.map((skill) => <li key={skill}>{skill}</li>)}

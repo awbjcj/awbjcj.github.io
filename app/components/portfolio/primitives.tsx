@@ -27,21 +27,11 @@ export function ExternalLinkHint({ destination }: { destination?: string }) {
   return <span className="sr-only"> ({destination === "GitHub" || destination === "LinkedIn" ? `${destination}: ` : ""}{siteConfig.accessibility.newTab})</span>;
 }
 
-/** Section eyebrow. `count` is shown only where a total is genuinely informative. */
-export function Label({ children, count }: { children: string; count?: string }) {
-  return (
-    <p className="label">
-      {children}
-      {count ? <span className="count">{count}</span> : null}
-    </p>
-  );
-}
-
 /**
  * Renders authored copy while keeping unfinished placeholders visible locally.
  * The content publishing gate prevents this authoring state from shipping.
  */
-export function Field({ value, as: Tag = "span" }: { value: string; as?: "span" | "h3" | "p" }) {
+export function Field({ value, as: Tag = "span" }: { value: string; as?: "span" | "h3" | "h4" | "p" }) {
   const { siteConfig } = useContent();
   if (!isPlaceholder(value)) return <Tag>{value}</Tag>;
   return (
@@ -52,8 +42,8 @@ export function Field({ value, as: Tag = "span" }: { value: string; as?: "span" 
   );
 }
 
-export function SectionHeading({ label, title, description, count }: {
-  label: string;
+export function SectionHeading({ title, description, count }: {
+  label?: string;
   title: string;
   description: string;
   count?: string;
@@ -61,8 +51,8 @@ export function SectionHeading({ label, title, description, count }: {
   return (
     <div className="section-heading">
       <div>
-        <Label count={count}>{label}</Label>
         <h2>{title}</h2>
+        {count ? <span className="section-count">{count}</span> : null}
       </div>
       <p>{description}</p>
     </div>

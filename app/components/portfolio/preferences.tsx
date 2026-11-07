@@ -3,6 +3,7 @@
 import { createContext, useContext, useEffect, useSyncExternalStore, type ReactNode } from "react";
 import { english, type ContentCatalog, type Locale } from "../../content/catalog";
 import { chinese } from "../../content/zh-CN.config";
+import { TechnicalIcon } from "./technical-icon";
 import { installLocalNavigation, preferenceEvent, pushLocalUrl } from "./local-navigation";
 
 const ContentContext = createContext<ContentCatalog>(english);
@@ -97,6 +98,7 @@ export function PreferenceControls() {
   return (
     <div className="preference-controls" role="group" aria-label={preferences.label}>
       <label className="language-control">
+        <TechnicalIcon name="globe" />
         <span className="sr-only">{preferences.language}</span>
         <select value={locale} onChange={(event) => changeLocale(event.target.value as Locale)}>
           <option value="en" lang="en">EN</option>

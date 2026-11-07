@@ -12,7 +12,7 @@ test("exports the finished portfolio", async () => {
   assert.match(html, /Jiajin \(David\) Wu/);
   assert.match(html, /Engineered end to end/);
   assert.match(html, /Resume Tailor Harness/);
-  assert.match(html, /Engineering experience/);
+  assert.match(html, /Systems and responsibilities/);
   assert.match(html, /og\.png/);
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton|Your site is taking shape/i);
 });
@@ -38,17 +38,19 @@ test("includes accessible navigation and public project links", async () => {
   assert.match(css, /prefers-reduced-motion/);
   assert.match(css, /prefers-contrast: more/);
   assert.match(css, /forced-colors: active/);
-  assert.match(css, /--accent-ink: #087a50/);
 });
 
-test("keeps repeated portfolio text on shared alignment rails", async () => {
+test("ships an accessible casebook and a complete fallback project catalog", async () => {
   const html = await render();
-  const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
-  assert.match(html, /class="experience-body"/);
-  assert.match(css, /--content-grid: minmax\(0, 4fr\) minmax\(0, 8fr\)/);
-  assert.match(css, /--detail-label-width: 160px/);
-  assert.match(css, /\.project-content h3 \{[\s\S]*?min-block-size: 2\.4em/);
-  assert.match(css, /\.experience-body \{[\s\S]*?grid-template-columns: minmax\(0, 1fr\) auto/);
+  assert.match(html, /role="tablist" aria-label="Choose a project"/);
+  assert.equal((html.match(/role="tab"/g) ?? []).length, 4);
+  assert.match(html, /id="project-case" role="tabpanel" aria-labelledby="case-title"/);
+  assert.match(html, /class="mobile-project-select"/);
+  for (const id of ["resume", "food", "video", "requirements", "vsda", "release", "enterprise", "wiki"]) {
+    assert.ok(html.includes(`id="project-${id}"`));
+  }
+  assert.match(html, /Enterprise Automation Workflow/);
+  assert.doesNotMatch(html, /Deep Agents UI/);
 });
 
 test("renders the résumé section with a timeline, education, publications, and a download", async () => {
@@ -157,7 +159,7 @@ test("includes reviewed GitHub additions and keeps private repositories unlinked
 
   // Cards without a public repository say so rather than offering a dead link.
   assert.match(html, /Private repository/);
-  assert.doesNotMatch(html, /github\.com\/awbjcj\/(vsda-deep-agent|LangGraph-test|Jira-Polarion-automation|requirement-buddy)/);
+  assert.doesNotMatch(html, /github\.com\/awbjcj\/(vsda-deep-agent|LangGraph-test|Jira-Polarion-automation|enterprise-automation-workflow|requirement-buddy)/);
 });
 
 test("renders accessible preference controls and a theme initializer before the body", async () => {

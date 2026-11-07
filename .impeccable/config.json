@@ -1,0 +1,17 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "side-tab",
+        "value": "*",
+        "files": [
+          "app/globals.css"
+        ],
+        "createdAt": "2026-11-07T17:18:10.586Z",
+        "reason": "Agent: the flagged borders form triangle arrowheads on .flow-arrow::after and .flow-route-result::before in the intentional technical workflow diagram."
+      }
+    ]
+  }
+}

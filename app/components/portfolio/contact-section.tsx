@@ -2,7 +2,7 @@
 
 import { useContent } from "./preferences";
 import { isPlaceholder } from "../../content";
-import { ArrowIcon, ExternalLinkHint, Label } from "./primitives";
+import { ArrowIcon, ExternalLinkHint } from "./primitives";
 
 export function ContactSection() {
   const { contact, profile, siteConfig } = useContent();
@@ -11,11 +11,11 @@ export function ContactSection() {
   return (
     <section className="contact-section" id="contact">
       <div className="wrap">
-        <Label>{section.label}</Label>
         <h2>{section.title}</h2>
+        <p className="contact-summary">{profile.summary}</p>
 
         <div className="contact-actions">
-          <a className="button button-light" href={`mailto:${contact.email}`}>{section.actionLabel} <ArrowIcon /></a>
+          <a className="button button-primary" href={`mailto:${contact.email}`}>{section.actionLabel} <ArrowIcon /></a>
           <p>{profile.availability}</p>
         </div>
 

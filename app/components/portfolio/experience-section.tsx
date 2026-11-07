@@ -17,11 +17,11 @@ export function ExperienceSection() {
           count={`${experience.length} ${section.countNoun}`}
         />
         <div className="experience-list">
-          {experience.map((item, itemIndex) => (
+          {experience.map((item) => (
             <article className="experience-item" key={item.title}>
               <div className="experience-title">
-                <p><span aria-hidden="true">{String(itemIndex + 1).padStart(2, "0")}</span>{item.label}</p>
                 <h3>{item.title}</h3>
+                <p>{item.label}</p>
               </div>
               <div className="experience-body">
                 <p className="experience-copy">{item.description}</p>

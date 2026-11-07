@@ -30,7 +30,7 @@ export function ResumeSection() {
                 <li className="resume-entry" key={index}>
                   <div className="resume-period"><Field value={role.period} /></div>
                   <div className="resume-detail">
-                    <Field as="h3" value={role.role} />
+                    <Field as="h4" value={role.role} />
                     <p className="resume-org">
                       <Field value={role.company} /> <span aria-hidden="true">·</span> <Field value={role.location} />
                     </p>
@@ -50,7 +50,7 @@ export function ResumeSection() {
                 <li className="resume-entry" key={index}>
                   <div className="resume-period"><Field value={entry.period} /></div>
                   <div className="resume-detail">
-                    <Field as="h3" value={entry.credential} />
+                    <Field as="h4" value={entry.credential} />
                     <p className="resume-org"><Field value={entry.school} /></p>
                     <p className="resume-note"><Field value={entry.detail} /></p>
                   </div>
@@ -64,12 +64,12 @@ export function ResumeSection() {
                 <li className="resume-entry" key={index}>
                   <div className="resume-period"><Field value={publication.year} /></div>
                   <div className="resume-detail">
-                    <h3>
+                    <h4>
                       <a className="resume-publication-link" href={publication.href} target="_blank" rel="noreferrer">
                         <Field value={publication.title} /> <ArrowIcon />
                         <ExternalLinkHint destination="publication" />
                       </a>
-                    </h3>
+                    </h4>
                     <p className="resume-org"><Field value={publication.authors} /></p>
                     <p className="resume-note"><Field value={publication.venue} /></p>
                   </div>

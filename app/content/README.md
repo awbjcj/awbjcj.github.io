@@ -10,12 +10,19 @@ change to `app/page.tsx`.
 | --- | --- |
 | Name, intro, contact links, navigation, or section headings | `site.config.ts` |
 | A selected project | `projects.config.ts` |
+| A featured case sheet, workflow, or architecture diagram | `casebook.config.ts` |
 | An evidence-backed engineering story | `experience.config.ts` |
 | A job, internship, education entry, or publication | `resume.config.ts` |
 | A skill, skill group, or working principle | `skills.config.ts` |
 
 Items appear in the same order as their objects in each list. Copy an existing
 object, paste it where the new item should appear, and replace its values.
+
+The first-screen casebook uses the IDs in `featuredProjectIds` in
+`casebook.config.ts`. Update its English and Chinese case copy together;
+project names, public links, and technologies still come from the project
+catalog. Every catalog entry remains available below the casebook, including
+without JavaScript. `zh-CN.config.ts` holds the remaining translated content.
 
 ## Add a project
 

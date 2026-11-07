@@ -1,9 +1,11 @@
 import { english, type ContentCatalog } from "./catalog";
 import { projects } from "./projects.config";
 import type { ProjectConfig } from "./types";
+import { casebookChinese } from "./casebook.config";
 
 // Proper names, publication titles, URLs, and technology names retain their source spelling.
 export const chinese: ContentCatalog = {
+  casebook: casebookChinese,
   enhancements: {
     menu: {
       open: "快速导航", title: "找到你感兴趣的内容", search: "搜索栏目、项目或技术名称…",
@@ -80,20 +82,19 @@ export const chinese: ContentCatalog = {
       resume: { kind: "全栈应用", signal: "证据核验 · PDF 排版审阅", description: "查找职位，并根据个人资料中的证据定制简历。Gmail、Outlook 和 IMAP 邮件分析会提出申请状态更新，供用户审核。外部智能体可检查答案版本、校验附件后准备申请。Typst 导出支持有来源依据的扩展栏目，也会检查页面是否超限，并提供排版预览供审阅。" },
       food: { kind: "家庭助手与 Mini App", signal: "共享食材 · Telegram、Slack 与 WhatsApp", description: "通过 Telegram 机器人和多语言 Mini App 扫描小票、共享食材清单、接收到期提醒并安排餐食。采购记录可按商店分组，批量修改需先确认，饮食偏好会根据使用记录更新。自托管部署还可连接 Slack 和 WhatsApp，沿用同一套家庭权限。" },
       video: { kind: "本地视频工具", signal: "保存审核计划 · 文件隔离", description: "用 FFmpeg 和缓存指纹找出重复视频及相同片段。在浏览器中查看匹配结果，重新打开已保存的审核计划，并跟进扫描和移除进度。同一文件在不同片段组中的选择会同步更新。确认移除后，程序先检查保留视频能否覆盖其内容，再把文件移入隔离目录。" },
-      console: { kind: "开源前端定制", signal: "任务调度 · 来源预览", description: "基于 LangChain 控制台定制，加入身份认证、用量预算和定时任务。聊天可从当前检查点继续，每项审批都对应最初触发它的暂停请求。支持文件引用、消息排队，以及生成文件、LLM Wiki 搜索结果、页面元数据和来源图片的预览。" },
       vsda: { kind: "企业智能体平台", signal: "定时任务 · 企业资料检索", description: "LangGraph 主智能体在统一权限和预算约束下调用企业工具、混合检索，并在隔离环境中分析代码。用户可以设置自己的定时任务，也可以启用 Teams 入口。写入经审核后还需复核目标；SharePoint 文件下载和带版本记录的私有技能保留来源上下文。" },
       requirements: { kind: "需求工程工作流", signal: "版本核对 · ALM 写入验证", description: "Requirement Buddy 是一个工程工作台，用于资料调研、需求起草、独立评审和验证。SDK 工作流可在中断后恢复，复用资料前会检查来源版本。Jira、Confluence 和 Polarion 分别通过独立的 MCP 服务处理审核后的批量发布，并回读测试执行的写入结果，确认是否成功。" },
       release: { kind: "工程自动化", signal: "提取失败可重试 · 构建状态可追溯", description: "从发布邮件中提取带类型约束的记录，生成 Jenkins 构建请求；提取失败的邮件会保留，供后续重试。容器化审核界面在本地提供浏览器依赖，默认要求远程 Graph 令牌更新使用 HTTPS。运行摘要会列出故障，并区分已入队的请求与已完成的构建。" },
       enterprise: { kind: "集成库与智能体", signal: "并发量可控 · 导出失败可重试", description: "Python 客户端和工作流通过带类型约束的接口连接 Jira、Polarion、Confluence、Teams 与邮件。批量检索会在操作员设定范围内调整并发量，保持输入顺序，并拒绝不完整的 Jira 搜索结果。Polarion 导出会重试断开的连接和延后处理的超时任务；SOAP 与 REST 客户端共用测试结果图片处理逻辑。" },
       wiki: { kind: "Confluence 内容编写流程", signal: "独立评审 · 审批回执", description: "Copilot 或 Codex 负责资料调研、页面起草，以及正文和本地渲染图表的独立评审。Python 运行层校验各阶段交接的文件，生成 Confluence XML，并检查页面版本。发布必须对应已批准的内容摘要；还可启用人工审核，预览页面并保存审批回执。" },
     };
-    return { ...project, ...copy[entry.id], repo: project.repo && { ...project.repo, label: "源码" }, live: project.live && { ...project.live, label: project.id === "food" ? "在 Telegram 中打开" : "打开应用" }, skills: project.skills.map((skill) => ({ "LLM routing": "LLM 路由", "Validation": "校验", "Hybrid RAG": "混合检索 RAG" }[skill] ?? skill)) };
+    return { ...project, ...copy[entry.id], name: entry.id === "enterprise" ? "企业自动化工作流" : project.name, repo: project.repo && { ...project.repo, label: "源码" }, live: project.live && { ...project.live, label: project.id === "food" ? "在 Telegram 中打开" : "打开应用" }, skills: project.skills.map((skill) => ({ "LLM routing": "LLM 路由", "Validation": "校验", "Hybrid RAG": "混合检索 RAG" }[skill] ?? skill)) };
   }),
   experience: [
     { label: "智能体平台开发", title: "修改企业系统内容前，先让人审核", description: "聊天、用户自己的定时任务和可选的 Teams 入口都使用同一套权限与预算。向 Jira、Confluence 和 Polarion 写入内容前，需经管理员审核、重新核对目标，并持久保存变更登记。" },
     { label: "多家模型服务集成", title: "按任务需要，选择合适的模型", description: "Pantry Manager 接入了 Anthropic、OpenAI、Gemini 和 DeepSeek。如果当前文本模型无法处理图片，小票解析会改用支持图像识别的模型服务。", link: "https://github.com/awbjcj/pantry-manager" },
     { label: "AI 输出核验", title: "简历里的每项陈述，都要有依据", description: "简历核验会检查资料引用、技能名称和数值证据，也覆盖扩展栏目。排版单独审阅：Typst 检查页面是否超限，评审者查看实际渲染的页面。每份生成文件都会记录所用流程经过校验的技能标识。", link: "https://github.com/awbjcj/resume-tailor-harness" },
-    { label: "实时交互界面", title: "从最新检查点接着运行", description: "定制的 LangGraph 控制台实时显示模型输出和状态，可从当前检查点继续。每项审批都对应最初触发它的暂停请求。用户可以在聊天中管理定时任务、引用文件和预览来源图片，跟进后台工作并查看依据。", link: "https://github.com/awbjcj/deep-agents-ui" },
+    { label: "可恢复的工程工作流", title: "先评审成果，再核对发布结果", description: "Requirement Buddy 将资料调研、需求起草、独立评审和验证分为不同阶段。运行状态持久保存，中断后可以继续；复用资料前检查来源版本。审核后的发布批次会核对内容与目标，再写入工程工具并回读结果。" },
     { label: "技术团队协调", title: "统筹九个 ADAS 项目、430 余项问题的分析与分派", description: "亲自分析并分派了 267 项问题，统筹九个 ADAS 项目中超过 430 项问题的处理，并协调算法、集成、测试和数据挖掘团队。" },
   ],
   resume: {

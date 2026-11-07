@@ -25,10 +25,9 @@ export const experience = [
     link: "https://github.com/awbjcj/resume-tailor-harness",
   },
   {
-    label: "Real-time streaming interfaces",
-    title: "Continuing agent runs from current state",
-    description: "The customized LangGraph console streams tokens and state and resumes from current checkpoints. Approvals stay tied to the interrupts that requested them. Users can manage scheduled tasks, mention files, and preview source images from chat to follow background work and inspect its evidence.",
-    link: "https://github.com/awbjcj/deep-agents-ui",
+    label: "Resumable engineering workflows",
+    title: "Reviewing artifacts and verifying publication",
+    description: "Requirement Buddy separates source research, requirements drafting, independent review, and verification. Persisted runs resume after interruption. Source-revision checks protect reuse, and reviewed publication batches recheck their payloads and targets before writing to engineering tools and reading the results back.",
   },
   {
     label: "Technical leadership",
