@@ -36,50 +36,50 @@ colors:
 typography:
   display:
     fontFamily: '"Kantumruy Pro", "Noto Sans SC", "PingFang SC", "Microsoft YaHei UI", "Microsoft YaHei", sans-serif'
-    fontSize: "min(calc(49 * var(--u)), 6rem)"
+    fontSize: "var(--text-display)"
     fontWeight: 700
     lineHeight: 1.1
     letterSpacing: "-.02em"
   headline:
     fontFamily: '"Kantumruy Pro", "Noto Sans SC", "PingFang SC", "Microsoft YaHei UI", "Microsoft YaHei", sans-serif'
-    fontSize: "clamp(28px, 2.5vw, 44px)"
+    fontSize: "var(--text-section)"
     fontWeight: 700
     lineHeight: 1.12
     letterSpacing: "-.02em"
   title:
     fontFamily: '"Kantumruy Pro", "Noto Sans SC", "PingFang SC", "Microsoft YaHei UI", "Microsoft YaHei", sans-serif'
-    fontSize: "clamp(22px, 1.6vw, 28px)"
+    fontSize: "var(--text-title)"
     fontWeight: 700
     lineHeight: 1.25
     letterSpacing: "-.02em"
   body:
     fontFamily: '"Kantumruy Pro", "Noto Sans SC", "PingFang SC", "Microsoft YaHei UI", "Microsoft YaHei", sans-serif'
-    fontSize: "16px"
+    fontSize: "var(--text-body)"
     fontWeight: 400
-    lineHeight: 1.55
+    lineHeight: 1.65
   body-long:
     fontFamily: '"Kantumruy Pro", "Noto Sans SC", "PingFang SC", "Microsoft YaHei UI", "Microsoft YaHei", sans-serif'
-    fontSize: "17px"
+    fontSize: "var(--text-body)"
     fontWeight: 400
     lineHeight: 1.65
   label:
     fontFamily: '"Kantumruy Pro", "Noto Sans SC", "PingFang SC", "Microsoft YaHei UI", "Microsoft YaHei", sans-serif'
-    fontSize: "14px"
+    fontSize: "var(--text-caption)"
     fontWeight: 400
     lineHeight: 1.55
   button:
     fontFamily: '"Kantumruy Pro", "Noto Sans SC", "PingFang SC", "Microsoft YaHei UI", "Microsoft YaHei", sans-serif'
-    fontSize: "clamp(13px, .897vw, 16px)"
+    fontSize: "var(--text-small)"
     fontWeight: 500
     lineHeight: 1.4
   navigation:
     fontFamily: '"Kantumruy Pro", "Noto Sans SC", "PingFang SC", "Microsoft YaHei UI", "Microsoft YaHei", sans-serif'
-    fontSize: "calc(20 * var(--u))"
+    fontSize: "var(--text-body)"
     fontWeight: 500
     lineHeight: 1.55
   technical:
     fontFamily: '"JetBrains Mono", ui-monospace, monospace'
-    fontSize: "calc(20 * var(--u))"
+    fontSize: "var(--text-lead)"
     fontWeight: 500
     lineHeight: 1.4
     letterSpacing: ".01em"
@@ -105,7 +105,7 @@ components:
     textColor: "{colors.action-on-fill}"
     typography: "{typography.button}"
     rounded: "{rounded.control}"
-    padding: "5px 12px"
+    padding: "8px 12px"
   button-primary-hover:
     backgroundColor: "{colors.action-hover}"
     textColor: "{colors.action-on-fill}"
@@ -114,7 +114,7 @@ components:
     textColor: "{colors.ink}"
     typography: "{typography.button}"
     rounded: "{rounded.control}"
-    padding: "5px 12px"
+    padding: "8px 12px"
   button-outline-hover:
     backgroundColor: "{colors.surface-sunk}"
   trial-input:
@@ -141,19 +141,19 @@ components:
     backgroundColor: "{colors.surface}"
     textColor: "{colors.ink}"
     rounded: "{rounded.node}"
-    padding: "calc(8 * var(--u))"
+    padding: "16px"
   architecture-processor:
     backgroundColor: "{colors.surface-sunk}"
   route-pass:
     backgroundColor: "{colors.pass-bg}"
     textColor: "{colors.pass-ink}"
     rounded: "{rounded.tag}"
-    padding: "5px"
+    padding: "16px"
   route-review:
     backgroundColor: "{colors.review-bg}"
     textColor: "{colors.review-ink}"
     rounded: "{rounded.tag}"
-    padding: "5px"
+    padding: "16px"
   project-tab-selected:
     textColor: "{colors.accent-ink}"
   command-dialog:
@@ -307,3 +307,20 @@ A stroked paper dialog contains a heading, close control, search field, grouped 
 - **Don't** replace exact source colors with the sidecar's synthesized preview ramps.
 - **Don't** turn static technology tags or architecture nodes into apparent controls without a real interaction.
 - **Don't** apply page-specific rail proportions, project rosters, or first-viewport composition as universal design rules.
+
+## Readable type scale
+
+Text uses shared `rem` tokens in `app/globals.css` and respects browser font preferences. Body copy stays at 1rem across breakpoints, with 1.65 line height for reading. Supporting text never falls below .875rem. Headings alone scale fluidly, within rem-based limits.
+
+| Role | Token | Size at the default browser setting |
+| --- | --- | --- |
+| Caption, diagram detail, technology tag | `--text-caption` | 14px |
+| Button, sidebar link, metadata | `--text-small` | 15px |
+| Body, navigation, diagram node | `--text-body` | 16px |
+| Introduction | `--text-lead` | 18px |
+| Subsection | `--text-subheading` | 20px |
+| Project or card heading | `--text-title` | 20–24px |
+| Section heading | `--text-section` | 28–36px |
+| Featured project | `--text-display` | 32–44px |
+
+Workflow figures use the site's existing palette and font family. Solid connectors carry the main sequence; a dashed connector supplies review context. Review has separate accepted and flagged outcomes, and only the accepted route connects to the output. Labels are real HTML text and reflow instead of shrinking a fixed canvas. Below a 24rem diagram width, sources and review context group vertically and the final output takes the full width.

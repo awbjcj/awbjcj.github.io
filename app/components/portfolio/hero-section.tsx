@@ -9,7 +9,6 @@ import { ArchitectureView } from "./architecture-view";
 export function HeroSection() {
   const { casebook, projects, contact } = useContent();
   const [selectedId, setSelectedId] = useState<CaseStudyId>("resume");
-  const [hasChanged, setHasChanged] = useState(false);
   const tabs = useRef<HTMLDivElement>(null);
   const labels = casebook.labels;
   const featured = featuredProjectIds.flatMap(id => {
@@ -28,7 +27,6 @@ export function HeroSection() {
     else if (event.key === "End") next = featured.length - 1;
     else return;
     event.preventDefault();
-    setHasChanged(true);
     setSelectedId(featured[next].id as CaseStudyId);
     tabs.current?.querySelectorAll<HTMLButtonElement>('[role="tab"]')[next]?.focus();
   }
@@ -36,9 +34,9 @@ export function HeroSection() {
   return <section className="casebook-shell" aria-label={labels.projects}>
     <aside className="project-rail">
       <h2 className="rail-heading">{labels.projects}</h2>
-      <label className="mobile-project-select"><span>{labels.selectProject}</span><select value={selected.id} onChange={event => { setHasChanged(true); setSelectedId(event.target.value as CaseStudyId); }}>{featured.map(project => <option key={project.id} value={project.id}>{project.name}</option>)}</select></label>
+      <label className="mobile-project-select"><span>{labels.selectProject}</span><select value={selected.id} onChange={event => { setSelectedId(event.target.value as CaseStudyId); }}>{featured.map(project => <option key={project.id} value={project.id}>{project.name}</option>)}</select></label>
       <div className="project-tabs" ref={tabs} role="tablist" aria-label={labels.selectProject} aria-orientation="vertical">
-        {featured.map((project, index) => <button type="button" role="tab" id={"case-tab-" + project.id} aria-controls="project-case" aria-selected={selected.id === project.id} tabIndex={selected.id === project.id ? 0 : -1} onClick={() => { setHasChanged(true); setSelectedId(project.id as CaseStudyId); }} onKeyDown={event => navigateTabs(event, index)} key={project.id}><span className="rail-square" aria-hidden="true" /><span><strong>{project.name}</strong><small>{project.copy.railDetail}</small></span></button>)}
+        {featured.map((project, index) => <button type="button" role="tab" id={"case-tab-" + project.id} aria-controls="project-case" aria-selected={selected.id === project.id} tabIndex={selected.id === project.id ? 0 : -1} onClick={() => { setSelectedId(project.id as CaseStudyId); }} onKeyDown={event => navigateTabs(event, index)} key={project.id}><span className="rail-square" aria-hidden="true" /><span><strong>{project.name}</strong><small>{project.copy.railDetail}</small></span></button>)}
       </div>
       <div className="rail-shortcuts">
         {selected.repo ? <a href={selected.repo.href} target="_blank" rel="noreferrer"><TechnicalIcon name="code" />{labels.source}<ExternalLinkHint /></a> : <span><TechnicalIcon name="code" />{labels.private}</span>}
@@ -52,7 +50,7 @@ export function HeroSection() {
     <div className="case-sheet" id="project-case" role="tabpanel" aria-labelledby="case-title" tabIndex={0}>
       <div className="case-title-row"><h2 id="case-title">{selected.name}</h2><p>{copy.subtitle}</p></div>
       <p className="case-purpose">{copy.purpose}</p>
-      <div className="case-columns" key={selected.id} data-animated={hasChanged || undefined}>
+      <div className="case-columns" key={selected.id}>
         <div className="case-narrative">
           <div className="case-actions">
             {selected.live ? <a className="button button-primary" href={selected.live.href} target="_blank" rel="noreferrer"><TechnicalIcon name="app" />{selected.live.label}<ExternalLinkHint /></a> : null}
