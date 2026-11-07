@@ -284,6 +284,8 @@ Diagram nodes use the node radius, connection-blue strokes, an icon, a strong sh
 
 On selection changes, connection traces run once (550ms), with the later path delayed (180ms). At (900px) and below, connectors are vertical and tracing is removed. Reduced motion removes tracing, changes smooth scrolling to auto, and reduces transition/animation duration to (.01ms). Increased-contrast and forced-color modes strengthen rules and suppress decorative imagery/geometry as specified in the source.
 
+In the stacked diagram, both input nodes join a visible branch before the processor. The evidence node fills the available width so the centered path stays connected through the review enclosure and output. Node titles use (16px) and details use (14px), with wrapping for long labels. At (420px) and below, input icons sit above their text to preserve reading space in the paired input columns.
+
 ### Quick Navigation
 
 A stroked paper dialog contains a heading, close control, search field, grouped result rows, and keyboard hint. It uses the enclosure radius and the themed canvas. The selected result has the inset field and accent text. Its width is the recorded container token; its maximum height is `min(680px, calc(100dvh - 48px))`. At mobile widths, padding becomes (18px). This component owns the backdrop treatment, rather than changing the depth language of document content.

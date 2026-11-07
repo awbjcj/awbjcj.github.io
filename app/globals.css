@@ -364,11 +364,15 @@ section[id], article[id] { scroll-margin-top: 24px; }
 
 @media (max-width: 900px) {
   .architecture-sources, .verification-path { display: flex; flex-direction: column; align-items: stretch; min-height: 0; }
-  .flow-inputs { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
-  .flow-node { gap: 10px; padding: 12px; font-size: 15px; }
+  .flow-inputs { position: relative; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; padding-bottom: 16px; }
+  /* Join both input branches before the vertical process path. */
+  .flow-inputs::after { content: ""; position: absolute; bottom: 0; left: calc((100% - 12px) / 4); right: calc((100% - 12px) / 4); height: 1px; background: var(--flow-line); }
+  .flow-inputs > .flow-node { position: relative; }
+  .flow-inputs > .flow-node::after { content: ""; position: absolute; top: 100%; left: 50%; width: 1px; height: 17px; background: var(--flow-line); }
+  .flow-node { gap: 10px; padding: 12px; font-size: 16px; overflow-wrap: anywhere; }
   .flow-node .technical-icon { width: 20px; height: 20px; }
-  .flow-node small, .flow-node ul, .flow-checks ul { font-size: 13px; line-height: 1.5; }
-  .flow-evidence { min-height: 0; }
+  .flow-node small, .flow-node ul, .flow-checks ul { font-size: 14px; line-height: 1.5; }
+  .flow-evidence { align-self: stretch; min-height: 0; }
   .flow-arrow, .flow-arrow-input { width: 1px; height: 24px; margin-inline: auto; }
   .flow-arrow::after { top: auto; right: auto; bottom: -1px; left: -3px; border: 0; border-inline: 4px solid transparent; border-top: 6px solid var(--flow-line); }
   .flow-arrow-input::before { display: none; }
@@ -378,6 +382,11 @@ section[id], article[id] { scroll-margin-top: 24px; }
   .flow-pass, .flow-review, .flow-route-result { min-height: 36px; padding: 7px; }
   .flow-output { width: 100%; min-height: 0; }
   .case-columns[data-animated] .flow-arrow { animation: none; }
+}
+
+@media (max-width: 420px) {
+  .flow-inputs > .flow-node { display: block; }
+  .flow-inputs .technical-icon { margin-bottom: 8px; }
 }
 
 @media (max-width: 700px) {
