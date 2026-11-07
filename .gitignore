@@ -44,7 +44,4 @@ yarn-error.log*
 /.omc/
 /.remember/
 /.codex-sites-init-*/
-/.impeccable/build/
-/.impeccable/review/
-/.impeccable/live/
-/.impeccable/config.local.json
+/.impeccable/
