@@ -22,6 +22,7 @@ Present the engineer, make the scope and ownership of his work understandable, l
 - Keep private work unlinked and distinguish original projects from open-source customizations.
 - The user requested removing Deep Agents UI from the featured work and replacing it with Enterprise Automation Workflow and Requirement Buddy. The user identified the former as the private `Jira-Polarion-automation` application. Its verified integration, reporting, and agent workflows are the source for that case study; the website name does not rename the repository.
 - After reviewing a simplified version, the user chose to keep the previous, fuller Engineering casebook layout. Preserve its detailed project sheets and architecture while retaining the name Enterprise Automation Workflow.
+- The latest content direction prioritizes VSDA Deep Agent and Release-Email Intelligence Pipeline. The featured order is VSDA Deep Agent, Release-Email Intelligence Pipeline, Resume Tailor Harness, Requirement Buddy, Enterprise Automation Workflow, and Pantry Manager; VSDA Deep Agent is the initial case.
 - The existing React/vinext application exports a static site to GitHub Pages. Content checks, TypeScript, lint, and rendered HTML checks are existing validation gates.
 
 ## Evidence on Hand
@@ -31,6 +32,8 @@ The repository includes evidence-backed project and experience catalogs, employm
 ## Brand Commitments
 
 The user's redesign brief rejects the incumbent page's cheap appearance and authorizes replacing its visual identity. The user further directed: "Make the design more technical." The professional name and factual content remain authoritative. Technical clarity must come from real project structure, precise typography, and engineering detail.
+
+For the current extension, the user confirmed retaining the approved blue Engineering casebook, including its masthead illustration and open project sheets. No new palette or typography system was approved.
 
 ## Product Principles
 

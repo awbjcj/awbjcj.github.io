@@ -10,7 +10,7 @@ export const siteConfig = {
     location: "Ann Arbor, Michigan",
     github: "https://github.com/awbjcj",
     website: "https://awbjcj.github.io",
-    summary: "I build Python and TypeScript applications for agent workflows, hybrid retrieval, and engineering automation. My work connects model behavior to typed APIs, review controls, and usable interfaces.",
+    summary: "I build AI applications in Python and TypeScript, including agent workflows, hybrid search, and engineering automation. I work on the APIs, review controls, and interfaces that make them useful.",
     availability: "Open to AI full-stack, platform, and product engineering roles",
   },
   contact: {
@@ -72,7 +72,7 @@ export const siteConfig = {
       label: "Applications",
       statusLabel: "Hosted app",
       title: "Explore the products.",
-      description: "A résumé application and a household pantry assistant, with hosted entry points below.",
+      description: "Try the résumé application or open the household pantry assistant in Telegram.",
     },
     projects: {
       label: "Selected work",
@@ -86,7 +86,7 @@ export const siteConfig = {
       label: "Engineering experience",
       countNoun: "tracks",
       title: "Systems and responsibilities.",
-      description: "Agent orchestration, model integration, and the controls around software that acts on a user's behalf.",
+      description: "How I connect agents and models to software, and control the actions they take for users.",
       evidenceLabel: "View related project",
     },
     resume: {
@@ -103,8 +103,8 @@ export const siteConfig = {
     },
     approach: {
       label: "Engineering approach",
-      title: "Make behavior explicit.",
-      description: "I design the boundaries around model calls: what data enters, what actions are allowed, and how people review the result.",
+      title: "Make AI behavior reviewable.",
+      description: "I define what data a model can use, which actions it can take, and where people review its work.",
     },
     toolkit: { label: "Toolkit", title: "Tools I work with." },
     contact: {

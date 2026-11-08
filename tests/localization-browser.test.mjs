@@ -56,19 +56,19 @@ after(async () => {
 
 const copy = {
   en: {
-    projects: ["Tailored résumés with evidence checks", "A shared pantry and meal-planning assistant", "Engineering collaboration across enterprise tools", "From source research to reviewed engineering artifacts"],
+    projects: ["A governed agent platform for engineering work", "Release emails become traceable build requests", "Tailored résumés with evidence checks", "From source research to reviewed engineering artifacts", "Engineering collaboration across enterprise tools", "A shared pantry and meal-planning assistant"],
     resumeHeading: "Professional background.",
     resumeFile: "/resume.pdf",
     menuTitle: "Find your way around.",
   },
   "zh-CN": {
-    projects: ["根据职位定制简历，并核对陈述依据", "全家共享的食材与餐食助手", "连接企业工具的工程协作应用", "从来源调研到经过评审的工程成果"],
+    projects: ["面向工程任务的受控智能体平台", "从发布邮件到可追溯的构建请求", "根据职位定制简历，并核对陈述依据", "从来源调研到经过评审的工程成果", "连接企业工具的工程协作应用", "全家共享的食材与餐食助手"],
     resumeHeading: "工作与学习经历",
     resumeFile: "/resume-zh.pdf",
     menuTitle: "找到你感兴趣的内容",
   },
 };
-const projectIds = ["resume", "food", "enterprise", "requirements"];
+const projectIds = ["vsda", "release", "resume", "requirements", "enterprise", "food"];
 
 test("renders every featured project and the résumé in both languages at desktop and mobile widths", async () => {
   for (const width of [1440, 768, 375, 320]) {
@@ -96,6 +96,19 @@ test("renders every featured project and the résumé in both languages at deskt
               await page.locator("[role=tab]").nth(index).click();
             }
             assert.equal(await page.locator(".case-title-row > p").textContent(), copy[locale].projects[index]);
+            const diagram = page.locator(`[data-project-diagram="${projectIds[index]}"] svg`);
+            assert.equal(await diagram.count(), 1, "the selected project owns its diagram");
+            assert.equal(await diagram.getAttribute("role"), "img");
+            const accessible = await diagram.evaluate(svg => svg.getAttribute("aria-labelledby").split(" ").every(id => document.getElementById(id)?.textContent.trim()));
+            assert.ok(accessible, "the diagram has a resolving title and description");
+            if (width < 560) {
+              const frame = page.locator(".diagram-scroll");
+              const before = await frame.evaluate(el => ({ width: el.clientWidth, content: el.scrollWidth }));
+              assert.ok(before.content > before.width, "a narrow screen keeps readable diagram text in a local scroll region");
+              await frame.focus();
+              await page.keyboard.press("ArrowRight");
+              await page.waitForFunction(() => document.querySelector(".diagram-scroll").scrollLeft > 0);
+            }
             const dimensions = await page.evaluate(() => ({ viewport: window.innerWidth, page: document.documentElement.scrollWidth }));
             assert.ok(dimensions.page <= dimensions.viewport + 1, `${locale}, ${theme}, ${width}px, ${projectIds[index]}: page overflows`);
           }
@@ -153,4 +166,71 @@ test("switches language and searches translated project and contact copy", async
   } finally {
     await context.close();
   }
+});
+
+test("plays a bounded example only on request, with pause, replay and reduced-motion support", async () => {
+  const context = await browser.newContext({ viewport: { width: 1600, height: 1000 }, reducedMotion: "no-preference" });
+  try {
+    const page = await context.newPage();
+    await page.goto(`${baseUrl}/?lang=en`, { waitUntil: "networkidle" });
+    const figure = page.locator("[data-project-diagram]");
+    const baseIsVisible = () => page.locator(".project-diagram > .diagram-edge").evaluateAll(paths => paths.length > 0 && paths.every(path => getComputedStyle(path).opacity === "1" && getComputedStyle(path).display !== "none"));
+    assert.equal(await figure.getAttribute("data-playback-state"), "ready");
+    await page.locator("#case-tab-vsda").focus();
+    await page.keyboard.press("ArrowDown");
+    assert.equal(await figure.getAttribute("data-project-diagram"), "release");
+    assert.equal(await figure.getAttribute("data-playback-state"), "ready", "keyboard navigation does not start animation");
+    await page.locator("[data-diagram-play]").click();
+    assert.equal(await figure.getAttribute("data-playback-state"), "running");
+    const token = page.locator("[data-diagram-token]");
+    assert.deepEqual(await token.evaluate(el => el.getAnimations().map(a => ({ state: a.playState, iterations: a.effect.getTiming().iterations }))), [{state:"running",iterations:1}]);
+    assert.ok(await baseIsVisible(), "meaningful connectors remain visible during playback");
+    await page.locator("[data-diagram-play]").click();
+    assert.equal(await figure.getAttribute("data-playback-state"), "paused");
+    assert.equal(await token.evaluate(el => el.getAnimations()[0].playState), "paused");
+    await page.locator("[data-diagram-replay]").click();
+    assert.equal(await figure.getAttribute("data-playback-state"), "running");
+    await token.evaluate(el => el.getAnimations().forEach(a => a.finish()));
+    await page.waitForFunction(() => document.querySelector("[data-project-diagram]").dataset.playbackState === "done");
+    assert.equal(await token.evaluate(el => getComputedStyle(el).opacity), "0");
+    await page.emulateMedia({ reducedMotion: "reduce" });
+    await page.waitForFunction(() => document.querySelector("[data-diagram-play]").disabled);
+    assert.equal(await page.locator("[data-diagram-play]").isDisabled(), true);
+    assert.ok(await baseIsVisible());
+    await page.locator("#case-tab-food").click();
+    const messages = await page.locator(".project-diagram > .diagram-edge[data-from]").evaluateAll(edges => edges.map(edge => ({from:edge.dataset.from,to:edge.dataset.to})));
+    assert.deepEqual(messages.slice(0,3), [{from:"member",to:"assistant"},{from:"assistant",to:"pantry"},{from:"assistant",to:"member"}], "receipt items save before the separate batch confirmation flow");
+    assert.equal(await page.locator("[data-diagram-play]").isDisabled(), true);
+  } finally {
+    await context.close();
+  }
+});
+
+test("the standalone bilingual atlas has isolated playback and a complete no-JavaScript view", async () => {
+  const context = await browser.newContext({ viewport: { width: 1280, height: 900 }, reducedMotion: "no-preference" });
+  try {
+    const page = await context.newPage();
+    await page.route("https://fonts.googleapis.com/**", route => route.abort());
+    await page.goto(`${baseUrl}/project-architectures.html`, { waitUntil: "domcontentloaded" });
+    assert.equal(await page.locator("[data-project-diagram]").count(), 12);
+    const english = page.locator("#vsda-en [data-project-diagram]");
+    const chinese = page.locator("#vsda-zh-CN [data-project-diagram]");
+    await english.locator("[data-diagram-play]").click();
+    assert.equal(await english.getAttribute("data-playback-state"), "running");
+    assert.equal(await chinese.getAttribute("data-playback-state"), "ready");
+    await english.locator("[data-diagram-play]").click();
+    assert.equal(await english.getAttribute("data-playback-state"), "paused");
+    await chinese.locator("[data-diagram-play]").click();
+    assert.equal(await chinese.getAttribute("data-playback-state"), "running");
+    assert.equal(await english.getAttribute("data-playback-state"), "paused");
+  } finally { await context.close(); }
+  const staticContext = await browser.newContext({ javaScriptEnabled: false });
+  try {
+    const page = await staticContext.newPage();
+    await page.route("https://fonts.googleapis.com/**", route => route.abort());
+    await page.goto(`${baseUrl}/project-architectures.html`, { waitUntil: "domcontentloaded" });
+    assert.equal(await page.locator("svg.project-diagram").count(), 12);
+    assert.equal(await page.locator("#food-en .diagram-edge[data-from]").count(), 8);
+    assert.equal(await page.locator("#vsda-en [data-diagram-play]").isDisabled(), true);
+  } finally { await staticContext.close(); }
 });

@@ -23,6 +23,7 @@ const eslintConfig = defineConfig([
     ".remember/**",
     ".codex-sites-init-*/**",
     ".impeccable/**",
+    ".archify/**",
   ]),
   eslint.configs.recommended,
   ...tseslint.configs.recommended,

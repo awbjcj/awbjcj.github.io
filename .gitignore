@@ -45,3 +45,4 @@ yarn-error.log*
 /.remember/
 /.codex-sites-init-*/
 /.impeccable/
+/.archify/

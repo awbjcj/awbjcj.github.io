@@ -56,12 +56,12 @@ typography:
     fontFamily: '"Kantumruy Pro", "Noto Sans SC", "PingFang SC", "Microsoft YaHei UI", "Microsoft YaHei", sans-serif'
     fontSize: "var(--text-body)"
     fontWeight: 400
-    lineHeight: 1.65
+    lineHeight: 1.75
   body-long:
     fontFamily: '"Kantumruy Pro", "Noto Sans SC", "PingFang SC", "Microsoft YaHei UI", "Microsoft YaHei", sans-serif'
     fontSize: "var(--text-body)"
     fontWeight: 400
-    lineHeight: 1.65
+    lineHeight: 1.75
   label:
     fontFamily: '"Kantumruy Pro", "Noto Sans SC", "PingFang SC", "Microsoft YaHei UI", "Microsoft YaHei", sans-serif'
     fontSize: "var(--text-caption)"
@@ -240,7 +240,7 @@ The reusable spatial grammar is an open document: align related content in readi
 
 The CSS mixes proportional desktop measurements (`--u`) with fixed reading and control dimensions. The common gutter is `clamp(20px, 2.8vw, 64px)`, changing to (28px) at (1100px) and (20px) at (700px). Common gaps are the frontmatter's recorded spacing steps; row gaps use (42px), and ordinary section padding uses (76px) before narrower overrides.
 
-At the compact desktop band (1101–1450px), detail typography and selected column gaps tighten. At (1100px) and below, the document relaxes into fewer tracks, controls gain minimum height (44px), and explanatory text gains more leading. Diagram sources and verification paths stack at (900px) and below. At (700px) and below, content rows, contact channels, and paired product groups become a single reading column; long titles wrap naturally, and controls remain visibly labeled. Page-specific rail proportions and first-viewport assembly belong in the surface brief.
+At the compact desktop band (1101–1450px), detail typography and selected column gaps tighten. At (1100px) and below, the document relaxes into fewer tracks, controls gain minimum height (44px), and explanatory text gains more leading. Project diagrams retain their authored geometry in a local horizontal scroll region when the available column is narrower than their (560px) canvas. At (700px) and below, content rows, contact channels, and paired product groups become a single reading column; long titles wrap naturally, and controls remain visibly labeled. Page-specific rail proportions and first-viewport assembly belong in the surface brief.
 
 When tracks stack, preserve their source order and all labels and connectors. A narrow screen changes the geometry, not the information hierarchy.
 
@@ -260,7 +260,7 @@ The illustration and drafting geometry are material accents. The geometry includ
 
 ### Buttons
 
-Compact, legible document actions. Primary and outline variants share the control radius, an inline icon gap (8px), and padding (5px 12px). Default minimum height is (36px); it becomes (44px) in narrow layouts, and contact/résumé actions already use (44px). Primary fills remain blue in both themes. Outline actions use the themed surface and strong rule. Hover changes field/border colors over (160ms) with `cubic-bezier(.22, 1, .36, 1)`. Keyboard focus uses the global accent outline (2px), offset (4px). The source has no separate pressed or disabled visual treatment.
+Compact, legible document actions. Primary and outline variants share the control radius, an inline icon gap (8px), and padding (5px 12px). Default minimum height is (44px); it becomes (44px) in narrow layouts, and contact/résumé actions already use (44px). Primary fills remain blue in both themes. Outline actions use the themed surface and strong rule. Hover changes field/border colors over (160ms) with `cubic-bezier(.22, 1, .36, 1)`. Keyboard focus uses the global accent outline (2px), offset (4px). On fine pointers, pressing a button scales it to 98%; disabled controls are muted.
 
 ### Inputs / Fields
 
@@ -280,11 +280,11 @@ The project catalog's “cards” are open ruled rows: no enclosing rectangle, r
 
 ### Architecture and Workflow
 
-Diagram nodes use the node radius, connection-blue strokes, an icon, a strong short label, and smaller detail text. Processing/checking nodes use the inset field; input/evidence nodes use the lighter surface. Numbered workflow indices use tabular numerals. Connectors are authored one-pixel geometry with arrowheads; process groups use a dashed enclosure. Route states carry both labels and check/cross icons.
+Each project owns its authored topology, while the SVG renderer shares node, connector, label, and legend primitives. Ordinary nodes use the node radius, a structural-rule stroke, a strong short title, and smaller detail text. Focal nodes and decision diamonds use engineering-blue outlines and the inset field. Stores add an internal curved rule; context nodes use a dashed outline. Numbered narrative workflow indices remain outside the diagram and use tabular numerals. Arrowed connectors use connection blue; solid and dashed relationships have meanings stated in each project's legend. Node and connector strokes are (1.2px), with focal outlines (1.6px).
 
-On selection changes, connection traces run once (550ms), with the later path delayed (180ms). At (900px) and below, connectors are vertical and tracing is removed. Reduced motion removes tracing, changes smooth scrolling to auto, and reduces transition/animation duration to (.01ms). Increased-contrast and forced-color modes strengthen rules and suppress decorative imagery/geometry as specified in the source.
+Project selection is instant, including keyboard navigation. Readers can explicitly play an example path, pause, resume, or replay it. A decorative token follows authored relationships once, at (760ms) per relationship, using transform and opacity. Complete nodes and base routes remain visible. Page hiding pauses playback; reduced motion cancels it and disables the controls. Initial rendering and printing are static. The React view and standalone atlas share one scoped playback controller.
 
-In the stacked diagram, both input nodes join a visible branch before the processor. The evidence node fills the available width so the centered path stays connected through the review enclosure and output. Node titles use (16px) and details use (14px), with wrapping for long labels. At (420px) and below, input icons sit above their text to preserve reading space in the paired input columns.
+The diagrams use content-fit canvases with a shared minimum width (560px). Node titles use (16px) and details use (14px), with authored text wrapping for English and Simplified Chinese; edge labels and legends use (13px). Narrow columns keep the topology intact inside a labeled, focusable region that supports local keyboard panning. A visible hint explains scrolling when the diagram column is narrow. SVG title, description, and caption supply context; print fits the complete diagram to the available width. Topology ownership and the current project stories belong in the surface brief and content files.
 
 ### Quick Navigation
 
@@ -310,17 +310,34 @@ A stroked paper dialog contains a heading, close control, search field, grouped 
 
 ## Readable type scale
 
-Text uses shared `rem` tokens in `app/globals.css` and respects browser font preferences. Body copy stays at 1rem across breakpoints, with 1.65 line height for reading. Supporting text never falls below .875rem. Headings alone scale fluidly, within rem-based limits.
+Text uses shared `rem` tokens in `app/globals.css` and respects browser font preferences. Body copy uses 1.0625rem on desktop and 1rem at narrow widths, with 1.75 line height; Chinese prose uses 1.85. Supporting text never falls below .875rem. Headings alone scale fluidly, within rem-based limits.
 
 | Role | Token | Size at the default browser setting |
 | --- | --- | --- |
 | Caption, diagram detail, technology tag | `--text-caption` | 14px |
 | Button, sidebar link, metadata | `--text-small` | 15px |
-| Body, navigation, diagram node | `--text-body` | 16px |
+| Body, navigation | `--text-body` | 17px desktop; 16px mobile |
+| Diagram node title | diagram-specific | 16px |
 | Introduction | `--text-lead` | 18px |
 | Subsection | `--text-subheading` | 20px |
 | Project or card heading | `--text-title` | 20–24px |
 | Section heading | `--text-section` | 28–36px |
 | Featured project | `--text-display` | 32–44px |
 
-Workflow figures use the site's existing palette and font family. Solid connectors carry the main sequence; a dashed connector supplies review context. Review has separate accepted and flagged outcomes, and only the accepted route connects to the output. Labels are real HTML text and reflow instead of shrinking a fixed canvas. Below a 24rem diagram width, sources and review context group vertically and the final output takes the full width.
+Workflow figures use the site's existing palette and font family. Their labels remain SVG text, with wrapped node titles and details. Each project's authored topology determines branches, review paths, persistence, or sequence relationships; the shared renderer does not impose a single pipeline. A local scroll region preserves the diagram's reading size on narrow screens.
+
+
+## Reading and diagram refinement — 2026-11-07
+
+Desktop prose uses `--text-body: 1.0625rem` (17px at the default root size), with
+line height (1.75). At (700px) and below it uses (16px); Chinese prose uses
+(1.85) line height and no negative heading tracking. Project subtitles now sit
+below their titles, with (10px) separation and (1.5) line height. The approved
+font families and blue/cool-paper/graphite palette remain the source of truth.
+
+Each diagram has visible Play, Pause/Resume, and Replay behavior and a wider
+atlas link. Playback explains an authored example, never a live backend run.
+The Pantry sequence distinguishes receipt ingestion with undo from later,
+confirmed batch status changes. Semantic endpoints and playback continuity are
+checked while generating the atlas. `Project_Architecture_Blueprint.md` records
+these component and source-review boundaries.

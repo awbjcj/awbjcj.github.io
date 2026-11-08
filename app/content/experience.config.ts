@@ -20,7 +20,7 @@ export const experience = [
   },
   {
     label: "Trustworthy AI output",
-    title: "Fact locks that block unsupported claims",
+    title: "Checking résumé claims against profile facts",
     description: "Résumé checks cover source citations, skill names, and numeric evidence, including optional sections. Typst checks page fit, while reviewers inspect rendered pages for layout. Each generated artifact records the verified skill procedure used to produce it.",
     link: "https://github.com/awbjcj/resume-tailor-harness",
   },

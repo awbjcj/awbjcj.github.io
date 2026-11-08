@@ -8,7 +8,7 @@ import { ArchitectureView } from "./architecture-view";
 
 export function HeroSection() {
   const { casebook, projects, contact } = useContent();
-  const [selectedId, setSelectedId] = useState<CaseStudyId>("resume");
+  const [selectedId, setSelectedId] = useState<CaseStudyId>(featuredProjectIds[0]);
   const tabs = useRef<HTMLDivElement>(null);
   const labels = casebook.labels;
   const featured = featuredProjectIds.flatMap(id => {
@@ -19,6 +19,11 @@ export function HeroSection() {
   if (!selected) return null;
   const copy = selected.copy;
 
+  function selectProject(id: CaseStudyId) {
+    if (id === selectedId) return;
+    setSelectedId(id);
+  }
+
   function navigateTabs(event: KeyboardEvent<HTMLButtonElement>, index: number) {
     let next = index;
     if (event.key === "ArrowDown" || event.key === "ArrowRight") next = (index + 1) % featured.length;
@@ -27,16 +32,16 @@ export function HeroSection() {
     else if (event.key === "End") next = featured.length - 1;
     else return;
     event.preventDefault();
-    setSelectedId(featured[next].id as CaseStudyId);
+    selectProject(featured[next].id as CaseStudyId);
     tabs.current?.querySelectorAll<HTMLButtonElement>('[role="tab"]')[next]?.focus();
   }
 
   return <section className="casebook-shell" aria-label={labels.projects}>
     <aside className="project-rail">
       <h2 className="rail-heading">{labels.projects}</h2>
-      <label className="mobile-project-select"><span>{labels.selectProject}</span><select value={selected.id} onChange={event => { setSelectedId(event.target.value as CaseStudyId); }}>{featured.map(project => <option key={project.id} value={project.id}>{project.name}</option>)}</select></label>
+      <label className="mobile-project-select"><span>{labels.selectProject}</span><select value={selected.id} onChange={event => selectProject(event.target.value as CaseStudyId)}>{featured.map(project => <option key={project.id} value={project.id}>{project.name}</option>)}</select></label>
       <div className="project-tabs" ref={tabs} role="tablist" aria-label={labels.selectProject} aria-orientation="vertical">
-        {featured.map((project, index) => <button type="button" role="tab" id={"case-tab-" + project.id} aria-controls="project-case" aria-selected={selected.id === project.id} tabIndex={selected.id === project.id ? 0 : -1} onClick={() => { setSelectedId(project.id as CaseStudyId); }} onKeyDown={event => navigateTabs(event, index)} key={project.id}><span className="rail-square" aria-hidden="true" /><span><strong>{project.name}</strong><small>{project.copy.railDetail}</small></span></button>)}
+        {featured.map((project, index) => <button type="button" role="tab" id={"case-tab-" + project.id} aria-controls="project-case" aria-selected={selected.id === project.id} tabIndex={selected.id === project.id ? 0 : -1} onClick={() => selectProject(project.id as CaseStudyId)} onKeyDown={event => navigateTabs(event, index)} key={project.id}><span className="rail-square" aria-hidden="true" /><span><strong>{project.name}</strong><small>{project.copy.railDetail}</small></span></button>)}
       </div>
       <div className="rail-shortcuts">
         {selected.repo ? <a href={selected.repo.href} target="_blank" rel="noreferrer"><TechnicalIcon name="code" />{labels.source}<ExternalLinkHint /></a> : <span><TechnicalIcon name="code" />{labels.private}</span>}
@@ -59,10 +64,10 @@ export function HeroSection() {
             <a className="button button-outline" href={"mailto:" + contact.email}><TechnicalIcon name="mail" />{labels.contact}</a>
           </div>
           <div className="case-stack"><strong>{labels.technologies}</strong><ul>{selected.skills.map(skill => <li key={skill}>{skill}</li>)}</ul></div>
-          <div className="case-summary"><h3>{labels.summary}</h3><p>{copy.summary}</p></div>
+          <div className="case-summary"><h3>{labels.summary}</h3><p>{copy.summary}</p><p className="case-focus"><strong>{copy.focus}</strong> {copy.integration}</p></div>
           <div className="case-workflow"><h3>{labels.workflow}</h3><ol>{copy.steps.map((step, index) => <li key={step.title}><span className="step-index" aria-hidden="true">{index + 1}</span><p><strong>{step.title}</strong><span>{step.detail}</span></p></li>)}</ol></div>
         </div>
-        <div className="case-architecture"><h3>{copy.architecture.title}</h3><p>{copy.architecture.description}</p><ArchitectureView copy={copy.architecture} /></div>
+        <div className="case-architecture"><h3>{copy.architecture.title}</h3><p>{copy.architecture.description}</p><ArchitectureView projectId={selected.id as CaseStudyId} copy={copy.architecture} hint={labels.diagramHint} playback={labels.playback} /></div>
       </div>
     </div>
   </section>;

@@ -14,14 +14,14 @@
   /* Text follows user font preferences; only headings grow with the viewport. */
   --text-caption: .875rem;
   --text-small: .9375rem;
-  --text-body: 1rem;
+  --text-body: 1.0625rem;
   --text-lead: 1.125rem;
   --text-subheading: 1.25rem;
   --text-title: clamp(1.25rem, 1.125rem + .375vw, 1.5rem);
   --text-section: clamp(1.75rem, 1.5rem + .75vw, 2.25rem);
-  --text-display: clamp(2rem, 1.625rem + 1.25vw, 2.75rem);
+  --text-display: clamp(2rem, 1.625rem + 1.25vw, 2.5rem);
   --text-brand: clamp(1.5rem, 1.125rem + 1.25vw, 2.25rem);
-  --leading-body: 1.65;
+  --leading-body: 1.75;
   --leading-label: 1.5;
   --u: calc(100vw / 1672); --gutter: clamp(20px, 2.8vw, 64px);
   --ease: cubic-bezier(.22, 1, .36, 1);
@@ -106,7 +106,7 @@ section[id], article[id] { scroll-margin-top: 24px; }
 .rail-shortcuts > span { color: var(--muted); }
 .rail-shortcuts .rail-all { margin-top: 10px; color: var(--accent-ink); font-size: var(--text-caption); }
 .mobile-project-select { display: none; }
-.drafting-guides { position: absolute; top: calc(540 * var(--u)); left: -1.1vw; width: calc(237 * var(--u)); height: calc(249 * var(--u)); overflow: hidden; pointer-events: none; opacity: .6; }
+.drafting-guides { position: relative; margin-top: 32px; left: -1.1vw; width: calc(237 * var(--u)); height: calc(249 * var(--u)); overflow: hidden; pointer-events: none; opacity: .6; }
 .drafting-guides::before { content: ""; position: absolute; left: 22%; top: 5%; height: 90%; border-left: 1px solid var(--line); }
 .drafting-guides::after { content: ""; position: absolute; bottom: 22%; left: 3%; width: 95%; border-top: 1px solid var(--line); }
 .drafting-guides i { position: absolute; display: block; }
@@ -115,11 +115,11 @@ section[id], article[id] { scroll-margin-top: 24px; }
 .drafting-guides i:nth-child(3) { width: 115%; height: 1px; background: var(--line-strong); left: 22%; bottom: 22%; transform: rotate(-45deg); transform-origin: left center; }
 .drafting-guides i:nth-child(4) { width: 100%; height: 1px; background: var(--line); left: 0; top: 22%; }
 .case-sheet { min-width: 0; }
-.case-title-row { display: flex; align-items: center; flex-wrap: wrap; column-gap: calc(40 * var(--u)); row-gap: 8px; }
+.case-title-row { display: block; }
 .case-title-row h2 { font-size: var(--text-display); line-height: 1.1; overflow-wrap: anywhere; }
-.case-title-row > p { flex: 1; min-width: 200px; padding-left: calc(28 * var(--u)); border-left: 1px solid var(--line-strong); font-size: var(--text-title); line-height: 1.2; letter-spacing: -.015em; color: var(--accent-muted); }
+.case-title-row > p { margin-top: 10px; max-width: 64ch; font-size: var(--text-subheading); line-height: 1.5; color: var(--accent-muted); }
 :root[data-theme="dark"] .case-title-row > p { color: var(--muted); }
-.case-purpose { margin-top: calc(8 * var(--u)); margin-bottom: calc(10 * var(--u)); font-size: var(--text-lead); line-height: 1.55; }
+.case-purpose { max-width: 85ch; margin-top: 12px; margin-bottom: 24px; font-size: var(--text-lead); line-height: 1.65; }
 .case-columns { display: grid; grid-template-columns: 40.4% minmax(0, 1fr); gap: 2.2vw; }
 .case-narrative, .case-architecture { min-width: 0; }
 .case-actions { display: flex; gap: 12px; flex-wrap: wrap; min-height: calc(40 * var(--u)); }
@@ -128,7 +128,7 @@ section[id], article[id] { scroll-margin-top: 24px; }
 .case-stack ul { display: flex; flex-wrap: wrap; gap: 5px; list-style: none; }
 .case-stack li { padding: 1px 6px; background: var(--surface-sunk); border-radius: 4px; font-size: var(--text-caption); white-space: nowrap; }
 .case-summary h3, .case-workflow h3 { font-size: var(--text-subheading); line-height: 1.3; }
-.case-summary > p { margin-top: 8px; font-size: var(--text-body); line-height: var(--leading-body); max-width: 65ch; }
+.case-summary > p { margin-top: 12px; font-size: var(--text-body); line-height: var(--leading-body); max-width: 65ch; text-wrap: pretty; }
 .case-workflow { margin-top: 24px; }
 .case-workflow ol { margin-top: 16px; padding-left: 0; list-style: none; }
 .case-workflow li { position: relative; display: flex; align-items: flex-start; gap: 13px; min-height: calc(41 * var(--u)); padding-bottom: 14px; font-size: var(--text-body); line-height: 1.55; }
@@ -138,49 +138,62 @@ section[id], article[id] { scroll-margin-top: 24px; }
 .case-architecture { border-left: 1px solid var(--line-strong); margin-left: calc(-7 * var(--u)); padding-left: calc(41 * var(--u)); padding-top: 2px; }
 .case-architecture > h3 { font-size: var(--text-subheading); line-height: 1.3; }
 .case-architecture > p { margin-top: calc(5 * var(--u)); font-size: var(--text-body); line-height: var(--leading-body); max-width: 65ch; color: var(--ink-70); }
-/* Reflowing HTML keeps diagram labels at reading size, including at 200% zoom. */
-.architecture-flow { margin-top: 24px; font-size: var(--text-body); line-height: var(--leading-label); }
-.flow-inputs, .flow-context, .flow-links, .flow-branches { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
-.flow-node { min-width: 0; padding: 16px; border: 1px solid var(--line-strong); border-radius: 6px; background: var(--surface); overflow-wrap: anywhere; }
-.flow-node-heading { display: flex; align-items: flex-start; gap: 8px; }
-.flow-node .technical-icon { width: 20px; height: 20px; margin-top: 2px; color: var(--muted); }
-.flow-node strong { font-weight: 700; line-height: 1.4; }
-.flow-node small, .flow-node ul { display: block; margin-top: 8px; font-size: var(--text-caption); color: var(--ink-70); line-height: var(--leading-label); }
-.flow-node ul { padding-left: 16px; list-style: square; }
-.flow-node li + li { margin-top: 4px; }
-.flow-processor { background: var(--surface-sunk); }
-.flow-checks { border-color: var(--accent-ink); border-width: 2px; }
-.flow-checks .technical-icon { color: var(--accent-ink); }
-.flow-checks ul { display: flex; flex-wrap: wrap; column-gap: 28px; row-gap: 4px; }
-.flow-checks li + li { margin-top: 0; }
-.flow-arrow { position: relative; display: block; width: 1px; height: 32px; margin-inline: auto; background: var(--flow-line); }
-.flow-arrow::after { content: ""; position: absolute; bottom: 0; left: -4px; border-inline: 4px solid transparent; border-top: 6px solid var(--flow-line); }
-.flow-arrow-context { background: none; border-left: 1px dashed var(--flow-line); }
-.flow-evidence { border-style: dashed; background: transparent; }
-.flow-outcome { display: grid; gap: 8px; min-width: 0; padding: 16px; border: 1px solid var(--line-strong); border-radius: 6px; background: var(--surface); overflow-wrap: anywhere; }
-.flow-outcome-label { display: flex; align-items: center; gap: 8px; font-weight: 700; }
-.flow-outcome-label > span { min-width: 0; }
-.flow-outcome .technical-icon { width: 18px; height: 18px; }
-.flow-outcome > p { font-size: var(--text-small); line-height: var(--leading-label); }
-.flow-pass { border-color: var(--pass-ink); }
-.flow-pass .flow-outcome-label { color: var(--pass-ink); }
-.flow-review { border-style: dashed; border-color: var(--review-ink); }
-.flow-review .flow-outcome-label { color: var(--review-ink); }
-.flow-output { border-color: var(--pass-ink); background: var(--pass-bg); }
-.flow-branch { min-width: 0; }
-.flow-branches > .flow-branch > .flow-arrow { margin-top: 0; }
+/* Project diagrams share primitives, not a prescribed workflow. */
+.case-focus { color: var(--ink-70); }
+.case-focus strong { color: var(--accent-ink); }
 .case-architecture { container: workflow / inline-size; }
+.architecture-figure { margin-top: 24px; min-width: 0; }
+.diagram-scroll { width: 100%; max-width: 100%; overflow-x: auto; overscroll-behavior-inline: contain; scrollbar-width: thin; scrollbar-color: var(--line-strong) var(--canvas); }
+.project-diagram { display: block; width: 100%; max-width: 760px; height: auto; font-family: var(--font-sans); }
+.diagram-node rect, .diagram-node polygon { fill: var(--surface); stroke: var(--line-strong); stroke-width: 1.2; }
+.diagram-node--focal rect, .diagram-node--decision polygon { fill: var(--surface-sunk); stroke: var(--accent-ink); stroke-width: 1.6; }
+.diagram-node--store rect { fill: var(--surface-sunk); }
+.diagram-node--context rect { fill: var(--canvas); stroke-dasharray: 5 4; }
+.diagram-node-title { fill: var(--ink); font-size: 16px; font-weight: 600; }
+.diagram-node-detail { fill: var(--ink-70); font-size: 14px; font-weight: 400; }
+.diagram-edge, .diagram-store-rule { fill: none; stroke: var(--flow-line); stroke-width: 1.2; }
+.diagram-arrowhead { fill: var(--flow-line); }
+.diagram-edge--context { stroke-dasharray: 5 4; }
 
-@container workflow (max-width: 24rem) {
-  .flow-inputs, .flow-context { grid-template-columns: minmax(0, 1fr); gap: 16px; padding: 16px; border: 1px solid var(--line-strong); border-radius: 6px; background: var(--surface); }
-  .flow-inputs > .flow-node, .flow-context > .flow-node { padding: 0; border: 0; border-radius: 0; background: transparent; }
-  .flow-inputs > .flow-node + .flow-node, .flow-context > .flow-evidence { padding-top: 16px; border-top: 1px dashed var(--line-strong); }
-  .flow-links { grid-template-columns: minmax(0, 1fr); }
-  .flow-links > .flow-arrow + .flow-arrow { display: none; }
-  .flow-branches { gap: 12px; }
-  .flow-outcome { padding: 12px; }
-  .flow-output { width: calc(200% + 12px); }
+.diagram-edge-label rect { fill: var(--canvas); }
+.diagram-edge-label text { fill: var(--ink-70); font-size: 13px; font-weight: 500; }
+.diagram-boundary { fill: none; stroke: var(--line-strong); stroke-dasharray: 5 4; }
+.diagram-lane-rule { stroke: var(--line); stroke-width: 1; }
+.diagram-lane-label { fill: var(--ink-70); font-size: 14px; font-weight: 600; }
+.diagram-lifeline { stroke: var(--line-strong); stroke-dasharray: 4 4; }
+.diagram-activation { fill: var(--surface-sunk); stroke: var(--line-strong); }
+.diagram-legend text { fill: var(--muted); font-size: 13px; }
+.diagram-control-note { fill: var(--ink-70); font-size: 14px; }
+.diagram-note { max-width: 72ch; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--line); color: var(--ink-70); font-size: var(--text-caption); line-height: 1.65; }
+.diagram-hint { display: none; margin-bottom: 12px; color: var(--muted); font-size: var(--text-caption); line-height: 1.5; }
+.diagram-toolbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 10px; }
+.diagram-playback-actions { display: flex; gap: 8px; }
+.diagram-playback-actions .button { min-height: 44px; font-size: var(--text-caption); }
+.diagram-playback-actions button:disabled { cursor: default; color: var(--muted); opacity: .6; }
+.diagram-overview-link { display: inline-flex; align-items: center; min-height: 44px; color: var(--accent-ink); font-size: var(--text-caption); text-decoration: underline; text-underline-offset: 4px; }
+.diagram-playback-status { min-height: 1.75em; margin-bottom: 12px; color: var(--muted); font-size: var(--text-caption); line-height: 1.75; }
+.diagram-motion-token { fill: var(--accent-ink); stroke: var(--surface); stroke-width: 1.5; opacity: 0; pointer-events: none; }
+@media (hover: hover) and (pointer: fine) {
+  .button { transition: background-color 160ms var(--ease), border-color 160ms var(--ease), transform 120ms var(--ease); }
+  .button:active:not(:disabled) { transform: scale(.98); }
 }
+html:lang(zh-CN) { --leading-body: 1.85; }
+html:lang(zh-CN) h1, html:lang(zh-CN) h2, html:lang(zh-CN) h3 { letter-spacing: 0; }
+@media (prefers-reduced-motion: reduce) { .diagram-motion-token { display: none !important; } }
+html[data-motion="static"] .diagram-motion-token { display: none; }
+@container workflow (max-width: 560px) { .diagram-hint { display: block; } }
+@media print {
+  .diagram-scroll { overflow: visible; }
+  .project-diagram { min-width: 0 !important; max-width: 100%; break-inside: avoid; }
+  .diagram-hint { display: none; }
+  .diagram-toolbar, .diagram-playback-status, .diagram-motion-token { display: none !important; }
+}
+@media (forced-colors: active) {
+  .diagram-edge, .diagram-store-rule, .diagram-lifeline, .diagram-lane-rule, .diagram-boundary { stroke: CanvasText; }
+  .diagram-arrowhead, .diagram-node-title, .diagram-node-detail, .diagram-edge-label text, .diagram-legend text, .diagram-lane-label, .diagram-control-note { fill: CanvasText; }
+  .diagram-node rect, .diagram-node polygon, .diagram-edge-label rect, .diagram-activation { fill: Canvas; stroke: CanvasText; }
+}
+/* End project diagram primitives. */
 
 .approach-section { position: relative; margin-left: 16.75vw; margin-right: 2.8vw; padding-block: calc(10 * var(--u)) calc(20 * var(--u)); border-top: 1px solid var(--line); }
 .approach-heading { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 28px; align-items: center; }
@@ -371,7 +384,7 @@ section[id], article[id] { scroll-margin-top: 24px; }
 
 
 @media (max-width: 700px) {
-  :root { --gutter: 20px; }
+  :root { --gutter: 20px; --text-body: 1rem; }
   .site-header { display: flex; flex-direction: column; padding-bottom: 0; }
   .header-inner { order: 0; gap: 16px 10px; padding-top: 20px; }
   .brand { display: block; }

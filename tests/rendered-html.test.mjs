@@ -43,7 +43,12 @@ test("includes accessible navigation and public project links", async () => {
 test("ships an accessible casebook and a complete fallback project catalog", async () => {
   const html = await render();
   assert.match(html, /role="tablist" aria-label="Choose a project"/);
-  assert.equal((html.match(/role="tab"/g) ?? []).length, 4);
+  assert.equal((html.match(/role="tab"/g) ?? []).length, 6);
+  assert.match(html, /id="case-tab-vsda"[^>]*aria-selected="true"/);
+  assert.ok(html.indexOf('id="case-tab-vsda"') < html.indexOf('id="case-tab-release"'));
+  assert.ok(html.indexOf('id="case-tab-release"') < html.indexOf('id="case-tab-resume"'));
+  assert.ok(html.indexOf('id="project-vsda"') < html.indexOf('id="project-release"'));
+  assert.ok(html.indexOf('id="project-release"') < html.indexOf('id="project-resume"'));
   assert.match(html, /id="project-case" role="tabpanel" aria-labelledby="case-title"/);
   assert.match(html, /class="mobile-project-select"/);
   for (const id of ["resume", "food", "video", "requirements", "vsda", "release", "enterprise", "wiki"]) {

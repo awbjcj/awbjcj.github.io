@@ -1,5 +1,54 @@
 # Project content evidence
 
+## Copy, readability, and interaction review — 2026-11-07
+
+English and Chinese case narratives were edited for clarity while preserving
+scope and conditions. Desktop reading text is 17px, phone text 16px, with more
+line spacing and a separate subtitle line. Diagrams now expose semantic endpoints
+and reader-controlled playback; navigation itself is static.
+
+The Pantry sequence was corrected against committed source at
+`c78ace03f3491a0f91f249b60a621ca34b65a26a`: `app/handlers/meta.py:704–785`,
+`app/ingest_service.py:94–148,201–242`, and `app/batch_service.py:145–192`.
+Receipt import saves eligible items and offers undo; confirmation belongs to
+later batch status changes. This supersedes the earlier receipt/confirmation
+sequence below without changing the catalog's general batch-confirmation claim.
+
+The Archify source review covers specialist routing (`agents.py:230–244,307–324`
+at VSDA revision `4a2a4eebfc2d9125a1e37130b48b6f4ed6be23b3`), release extraction
+and persistence (`extract_release_info_workflow.py:99–175` and
+`batch_process_email_releases.py:470–527` at `30541243ee16f48f267545aabda6815718798c6a`),
+and the corrected Pantry sequence. Local provenance/browser/capture receipts
+record the checked artifacts. These checks validate diagrams and presentation;
+they do not execute or validate the projects' live providers.
+
+
+## Prioritized projects and distinct architecture views — 2026-11-07
+
+The owner requested that VSDA Deep Agent and Release-Email Intelligence Pipeline
+join the featured casebook and receive priority. They now lead both the featured
+selector and the complete catalog; VSDA is the default case. Existing private
+repository boundaries remain in place.
+
+The former renderer imposed one input/processor/evidence/check/outcome topology
+on all projects. Each of the six featured projects now has an authored topology
+and an explicit AI integration perspective in both languages. The static atlas
+is generated from the same content and renderer, rather than maintained as a
+second set of diagrams.
+
+| Project | View and evidence basis |
+| --- | --- |
+| VSDA Deep Agent | Supervisor with alternative retrieval, isolated analysis, and service-agent routes. Local `4a2a4eebfc2d9125a1e37130b48b6f4ed6be23b3`: `src/deep_agent/agents.py`, `subagent_registry.py`, the maintainer-attributed dossier, and its cited scheduled-task, mutation, and code-analysis services. The task-focused candidate remains outside the showcase. |
+| Release-Email Intelligence Pipeline | Extraction with persistence-before-acknowledgment, retry paths, an independent reviewer, and queue/build reporting. Local `30541243ee16f48f267545aabda6815718798c6a`: `src/workflow/extract_release_info_workflow.py`, `src/batch_process_email_releases.py`, `README.md`, and the attributed dossier. The reviewer is not represented as a mandatory approval gate for submission. |
+| Resume Tailor Harness | Draft/evidence convergence, claim checks, flagged revision work, and separate Typst/visual review. The existing evidence below supplies the claim-check and application-preparation basis. The diagram does not equate rule success with factual proof. |
+| Requirement Buddy | Research/author/reviewer/host swimlanes. Local `d74e9a07a21e5a6847ebb553cd5eff8964928018`: SDK `freshness.py`, `batches.py`, and the existing review/publication evidence below. Review alone is not described as acceptance. |
+| Enterprise Automation Workflow | Multi-source integration and bounded execution layers. Local `7224b37aaa27c2c89476360ce0eeb8fbb4eb0a23`, corroborated by the client/concurrency/export evidence below. No hosted UI is claimed. |
+| Pantry Manager | Receipt-import sequence separating interpretation, user confirmation, household-scoped writes, and returned state. Local `c78ace03f3491a0f91f249b60a621ca34b65a26a`: `app/batch_service.py`, `app/pantry_service.py`, and the existing messaging/provider evidence below. Meal planning and reminders reuse shared state; they are not depicted as steps in every receipt request. |
+
+These views explain implementation capabilities. No live-provider run,
+production acceptance, performance result, universal task coverage, or new
+authorship claim is established by this portfolio update.
+
 ## Portfolio redesign content direction — 2026-11-07
 
 The owner requested removing Deep Agents UI from the portfolio and featuring

@@ -10,7 +10,8 @@ change to `app/page.tsx`.
 | --- | --- |
 | Name, intro, contact links, navigation, or section headings | `site.config.ts` |
 | A selected project | `projects.config.ts` |
-| A featured case sheet, workflow, or architecture diagram | `casebook.config.ts` |
+| Featured case copy, workflow, or diagram labels in both languages | `casebook.config.ts` |
+| A project's diagram topology, routing, or geometry | `project-diagrams.ts` |
 | An evidence-backed engineering story | `experience.config.ts` |
 | A job, internship, education entry, or publication | `resume.config.ts` |
 | A skill, skill group, or working principle | `skills.config.ts` |
@@ -23,6 +24,21 @@ The first-screen casebook uses the IDs in `featuredProjectIds` in
 project names, public links, and technologies still come from the project
 catalog. Every catalog entry remains available below the casebook, including
 without JavaScript. `zh-CN.config.ts` holds the remaining translated content.
+
+Each featured project owns an authored topology in `project-diagrams.ts`.
+Choose its visual type from the actual engineering story: supervisor routing,
+failure recovery, evidence checks, ownership handoffs, integration layers, or
+request/response timing. The renderer shares visual primitives, not a fixed
+input–processor–check template. Keep each drawing within nine nodes and twelve
+connections, with orthogonal routes, distinct ports, and readable labels.
+Diagrams keep their readable canvas width in a keyboard-accessible local scroll
+region on narrow screens.
+
+`npm run diagrams` regenerates `public/project-architectures.html`, a standalone
+bilingual atlas using the same renderer and content as the casebook. The build
+also regenerates it automatically. It contains its own CSS and inline SVG;
+Google Fonts is its only external dependency. The main site keeps its existing
+locally served Latin font and system Chinese fallback stack.
 
 ## Add a project
 
@@ -154,3 +170,21 @@ The theme button switches light/dark mode. On a first visit it follows the OS
 color preference; an explicit selection is saved. A small head script applies the
 theme before paint. Storage failures do not disable either control. No translation
 service or additional runtime dependency is required.
+
+
+## Diagram playback and architecture review
+
+Relationships in `project-diagrams.ts` carry semantic `from` and `to` IDs.
+The `playback` list chooses a representative path; it does not imply that every
+branch executes in a real task. Build-time validation checks endpoints, labels,
+orthogonal routes, and path continuity. Sequences instead follow message order.
+
+The shared controller in `app/lib/diagram-playback.mjs` powers both the React
+casebook and the standalone atlas. Playback starts only when requested, supports
+pause and replay, and respects reduced motion. Keep the full SVG readable before
+JavaScript runs. Project navigation must stay instant, including keyboard input.
+
+`Project_Architecture_Blueprint.md` documents the content/rendering boundaries,
+source review, motion lifecycle, checks, and deployment. Source-backed native
+Archify candidates and review receipts are local artifacts under `.archify/`;
+they may contain private repository identities and are excluded from publication.
