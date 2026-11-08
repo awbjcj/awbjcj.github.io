@@ -228,7 +228,7 @@ The character is direct and technical without becoming a terminal imitation. Hea
 - **Display:** the large work title uses the frontmatter's proportional desktop formula, with a narrow-layout size (38px) at (1100px) and below, then (32px) at (700px) and below. The formula uses `--u: calc(100vw / 1672)`.
 - **Headline:** fluid section headings use the recorded clamp and become (30px) on mobile. Their line height stays compact.
 - **Title:** project and experience row headings use the recorded fluid role, becoming (23px) on mobile. Supporting subheads commonly sit at (18–24px), according to their level.
-- **Body:** the base role is the default reading style; long project descriptions use `body-long`, with a maximum line length (72ch). At mobile widths, those descriptions become (16px). Section descriptions use a shorter measure (65ch).
+- **Body:** the base role is the default reading style; long project descriptions use `body-long`, with a maximum line length (72ch). The reading size stays (17px) on mobile. Section descriptions use a shorter measure (65ch).
 - **Label:** regular sentence-case labels support fields and metadata. Technology tags are a separate compact treatment, not a replacement for prose.
 - **Technical:** meaningful technical wording and keyboard shortcuts use mono. The technical masthead line switches to the sans stack on mobile; ordinary descriptions and headings do not become monospace.
 
@@ -240,7 +240,7 @@ The reusable spatial grammar is an open document: align related content in readi
 
 The CSS mixes proportional desktop measurements (`--u`) with fixed reading and control dimensions. The common gutter is `clamp(20px, 2.8vw, 64px)`, changing to (28px) at (1100px) and (20px) at (700px). Common gaps are the frontmatter's recorded spacing steps; row gaps use (42px), and ordinary section padding uses (76px) before narrower overrides.
 
-At the compact desktop band (1101–1450px), detail typography and selected column gaps tighten. At (1100px) and below, the document relaxes into fewer tracks, controls gain minimum height (44px), and explanatory text gains more leading. Project diagrams retain their authored geometry in a local horizontal scroll region when the available column is narrower than their (560px) canvas. At (700px) and below, content rows, contact channels, and paired product groups become a single reading column; long titles wrap naturally, and controls remain visibly labeled. Page-specific rail proportions and first-viewport assembly belong in the surface brief.
+At the compact desktop band (1101–1450px), detail typography and selected column gaps tighten. At (1100px) and below, the document relaxes into fewer tracks, controls gain minimum height (44px), and explanatory text gains more leading. Project diagrams retain their authored geometry in a local horizontal scroll region when the available column is narrower than their font-relative canvas. At (700px) and below, content rows, contact channels, and paired product groups become a single reading column; long titles wrap naturally, and controls remain visibly labeled. Page-specific rail proportions and first-viewport assembly belong in the surface brief.
 
 When tracks stack, preserve their source order and all labels and connectors. A narrow screen changes the geometry, not the information hierarchy.
 
@@ -264,7 +264,7 @@ Compact, legible document actions. Primary and outline variants share the contro
 
 ### Inputs / Fields
 
-Trial fields use a visible label, themed surface and ink, strong stroke, control radius, padding (9px 12px), and minimum height (44px). Their input text inherits the label role (14px). Placeholder text uses annotation ink at full opacity. User-invalid fields use the review foreground on border and a second outline (1px), offset (1px). Search fields use the body role, minimum height (48px), and padding (12px). Keep focus visible; the source does not add an input hover decoration or a custom disabled state.
+Trial fields use a visible label, themed surface and ink, strong stroke, control radius, padding (9px 12px), and minimum height (44px). Their input text inherits the supporting role (16px). Placeholder text uses annotation ink at full opacity. User-invalid fields use the review foreground on border and a second outline (1px), offset (1px). Search fields use the body role, minimum height (48px), and padding (12px). Keep focus visible; the source does not add an input hover decoration or a custom disabled state.
 
 ### Navigation
 
@@ -284,7 +284,7 @@ Each project owns its authored topology, while the SVG renderer shares node, con
 
 Project selection is instant, including keyboard navigation. Readers can explicitly play an example path, pause, resume, or replay it. A decorative token follows authored relationships once, at (760ms) per relationship, using transform and opacity. Complete nodes and base routes remain visible. Page hiding pauses playback; reduced motion cancels it and disables the controls. Initial rendering and printing are static. The React view and standalone atlas share one scoped playback controller.
 
-The diagrams use content-fit canvases with a shared minimum width (560px). Node titles use (16px) and details use (14px), with authored text wrapping for English and Simplified Chinese; edge labels and legends use (13px). Narrow columns keep the topology intact inside a labeled, focusable region that supports local keyboard panning. A visible hint explains scrolling when the diagram column is narrow. SVG title, description, and caption supply context; print fits the complete diagram to the available width. Topology ownership and the current project stories belong in the surface brief and content files.
+The diagrams use content-fit canvases sized in `em` from the body reading token. At the default browser setting their minimum width is (595px). Rendered node titles match body text (17px), details use approximately (16px), and edge labels and legends use approximately (15px). The complete canvas grows with browser font preferences; authored wrapping keeps English and Simplified Chinese inside the nodes. Narrow columns keep the topology intact inside a labeled, focusable region that supports local keyboard panning. A visible hint explains scrolling when the diagram column is narrow. SVG title, description, and caption supply context; print fits the complete diagram to the available width. Topology ownership and the current project stories belong in the surface brief and content files.
 
 ### Quick Navigation
 
@@ -310,14 +310,14 @@ A stroked paper dialog contains a heading, close control, search field, grouped 
 
 ## Readable type scale
 
-Text uses shared `rem` tokens in `app/globals.css` and respects browser font preferences. Body copy uses 1.0625rem on desktop and 1rem at narrow widths, with 1.75 line height; Chinese prose uses 1.85. Supporting text never falls below .875rem. Headings alone scale fluidly, within rem-based limits.
+Text uses shared `rem` tokens in `app/globals.css` and respects browser font preferences. Body copy uses 1.0625rem across screen sizes, with 1.75 line height; Chinese prose uses 1.85. Supporting text never falls below .9375rem. Headings alone scale fluidly, within rem-based limits.
 
 | Role | Token | Size at the default browser setting |
 | --- | --- | --- |
-| Caption, diagram detail, technology tag | `--text-caption` | 14px |
-| Button, sidebar link, metadata | `--text-small` | 15px |
-| Body, navigation | `--text-body` | 17px desktop; 16px mobile |
-| Diagram node title | diagram-specific | 16px |
+| Caption, technology tag | `--text-caption` | 15px |
+| Button, sidebar link, metadata | `--text-small` | 16px |
+| Body, navigation, diagram node title | `--text-body` | 17px on all screens |
+| Diagram detail / relationship label | canvas scaled from `--text-body` | approximately 16px / 15px |
 | Introduction | `--text-lead` | 18px |
 | Subsection | `--text-subheading` | 20px |
 | Project or card heading | `--text-title` | 20–24px |
@@ -330,7 +330,7 @@ Workflow figures use the site's existing palette and font family. Their labels r
 ## Reading and diagram refinement — 2026-11-07
 
 Desktop prose uses `--text-body: 1.0625rem` (17px at the default root size), with
-line height (1.75). At (700px) and below it uses (16px); Chinese prose uses
+line height (1.75). The same size applies on phones; Chinese prose uses
 (1.85) line height and no negative heading tracking. Project subtitles now sit
 below their titles, with (10px) separation and (1.5) line height. The approved
 font families and blue/cool-paper/graphite palette remain the source of truth.

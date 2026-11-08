@@ -44,8 +44,8 @@ function route(points: readonly (readonly [number, number])[]) {
 function Node({ node, copy }: { node: DiagramNode; copy: ArchitectureCopy["nodes"][string] }) {
   const { x, y, w, h, kind } = node;
   const titles = wrap(copy.title, w - 32, 16);
-  const details = wrap(copy.detail, w - 32, 14);
-  const textHeight = titles.length * 20 + 8 + details.length * 18;
+  const details = wrap(copy.detail, w - 32, 15);
+  const textHeight = titles.length * 20 + 8 + details.length * 19;
   const start = y + (h - textHeight) / 2 + 16;
   return <g className={`diagram-node diagram-node--${kind ?? "step"}`} data-node={node.id}>
     {kind === "decision" ? <>
@@ -55,7 +55,7 @@ function Node({ node, copy }: { node: DiagramNode; copy: ArchitectureCopy["nodes
       <rect x={x} y={y} width={w} height={h} rx={kind === "terminal" ? 20 : 6} />
       {kind === "store" ? <path className="diagram-store-rule" d={`M${x},${y + 12} Q${x + w / 2},${y + 28} ${x + w},${y + 12}`} /> : null}
       <text x={x + 16} y={start} className="diagram-node-title">{titles.map((line, index) => <tspan x={x + 16} dy={index ? 20 : 0} key={index}>{line}</tspan>)}</text>
-      <text x={x + 16} y={start + titles.length * 20 + 6} className="diagram-node-detail">{details.map((line, index) => <tspan x={x + 16} dy={index ? 18 : 0} key={index}>{line}</tspan>)}</text>
+      <text x={x + 16} y={start + titles.length * 20 + 6} className="diagram-node-detail">{details.map((line, index) => <tspan x={x + 16} dy={index ? 19 : 0} key={index}>{line}</tspan>)}</text>
     </>}
   </g>;
 }
@@ -78,7 +78,7 @@ export function ArchitectureView({ projectId, copy, hint, playback }: { projectI
     <p className="diagram-hint">{hint}</p>
     {/* eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex -- A scrollable region needs keyboard focus so arrow keys can pan it. */}
     <div className="diagram-scroll" role="region" aria-label={copy.title} tabIndex={0}>
-      <svg className="project-diagram" viewBox={`0 0 ${spec.width} ${spec.height}`} style={{ minWidth: spec.width }} role="img" aria-labelledby={`${prefix}-title ${prefix}-desc`}>
+      <svg className="project-diagram" viewBox={`0 0 ${spec.width} ${spec.height}`} style={{ width: `${spec.width / 16}em`, minWidth: `${spec.width / 16}em` }} role="img" aria-labelledby={`${prefix}-title ${prefix}-desc`}>
         <title id={`${prefix}-title`}>{copy.title}</title>
         <desc id={`${prefix}-desc`}>{copy.description}</desc>
         <defs>
@@ -100,7 +100,7 @@ export function ArchitectureView({ projectId, copy, hint, playback }: { projectI
           if (!edge.label || !edge.labelAt) return null;
           const label = copy.labels[edge.label];
           const [anchorX, y] = edge.labelAt;
-          const width = Math.ceil((textWidth(label, 13) + 16) / 4) * 4;
+          const width = Math.ceil((textWidth(label, 14) + 16) / 4) * 4;
           const x = edge.labelSide === "right" ? anchorX + 8 + width / 2 : anchorX;
           const offsetY = edge.labelSide === "right" ? 0 : 8;
           return <g className="diagram-edge-label" key={index}>

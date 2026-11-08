@@ -12,8 +12,8 @@
   --font-sans: "Kantumruy Pro", "Noto Sans SC", "PingFang SC", "Microsoft YaHei UI", "Microsoft YaHei", sans-serif;
   --font-head: var(--font-sans); --font-code: "JetBrains Mono", ui-monospace, monospace;
   /* Text follows user font preferences; only headings grow with the viewport. */
-  --text-caption: .875rem;
-  --text-small: .9375rem;
+  --text-caption: .9375rem;
+  --text-small: 1rem;
   --text-body: 1.0625rem;
   --text-lead: 1.125rem;
   --text-subheading: 1.25rem;
@@ -144,26 +144,26 @@ section[id], article[id] { scroll-margin-top: 24px; }
 .case-architecture { container: workflow / inline-size; }
 .architecture-figure { margin-top: 24px; min-width: 0; }
 .diagram-scroll { width: 100%; max-width: 100%; overflow-x: auto; overscroll-behavior-inline: contain; scrollbar-width: thin; scrollbar-color: var(--line-strong) var(--canvas); }
-.project-diagram { display: block; width: 100%; max-width: 760px; height: auto; font-family: var(--font-sans); }
+.project-diagram { display: block; max-width: none; height: auto; font-family: var(--font-sans); font-size: var(--text-body); }
 .diagram-node rect, .diagram-node polygon { fill: var(--surface); stroke: var(--line-strong); stroke-width: 1.2; }
 .diagram-node--focal rect, .diagram-node--decision polygon { fill: var(--surface-sunk); stroke: var(--accent-ink); stroke-width: 1.6; }
 .diagram-node--store rect { fill: var(--surface-sunk); }
 .diagram-node--context rect { fill: var(--canvas); stroke-dasharray: 5 4; }
 .diagram-node-title { fill: var(--ink); font-size: 16px; font-weight: 600; }
-.diagram-node-detail { fill: var(--ink-70); font-size: 14px; font-weight: 400; }
+.diagram-node-detail { fill: var(--ink-70); font-size: 15px; font-weight: 400; }
 .diagram-edge, .diagram-store-rule { fill: none; stroke: var(--flow-line); stroke-width: 1.2; }
 .diagram-arrowhead { fill: var(--flow-line); }
 .diagram-edge--context { stroke-dasharray: 5 4; }
 
 .diagram-edge-label rect { fill: var(--canvas); }
-.diagram-edge-label text { fill: var(--ink-70); font-size: 13px; font-weight: 500; }
+.diagram-edge-label text { fill: var(--ink-70); font-size: 14px; font-weight: 500; }
 .diagram-boundary { fill: none; stroke: var(--line-strong); stroke-dasharray: 5 4; }
 .diagram-lane-rule { stroke: var(--line); stroke-width: 1; }
-.diagram-lane-label { fill: var(--ink-70); font-size: 14px; font-weight: 600; }
+.diagram-lane-label { fill: var(--ink-70); font-size: 15px; font-weight: 600; }
 .diagram-lifeline { stroke: var(--line-strong); stroke-dasharray: 4 4; }
 .diagram-activation { fill: var(--surface-sunk); stroke: var(--line-strong); }
-.diagram-legend text { fill: var(--muted); font-size: 13px; }
-.diagram-control-note { fill: var(--ink-70); font-size: 14px; }
+.diagram-legend text { fill: var(--muted); font-size: 14px; }
+.diagram-control-note { fill: var(--ink-70); font-size: 15px; }
 .diagram-note { max-width: 72ch; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--line); color: var(--ink-70); font-size: var(--text-caption); line-height: 1.65; }
 .diagram-hint { display: none; margin-bottom: 12px; color: var(--muted); font-size: var(--text-caption); line-height: 1.5; }
 .diagram-toolbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 10px; }
@@ -181,7 +181,7 @@ html:lang(zh-CN) { --leading-body: 1.85; }
 html:lang(zh-CN) h1, html:lang(zh-CN) h2, html:lang(zh-CN) h3 { letter-spacing: 0; }
 @media (prefers-reduced-motion: reduce) { .diagram-motion-token { display: none !important; } }
 html[data-motion="static"] .diagram-motion-token { display: none; }
-@container workflow (max-width: 560px) { .diagram-hint { display: block; } }
+@container workflow (max-width: 40rem) { .diagram-hint { display: block; } }
 @media print {
   .diagram-scroll { overflow: visible; }
   .project-diagram { min-width: 0 !important; max-width: 100%; break-inside: avoid; }
@@ -384,7 +384,7 @@ html[data-motion="static"] .diagram-motion-token { display: none; }
 
 
 @media (max-width: 700px) {
-  :root { --gutter: 20px; --text-body: 1rem; }
+  :root { --gutter: 20px; }
   .site-header { display: flex; flex-direction: column; padding-bottom: 0; }
   .header-inner { order: 0; gap: 16px 10px; padding-top: 20px; }
   .brand { display: block; }

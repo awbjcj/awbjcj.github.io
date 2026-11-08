@@ -101,6 +101,25 @@ test("renders every featured project and the résumé in both languages at deskt
             assert.equal(await diagram.getAttribute("role"), "img");
             const accessible = await diagram.evaluate(svg => svg.getAttribute("aria-labelledby").split(" ").every(id => document.getElementById(id)?.textContent.trim()));
             assert.ok(accessible, "the diagram has a resolving title and description");
+            const typography = await diagram.evaluate(svg => {
+              const body = parseFloat(getComputedStyle(document.body).fontSize);
+              const scale = svg.getScreenCTM().a;
+              const size = selector => parseFloat(getComputedStyle(svg.querySelector(selector)).fontSize) * scale;
+              const clipped = [...svg.querySelectorAll('.diagram-node')].flatMap(node => {
+                const box = node.querySelector('rect');
+                if (!box) return [];
+                const bounds = box.getBBox();
+                return [...node.querySelectorAll('text')].filter(text => {
+                  const b = text.getBBox();
+                  return b.x < bounds.x || b.y < bounds.y || b.x + b.width > bounds.x + bounds.width || b.y + b.height > bounds.y + bounds.height;
+                }).map(text => text.textContent);
+              });
+              return { body, title: size('.diagram-node-title'), detail: size('.diagram-node-detail'), label: size('.diagram-legend text'), clipped };
+            });
+            assert.ok(Math.abs(typography.title - typography.body) < .1, "diagram titles match body text at the rendered scale");
+            assert.ok(typography.detail >= typography.body * 15 / 16 - .1, "diagram detail retains the shared supporting size");
+            assert.ok(typography.label >= typography.body * 14 / 16 - .1, "diagram labels retain the shared caption size");
+            assert.deepEqual(typography.clipped, [], `${locale}, ${width}px, ${projectIds[index]}: diagram text must fit its node`);
             if (width < 560) {
               const frame = page.locator(".diagram-scroll");
               const before = await frame.evaluate(el => ({ width: el.clientWidth, content: el.scrollWidth }));
@@ -233,4 +252,41 @@ test("the standalone bilingual atlas has isolated playback and a complete no-Jav
     assert.equal(await page.locator("#food-en .diagram-edge[data-from]").count(), 8);
     assert.equal(await page.locator("#vsda-en [data-diagram-play]").isDisabled(), true);
   } finally { await staticContext.close(); }
+});
+
+
+test("keeps text readable with enlarged browser fonts on phones, tablets and large screens", async () => {
+  for (const width of [320, 768, 1440, 1920]) {
+    for (const locale of ["en", "zh-CN"]) {
+      const context = await browser.newContext({ viewport: { width, height: 1000 }, reducedMotion: "reduce" });
+      try {
+        const page = await context.newPage();
+        await page.goto(`${baseUrl}/?lang=${locale}`, { waitUntil: "networkidle" });
+        await page.addStyleTag({ content: "html { font-size: 125%; }" });
+        await page.evaluate(() => document.fonts.ready);
+        const metrics = await page.evaluate(() => {
+          const svg = document.querySelector('.project-diagram');
+          return {
+            body: parseFloat(getComputedStyle(document.body).fontSize),
+            title: parseFloat(getComputedStyle(svg.querySelector('.diagram-node-title')).fontSize) * svg.getScreenCTM().a,
+            page: document.documentElement.scrollWidth, viewport: innerWidth,
+          };
+        });
+        assert.equal(metrics.body, 21.25, "body text follows the user's enlarged font preference on every screen");
+        assert.ok(Math.abs(metrics.title - metrics.body) < .1);
+        assert.ok(metrics.page <= metrics.viewport + 1, `${locale}, ${width}px: enlarged text must reflow`);
+        if (process.env.FONT_REVIEW_DIR && [320, 768, 1440].includes(width)) {
+          await page.screenshot({ path: `${process.env.FONT_REVIEW_DIR}/${locale}-${width}-enlarged.png`, fullPage: false });
+          await page.locator('.case-architecture').scrollIntoViewIfNeeded();
+          await page.screenshot({ path: `${process.env.FONT_REVIEW_DIR}/${locale}-${width}-diagram.png`, fullPage: false });
+        }
+        await page.goto(`${baseUrl}/project-architectures.html`, { waitUntil: "networkidle" });
+        await page.addStyleTag({ content: "html { font-size: 125%; }" });
+        assert.equal(await page.locator('body').evaluate(el => getComputedStyle(el).fontSize), '21.25px');
+        assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), "the enlarged atlas must reflow");
+      } finally {
+        await context.close();
+      }
+    }
+  }
 });

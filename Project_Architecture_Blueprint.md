@@ -96,14 +96,13 @@ non-orthogonal segments, and disconnected examples. Sequence playback follows
 message order rather than pretending every message is a graph traversal.
 
 SVG titles and descriptions name the complete view. A labeled, focusable scroll
-region keeps the 560px reading canvas at readable size on phones. Keyboard users
+region keeps the font-relative reading canvas (595px at default settings) at readable size on phones. Keyboard users
 can pan with arrow keys; the document itself does not overflow sideways. A full
 atlas link offers a wider reading surface and a direct anchor for the project
 and language. Printing fits the complete diagram to the page.
 
-Body text is 17px on desktop and 16px on phones, with 1.75 line spacing; Chinese
-uses 1.85. Diagram titles are 16px, details 14px, and relationship labels and
-legends 13px before canvas scaling. Long project titles put their subtitles on
+Body text is 17px across screen sizes, with 1.75 line spacing; Chinese
+uses 1.85. Rendered diagram titles match body text at 17px; details are approximately 16px, and relationship labels and legends 15px. The complete canvas scales with browser font preferences, preserving wrapping and geometry. Long project titles put their subtitles on
 the next line. The palette and font families remain the approved casebook system.
 
 ## Motion lifecycle

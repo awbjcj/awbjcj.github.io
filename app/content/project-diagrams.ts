@@ -52,7 +52,7 @@ export const projectDiagrams: Record<CaseStudyId, DiagramSpec> = {
     ],
   },
   release: {
-    type: "flowchart", width: 560, height: 632,
+    type: "flowchart", width: 560, height: 656,
     playback: [0, 1, 6, 7],
     nodes: [
       { id: "email", x: 16, y: 24, w: 240, h: 80, kind: "terminal" },
@@ -61,7 +61,7 @@ export const projectDiagrams: Record<CaseStudyId, DiagramSpec> = {
       { id: "retry", x: 352, y: 160, w: 192, h: 96, kind: "context" },
       { id: "reviewer", x: 352, y: 312, w: 192, h: 104 },
       { id: "jenkins", x: 16, y: 480, w: 240, h: 88 },
-      { id: "summary", x: 352, y: 480, w: 192, h: 88, kind: "terminal" },
+      { id: "summary", x: 352, y: 464, w: 192, h: 120, kind: "terminal" },
     ],
     edges: [
       { from: "email", to: "extract", points: [[136,104],[136,160]] },
